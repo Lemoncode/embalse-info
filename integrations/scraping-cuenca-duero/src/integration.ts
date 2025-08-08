@@ -1,18 +1,19 @@
 // Import the tools we need: axios for making HTTP requests, and cheerio for parsing HTML
 import axios from 'axios';
 import * as cheerio from 'cheerio';
+import { Reservoir } from './types';
 
 // Define the URL we are going to scrape
 const URL = 'https://www.saihduero.es/situacion-embalses';
 
 // This is our main function, now with the real scraping logic
-export const getEstadoCuencaDuero = async (): Promise<any> => {
+export const getEstadoCuencaDuero = async (): Promise<Reservoir[]> => {
   try {
     // We try to run all our existing logic
     const response = await axios.get(URL);
     const html = response.data;
     const $ = cheerio.load(html);
-    const reservoirs = [];
+    const reservoirs: Reservoir[] = [];
     
     $('tbody > tr').slice(1).each((index, element) => {
       const tds = $(element).find('td');
