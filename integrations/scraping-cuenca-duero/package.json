@@ -1,5 +1,5 @@
 {
-  "name": "@lemoncode/scraping-cuenca-duero",
+  "name": "scraping-cuenca-duero",
   "version": "1.0.0",
   "private": true,
   "type": "module",

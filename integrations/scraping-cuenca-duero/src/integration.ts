@@ -26,12 +26,17 @@ export const getEstadoCuencaDuero = async (): Promise<any> => {
     const capacity = $(tds[1]).text().trim();
     const currentVolume = $(tds[2]).text().trim();
 
-    // Add the extracted data as an object to our array
-    reservoirs.push({
-      name,
-      capacity,
-      currentVolume,
-    });
+    const normalizedName = name.toLowerCase();
+
+    // Data Filtering: Only add the reservoir if it has a valid name and capacity,
+    // and it's not a summary row like 'total' or '% del total'.
+    if (capacity && normalizedName && !normalizedName.startsWith('total') && !normalizedName.startsWith('% del total')) {
+      reservoirs.push({
+        name,
+        capacity,
+        currentVolume,
+      });
+    }
   });
 
   return reservoirs;
