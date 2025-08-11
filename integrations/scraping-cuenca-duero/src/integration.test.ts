@@ -1,13 +1,13 @@
-// Importamos las funciones globales de Vitest para mayor claridad y tipado
+// Import Vitest's global functions for clarity and strong typing
 import { describe, it, expect, vi, type Mock } from 'vitest';
 
 import axios from 'axios';
 import { getEstadoCuencaDuero } from './integration';
 
-// Usamos vi.mock() para simular axios
+// We use vi.mock() to mock the axios module
 vi.mock('axios');
 
-// Nuestro HTML falso para el test
+// Our fake HTML data for a controlled testing environment
 const fakeHtml = `
   <html>
     <body>
@@ -36,13 +36,15 @@ const fakeHtml = `
 
 describe('getEstadoCuencaDuero', () => {
   it('should return a clean array of reservoirs from valid HTML', async () => {
-    // Configuramos el mock de axios para que devuelva nuestro HTML falso
+    // ARRANGE: Set up the test scenario and mock dependencies.
+    // We configure the axios.get mock to return our fake HTML.
     (axios.get as Mock).mockResolvedValueOnce({ data: fakeHtml });
     
-    // Actuamos: llamamos a la función que queremos probar
+    // ACT: Execute the function being tested.
     const result = await getEstadoCuencaDuero();
 
-    // Afirmamos: comprobamos que el resultado es el esperado
+    // ASSERT: Verify that the outcome is as expected.
+    // We expect the 'Total' row to have been filtered out.
     expect(result).toHaveLength(2);
     expect(result).toEqual([
       { name: 'Embalse A', capacity: '100', currentVolume: '50' },
