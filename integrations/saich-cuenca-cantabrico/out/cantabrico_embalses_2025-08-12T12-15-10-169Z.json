@@ -1,0 +1,1259 @@
+{
+  "generatedAt": "2025-08-12T12:15:10.166Z",
+  "total": 23,
+  "stations": [
+    {
+      "id": "1406",
+      "nombre": "Embalse de Salime",
+      "rio": "Navia",
+      "municipio": "Grandas de Salime",
+      "sistema": "Navia",
+      "zonaHidrologica": "Navia",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "parametrosMedidos": [
+        "nivel_embalse",
+        "precipitacion",
+        "temperatura"
+      ],
+      "coords": {
+        "lat": 43.236601303940915,
+        "lon": -6.847621337155647
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": 0,
+      "precipit12h": 0,
+      "precipit24h": 0,
+      "temperatura": 31.6,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": "2025-08-12 14:10:00",
+      "fechaTemperatura": "2025-08-12 14:10:00",
+      "fechaGeneral": "2025-08-12 14:10:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": "verde",
+        "temperatura": "azul",
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1408",
+      "nombre": "Embalse de Doiras",
+      "rio": "Navia",
+      "municipio": "Boal",
+      "sistema": "Navia",
+      "zonaHidrologica": "Navia",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "parametrosMedidos": [
+        "nivel_embalse"
+      ],
+      "coords": {
+        "lat": 43.387090994214105,
+        "lon": -6.826241691389054
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": null,
+      "precipit12h": null,
+      "precipit24h": null,
+      "temperatura": null,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": null,
+      "fechaTemperatura": null,
+      "fechaGeneral": "2025-08-12 12:50:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": null,
+        "temperatura": null,
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1409",
+      "nombre": "Embalse de Arbón",
+      "rio": "Navia",
+      "municipio": "Navia",
+      "sistema": "Navia",
+      "zonaHidrologica": "Navia",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "parametrosMedidos": [
+        "nivel_embalse",
+        "precipitacion",
+        "temperatura"
+      ],
+      "coords": {
+        "lat": 43.47862117793004,
+        "lon": -6.727906884145698
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": 0,
+      "precipit12h": 0,
+      "precipit24h": 0,
+      "temperatura": 22.7,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": "2025-08-12 14:10:00",
+      "fechaTemperatura": "2025-08-12 14:10:00",
+      "fechaGeneral": "2025-08-12 14:10:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": "verde",
+        "temperatura": "azul",
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1333",
+      "nombre": "Embalse de Tanes",
+      "rio": "Nalón",
+      "municipio": "Caso",
+      "sistema": "Nalón",
+      "zonaHidrologica": "Nalón",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "parametrosMedidos": [
+        "nivel_embalse",
+        "precipitacion",
+        "temperatura"
+      ],
+      "coords": {
+        "lat": 43.22056130517994,
+        "lon": -5.427819021907263
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": 0,
+      "precipit12h": 0,
+      "precipit24h": 0,
+      "temperatura": 32.2,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": "2025-08-12 14:10:00",
+      "fechaTemperatura": "2025-08-12 14:10:00",
+      "fechaGeneral": "2025-08-12 14:10:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": "verde",
+        "temperatura": "azul",
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1334",
+      "nombre": "Embalse de Rioseco",
+      "rio": "Nalón",
+      "municipio": "Caso",
+      "sistema": "Nalón",
+      "zonaHidrologica": "Nalón",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "parametrosMedidos": [
+        "nivel_embalse",
+        "precipitacion",
+        "temperatura"
+      ],
+      "coords": {
+        "lat": 43.22814344215751,
+        "lon": -5.4731633547827325
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": 0,
+      "precipit12h": 0,
+      "precipit24h": 0,
+      "temperatura": 31.2,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": "2025-08-12 14:10:00",
+      "fechaTemperatura": "2025-08-12 14:10:00",
+      "fechaGeneral": "2025-08-12 14:10:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": "verde",
+        "temperatura": "azul",
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1345",
+      "nombre": "Embalse de Alfilorios",
+      "rio": "Barrea",
+      "municipio": "Oviedo",
+      "sistema": "Nalón",
+      "zonaHidrologica": "Nalón",
+      "tipoEstacion": "embalse",
+      "camara": "SI",
+      "parametrosMedidos": [
+        "nivel_embalse",
+        "precipitacion",
+        "temperatura"
+      ],
+      "coords": {
+        "lat": 43.29362586213808,
+        "lon": -5.919208708594258
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": 0,
+      "precipit12h": 0,
+      "precipit24h": 0.2,
+      "temperatura": 25.5,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": "2025-08-12 14:10:00",
+      "fechaTemperatura": "2025-08-12 14:10:00",
+      "fechaGeneral": "2025-08-12 14:10:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": "verde",
+        "temperatura": "azul",
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1346",
+      "nombre": "Embalse de Valdemurio",
+      "rio": "Trubia",
+      "municipio": "Quirós",
+      "sistema": "Nalón",
+      "zonaHidrologica": "Nalón",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "parametrosMedidos": [
+        "nivel_embalse",
+        "precipitacion",
+        "temperatura"
+      ],
+      "coords": {
+        "lat": 43.199153278301885,
+        "lon": -6.019150357596317
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": 0,
+      "precipit12h": 0,
+      "precipit24h": 0,
+      "temperatura": 26.7,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": "2025-08-12 14:10:00",
+      "fechaTemperatura": "2025-08-12 14:10:00",
+      "fechaGeneral": "2025-08-12 14:10:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": "verde",
+        "temperatura": "azul",
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1337",
+      "nombre": "Embalse de El Furacón",
+      "rio": "Nalón",
+      "municipio": "Oviedo",
+      "sistema": "Nalón",
+      "zonaHidrologica": "Nalón",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "parametrosMedidos": [
+        "nivel_embalse"
+      ],
+      "coords": {
+        "lat": 43.36756928702998,
+        "lon": -5.964185963146498
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": null,
+      "precipit12h": null,
+      "precipit24h": null,
+      "temperatura": null,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": null,
+      "fechaTemperatura": null,
+      "fechaGeneral": "2025-08-12 14:05:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": null,
+        "temperatura": null,
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1340",
+      "nombre": "Embalse de Priañes",
+      "rio": "Nora",
+      "municipio": "Oviedo",
+      "sistema": "Nalón",
+      "zonaHidrologica": "Nalón",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "parametrosMedidos": [
+        "nivel_embalse"
+      ],
+      "coords": {
+        "lat": 43.38238777291487,
+        "lon": -5.974993966787936
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": null,
+      "precipit12h": null,
+      "precipit24h": null,
+      "temperatura": null,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": null,
+      "fechaTemperatura": null,
+      "fechaGeneral": "2025-08-12 14:05:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": null,
+        "temperatura": null,
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1355",
+      "nombre": "Embalse de La Florida-Pilotuerto",
+      "rio": "Narcea",
+      "municipio": "Tineo",
+      "sistema": "Nalón",
+      "zonaHidrologica": "Narcea",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "parametrosMedidos": [
+        "nivel_embalse"
+      ],
+      "coords": {
+        "lat": 43.291193616671386,
+        "lon": -6.429113434512774
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": null,
+      "precipit12h": null,
+      "precipit24h": null,
+      "temperatura": null,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": null,
+      "fechaTemperatura": null,
+      "fechaGeneral": "2025-08-12 14:05:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": null,
+        "temperatura": null,
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1356",
+      "nombre": "Embalse de La Barca",
+      "rio": "Narcea",
+      "municipio": "Belmonte de Miranda",
+      "sistema": "Nalón",
+      "zonaHidrologica": "Narcea",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "parametrosMedidos": [
+        "nivel_embalse"
+      ],
+      "coords": {
+        "lat": 43.32035774542309,
+        "lon": -6.303788164563039
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": null,
+      "precipit12h": null,
+      "precipit24h": null,
+      "temperatura": null,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": null,
+      "fechaTemperatura": null,
+      "fechaGeneral": "2025-08-12 12:55:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": null,
+        "temperatura": null,
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1272",
+      "nombre": "Embalse de Cordiñanes",
+      "rio": "Cares",
+      "municipio": "Valdeón",
+      "sistema": "Deva",
+      "zonaHidrologica": "Deva",
+      "tipoEstacion": "embalse",
+      "camara": "SI",
+      "parametrosMedidos": [
+        "nivel_embalse",
+        "precipitacion",
+        "temperatura"
+      ],
+      "coords": {
+        "lat": 43.15970157796118,
+        "lon": -4.914107694192159
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": 0,
+      "precipit12h": 0,
+      "precipit24h": 0.2,
+      "temperatura": 34.1,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": "2025-08-12 14:10:00",
+      "fechaTemperatura": "2025-08-12 14:10:00",
+      "fechaGeneral": "2025-08-12 14:10:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": "verde",
+        "temperatura": "azul",
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1253",
+      "nombre": "Embalse de La Cohilla",
+      "rio": "Nansa",
+      "municipio": "Polaciones",
+      "sistema": "Nansa",
+      "zonaHidrologica": "Nansa",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "parametrosMedidos": [
+        "nivel_embalse",
+        "precipitacion",
+        "temperatura"
+      ],
+      "coords": {
+        "lat": 43.133132208452416,
+        "lon": -4.387965967736134
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": 0,
+      "precipit12h": 0,
+      "precipit24h": 0,
+      "temperatura": 32.3,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": "2025-08-12 14:10:00",
+      "fechaTemperatura": "2025-08-12 14:10:00",
+      "fechaGeneral": "2025-08-12 14:10:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": "verde",
+        "temperatura": "azul",
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1255",
+      "nombre": "Embalse de La Lastra",
+      "rio": "Nansa",
+      "municipio": "Tudanca",
+      "sistema": "Nansa",
+      "zonaHidrologica": "Nansa",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "parametrosMedidos": [
+        "nivel_embalse",
+        "precipitacion",
+        "temperatura"
+      ],
+      "coords": {
+        "lat": 43.14917007179727,
+        "lon": -4.377494123522288
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": 0,
+      "precipit12h": 0,
+      "precipit24h": 0,
+      "temperatura": 29.9,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": "2025-08-12 14:10:00",
+      "fechaTemperatura": "2025-08-12 14:10:00",
+      "fechaGeneral": "2025-08-12 14:10:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": "verde",
+        "temperatura": "azul",
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1254",
+      "nombre": "Embalse de Palombera",
+      "rio": "Nansa",
+      "municipio": "Herrerías",
+      "sistema": "Nansa",
+      "zonaHidrologica": "Nansa",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "parametrosMedidos": [
+        "nivel_embalse",
+        "precipitacion",
+        "temperatura"
+      ],
+      "coords": {
+        "lat": 43.297394985286566,
+        "lon": -4.455235977024729
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": 0,
+      "precipit12h": 0,
+      "precipit24h": 0,
+      "temperatura": 26.7,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": "2025-08-12 14:10:00",
+      "fechaTemperatura": "2025-08-12 14:10:00",
+      "fechaGeneral": "2025-08-12 14:10:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": "verde",
+        "temperatura": "azul",
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1231",
+      "nombre": "Embalse Alsa-Mediajo",
+      "rio": "Torina",
+      "municipio": "San Miguel de Aguayo",
+      "sistema": "Saja",
+      "zonaHidrologica": "Saja",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "parametrosMedidos": [
+        "nivel_embalse",
+        "precipitacion",
+        "temperatura"
+      ],
+      "coords": {
+        "lat": 43.09466107875883,
+        "lon": -3.9999213986660918
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": 0,
+      "precipit12h": 0,
+      "precipit24h": 0,
+      "temperatura": 34.6,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": "2025-08-12 14:10:00",
+      "fechaTemperatura": "2025-08-12 14:10:00",
+      "fechaGeneral": "2025-08-12 14:10:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": "verde",
+        "temperatura": "azul",
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1177",
+      "nombre": "Embalse de Ordunte",
+      "rio": "Nervión",
+      "municipio": "Valle de Mena",
+      "sistema": "Nervión",
+      "zonaHidrologica": "Nervión",
+      "tipoEstacion": "embalse",
+      "camara": "SI",
+      "parametrosMedidos": [
+        "nivel_embalse",
+        "precipitacion",
+        "temperatura"
+      ],
+      "coords": {
+        "lat": 43.16079480593201,
+        "lon": -3.2833489862485306
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": 0,
+      "precipit12h": 0,
+      "precipit24h": 0,
+      "temperatura": 35.8,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": "2025-08-12 14:10:00",
+      "fechaTemperatura": "2025-08-12 14:10:00",
+      "fechaGeneral": "2025-08-12 14:10:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": "verde",
+        "temperatura": "azul",
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1079",
+      "nombre": "Embalse de Arriarán",
+      "rio": "Arriaran",
+      "municipio": "Beasáin",
+      "sistema": "Oria",
+      "zonaHidrologica": "Oria",
+      "tipoEstacion": "embalse",
+      "camara": "SI",
+      "parametrosMedidos": [
+        "nivel_embalse",
+        "precipitacion",
+        "temperatura"
+      ],
+      "coords": {
+        "lat": 43.06929355195049,
+        "lon": -2.2400345865717455
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": 0,
+      "precipit12h": 0,
+      "precipit24h": 0,
+      "temperatura": 39,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": "2025-08-12 14:10:00",
+      "fechaTemperatura": "2025-08-12 14:10:00",
+      "fechaGeneral": "2025-08-12 14:10:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": "verde",
+        "temperatura": "azul",
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1078",
+      "nombre": "Embalse de Ibiur",
+      "rio": "Ibiur",
+      "municipio": "Baliarrain",
+      "sistema": "Oria",
+      "zonaHidrologica": "Oria",
+      "tipoEstacion": "embalse",
+      "camara": "SI",
+      "parametrosMedidos": [
+        "nivel_embalse",
+        "precipitacion",
+        "temperatura"
+      ],
+      "coords": {
+        "lat": 43.081992346168335,
+        "lon": -2.124374607029185
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": 0,
+      "precipit12h": 0,
+      "precipit24h": 0,
+      "temperatura": 36.9,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": "2025-08-12 14:10:00",
+      "fechaTemperatura": "2025-08-12 14:10:00",
+      "fechaGeneral": "2025-08-12 14:10:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": "verde",
+        "temperatura": "azul",
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1108",
+      "nombre": "Embalse de Añarbe",
+      "rio": "Añarbe",
+      "municipio": "Goizueta",
+      "sistema": "Urumea",
+      "zonaHidrologica": "Urumea",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "parametrosMedidos": [
+        "nivel_embalse",
+        "precipitacion",
+        "temperatura"
+      ],
+      "coords": {
+        "lat": 43.21234020336497,
+        "lon": -1.8755155786822226
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": 0,
+      "precipit12h": 0,
+      "precipit24h": 0,
+      "temperatura": 31.5,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": "2025-08-12 14:10:00",
+      "fechaTemperatura": "2025-08-12 14:10:00",
+      "fechaGeneral": "2025-08-12 14:10:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": "verde",
+        "temperatura": "azul",
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1071",
+      "nombre": "Embalse Leurtza Inferior",
+      "rio": "Leurza",
+      "municipio": "Urroz",
+      "sistema": "Bidasoa",
+      "zonaHidrologica": "Bidasoa",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "parametrosMedidos": [
+        "nivel_embalse"
+      ],
+      "coords": {
+        "lat": 43.07273535738339,
+        "lon": -1.7119686684287474
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": null,
+      "precipit12h": null,
+      "precipit24h": null,
+      "temperatura": null,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": null,
+      "fechaTemperatura": null,
+      "fechaGeneral": "2025-08-12 14:00:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": null,
+        "temperatura": null,
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1070",
+      "nombre": "Embalse Leurtza Superior",
+      "rio": "Leurza",
+      "municipio": "Beintza-Labaien",
+      "sistema": "Bidasoa",
+      "zonaHidrologica": "Bidasoa",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "parametrosMedidos": [
+        "nivel_embalse",
+        "precipitacion",
+        "temperatura"
+      ],
+      "coords": {
+        "lat": 43.06841968454626,
+        "lon": -1.7165665822923513
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": 0,
+      "precipit12h": 0,
+      "precipit24h": 0,
+      "temperatura": 33.9,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": "2025-08-12 14:10:00",
+      "fechaTemperatura": "2025-08-12 14:10:00",
+      "fechaGeneral": "2025-08-12 14:10:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": "verde",
+        "temperatura": "azul",
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    },
+    {
+      "id": "1847",
+      "nombre": "Embalse de Endara-San Antón",
+      "rio": "Endara",
+      "municipio": "Lesaka",
+      "sistema": "Bidasoa",
+      "zonaHidrologica": "Bidasoa",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "parametrosMedidos": [
+        "nivel_embalse",
+        "precipitacion",
+        "temperatura"
+      ],
+      "coords": {
+        "lat": 43.27703139520433,
+        "lon": -1.772392848799575
+      },
+      "caudal": null,
+      "nivel": null,
+      "precipit1h": 0,
+      "precipit12h": 0,
+      "precipit24h": 0,
+      "temperatura": 31.6,
+      "fechaCaudal": null,
+      "fechaNivel": null,
+      "fechaPrecipitacion": "2025-08-12 14:10:00",
+      "fechaTemperatura": "2025-08-12 14:10:00",
+      "fechaGeneral": "2025-08-12 14:10:00.0",
+      "umbralCaudal": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "umbralNivel": {
+        "seguimiento": null,
+        "prealerta": null,
+        "alerta": null
+      },
+      "colores": {
+        "caudal": null,
+        "nivel": null,
+        "precipitacion": "verde",
+        "temperatura": "azul",
+        "general": "azul"
+      },
+      "tendencias": {
+        "caudal": null,
+        "nivel": null
+      },
+      "estadoSequia": false,
+      "permisoEcologico": false,
+      "subtipoEmbalse": true,
+      "subtipoPiezometro": false
+    }
+  ]
+}
