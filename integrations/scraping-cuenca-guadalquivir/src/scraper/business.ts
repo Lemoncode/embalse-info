@@ -3,14 +3,28 @@ import * as cheerio from "cheerio";
 import { AnyNode } from "domhandler";
 
 /**
- * Locates the "ESTADO DE EMBALSES" table.
+ * Locates the "ESTADO DE EMBALSES" table by searching the headers of the table.
  * @param $ - Cheerio instance
  * @returns Returns the cheerio selection for the table
  */
 
 function findEstadoEmbalsesTable($: cheerio.CheerioAPI) {
-  const tableById = $("#ContentPlaceHolder1_GridNivelesEmbalses");
-  if (tableById.length) return tableById;
+  const byId = $("#ContentPlaceHolder1_GridNivelesEmbalses");
+  if (byId.length) return byId;
+
+  const requiredHeaders = [
+    "Embalse",
+    "NMN",
+    "Nivel",
+    "Capacidad",
+    "Volumen",
+    "%",
+  ];
+
+  return $("table").filter((_, t) => {
+    const tableText = $(t).text();
+    return requiredHeaders.every((h) => tableText.includes(h));
+  });
 }
 
 /**
@@ -83,10 +97,18 @@ function parseEmbalseCell(text: string): {
   provincia: string;
 } {
   const t = text.trim();
-  const m = t.match(/^([A-Za-z]+)?(\d+)\s+(.+?)\s+\(([A-Z]{2})\)$/);
-  return m
-    ? { id: parseInt(m[2], 10), embalse: m[3], provincia: m[4] }
-    : { id: NaN, embalse: t, provincia: "" };
+
+  // Get provincia
+  const provincia = t.slice(-3, -1); // "(JA)" → "JA"
+
+  const withoutProvincia = t.slice(0, -5); // "E01 El Tranco de Beas"
+
+  // Get id and embalse name
+  const [code, ...embalseNameParts] = withoutProvincia.split(" ");
+  const id = Number(code.slice(1)); //
+  const embalse = embalseNameParts.join(" ");
+
+  return { id, embalse, provincia };
 }
 
 /**
