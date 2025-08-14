@@ -12,7 +12,5 @@ export async function getCuencaCatalana(
   url: string
 ): Promise<EmbalseCatalan[]> {
   const { data } = await axios.get<Record<string, EmbalseCatalanApi>>(url);
-  console.log(data);
-
   return mapApiToEmbalses(data);
 }
