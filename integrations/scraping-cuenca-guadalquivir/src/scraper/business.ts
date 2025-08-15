@@ -1,43 +1,42 @@
 import { EmbalsesGuadalquivir } from "@/api";
-import * as cheerio from "cheerio";
-import { AnyNode } from "domhandler";
+import { Locator, Page } from "playwright";
 
 /**
- * Locates the "ESTADO DE EMBALSES" table by searching the headers of the table.
- * @param $ - Cheerio instance
- * @returns Returns the cheerio selection for the table
+ * Locates the "ESTADO DE EMBALSES" table by id.
+ * @param page - Playwright Page instance
+ * @returns Returns the Playwright Locator for the table or null if not found
  */
 
-function findEstadoEmbalsesTable($: cheerio.CheerioAPI) {
-  const byId = $("#ContentPlaceHolder1_GridNivelesEmbalses");
-  if (byId.length) return byId;
-
-  const requiredHeaders = [
-    "Embalse",
-    "NMN",
-    "Nivel",
-    "Capacidad",
-    "Volumen",
-    "%",
-  ];
-
-  return $("table").filter((_, t) => {
-    const tableText = $(t).text();
-    return requiredHeaders.every((h) => tableText.includes(h));
-  });
+async function findEstadoEmbalsesTable(page: Page) {
+  try {
+    const tableById = page.locator("#ContentPlaceHolder1_GridNivelesEmbalses");
+    if ((await tableById.count()) > 0) return tableById;
+  } catch (error) {
+    console.error("Embalses table not found:", error);
+    return null;
+  }
 }
 
 /**
  * Extracts the current date from the page.
- * @param $ - Cheerio instance
- * @returns The current date as a string
+ * @param page - Playwright Page instance
+ * @returns The current date as a string or null if not found
  */
 
-export function extractCurrentDate($: cheerio.CheerioAPI): string {
-  const dateElement = $("#DatosActualizadosTimer1_Lbltime");
-  const regEx = /Actualizados: /;
-  const trimmedText = dateElement.text().replace(regEx, "").trim();
-  return trimmedText.split(" ")[0].replace(/-/g, "/");
+export async function extractCurrentDate(page: Page): Promise<string | null> {
+  try {
+    const dateElement = page.locator("#DatosActualizadosTimer1_Lbltime");
+    const text = await dateElement.textContent();
+
+    if (!text) return null;
+
+    const regEx = /Actualizados: /;
+    const trimmedText = text.replace(regEx, "").trim();
+    const datePart = trimmedText.split(" ")[0].replace(/-/g, "/");
+    return datePart;
+  } catch (error) {
+    console.error("Date not found:", error);
+  }
 }
 
 /**
@@ -58,30 +57,33 @@ function parseEuropeanNumber(value: string): number {
 
 /**
  * Returns the trimmed text content of all <td> cells in a row.
- * @param $row - Cheerio element representing the table row (<tr>)
- * @param $ - Cheerio instance to access DOM APIs
+ * @param row - Playwright Locator representing the table row (<tr>)
  * @returns Array of strings with each cell's text, in column order
  */
 
-function extractTableCellsText(
-  $row: cheerio.Cheerio<AnyNode>,
-  $: cheerio.CheerioAPI
-): string[] {
-  return $row
-    .find("td")
-    .map((_: any, td: any) => $(td).text().trim())
-    .get();
+async function extractTableCellsText(row: Locator): Promise<string[]> {
+  const cells = row.locator("td");
+
+  const rowData: string[] = [];
+
+  for (let i = 0; i < (await cells.count()); i++) {
+    const cellText = await cells.nth(i).textContent();
+    rowData.push(cellText?.trim() || "");
+  }
+
+  return rowData;
 }
 
 /**
  * Checks whether a row is a real reservoir data row.
  * A valid data row must contain exactly 6 <td> cells.
- * @param $row - Cheerio element representing the table row (<tr>)
+ * @param row - Playwright Locator representing the table row (<tr>)
  * @returns true if the row has 6 data cells; false otherwise
  */
 
-function isReservoirDataRow($row: cheerio.Cheerio<AnyNode>): boolean {
-  return $row.find("td").length === 6;
+async function isReservoirDataRow(row: Locator): Promise<boolean> {
+  const cellCount = await row.locator("td").count();
+  return cellCount === 6;
 }
 
 /**
@@ -146,26 +148,31 @@ function parseReservoirRow(cols: string[]): EmbalsesGuadalquivir | null {
  * - Locate the target table
  * - Iterate <tbody> rows and keep only rows with 6 data cells
  * - Extract cell texts and map each row into the domain model
- * @param $ - Cheerio instance loaded with the page's HTML
+ * @param page - Playwright Page instance loaded with the page's HTML
  * @returns Array of EmbalsesGuadalquivir entries for the current page/zone
  */
 
-export function reservoirInfoFromTable(
-  $: cheerio.CheerioAPI
-): EmbalsesGuadalquivir[] {
-  const table = findEstadoEmbalsesTable($);
-  if (!table || table.length === 0) return [];
+export async function reservoirInfoFromTable(
+  page: Page
+): Promise<EmbalsesGuadalquivir[]> {
+  const table = await findEstadoEmbalsesTable(page);
 
-  const rows = table
-    .find("tbody tr")
-    .filter((_, tr) => isReservoirDataRow($(tr)));
+  if (!table) {
+    console.warn("Embalses table not found");
+    return [];
+  }
+
+  const rows = table.locator("tbody tr");
   const reservoirs: EmbalsesGuadalquivir[] = [];
 
-  rows.each((_, tr) => {
-    const cols = extractTableCellsText($(tr), $);
+  for (let i = 0; i < (await rows.count()); i++) {
+    const row = rows.nth(i);
+    if (!(await isReservoirDataRow(row))) continue;
+
+    const cols = await extractTableCellsText(row);
     const parsed = parseReservoirRow(cols);
     if (parsed) reservoirs.push(parsed);
-  });
+  }
 
   return reservoirs;
 }

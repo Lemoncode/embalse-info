@@ -20,14 +20,13 @@ export interface ZoneInfo {
 export interface Zone {
   codigo: string;
   nombre: string;
-  isDefault: boolean;
 }
 
 export const ZONES = [
-  { codigo: "RG", nombre: "Sistema de Regulación General", isDefault: true },
-  { codigo: "CO", nombre: "Zona Córdoba", isDefault: false },
-  { codigo: "GR", nombre: "Zona Granada", isDefault: false },
-  { codigo: "JA", nombre: "Zona Jaén", isDefault: false },
-  { codigo: "SE", nombre: "Zona Sevilla", isDefault: false },
-  { codigo: "CE", nombre: "Ceuta y Melilla", isDefault: false },
+  { codigo: "CO", nombre: "Zona Córdoba" },
+  { codigo: "GR", nombre: "Zona Granada" },
+  { codigo: "JA", nombre: "Zona Jaén" },
+  { codigo: "SE", nombre: "Zona Sevilla" },
+  { codigo: "RG", nombre: "Sistema de Regulación General" },
+  { codigo: "CE", nombre: "Ceuta y Melilla" },
 ];

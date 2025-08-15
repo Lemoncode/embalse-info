@@ -1,23 +1,16 @@
-import * as cheerio from "cheerio";
-import {
-  getCuencaPageHTMLContent,
-  getUpdatedWithZoneOptionTable,
-  Zone,
-  ZoneInfo,
-  ZONES,
-} from "./api";
+import { getCuencaPageContent, Zone, ZoneInfo, ZONES } from "./api";
 import {
   extractCurrentDate,
   mapToEmbalsesByZone,
   mapToEmbalseUpdateSAIH,
   reservoirInfoFromTable,
 } from "./scraper";
+import { Browser, Page } from "playwright";
 
-async function processZoneData(html: string, zone: Zone): Promise<ZoneInfo> {
-  const $ = cheerio.load(html);
-  const rawReservoirs = reservoirInfoFromTable($);
-  const currentdDate = extractCurrentDate($);
-  const saihReservoirs = mapToEmbalseUpdateSAIH(rawReservoirs, currentdDate);
+async function processZoneData(page: Page, zone: Zone): Promise<ZoneInfo> {
+  const rawReservoirs = await reservoirInfoFromTable(page);
+  const currentDate = await extractCurrentDate(page);
+  const saihReservoirs = mapToEmbalseUpdateSAIH(rawReservoirs, currentDate);
   return mapToEmbalsesByZone(zone.codigo, zone.nombre, saihReservoirs);
 }
 
@@ -26,17 +19,17 @@ export const scrapeCuencaGuadalquivir = async (
 ): Promise<ZoneInfo[]> => {
   const reservoirsCollection: ZoneInfo[] = [];
 
-  // Process default zone (RG) with axios
-  const defaultZone = ZONES.find((z) => z.isDefault)!;
-  const defaultHtml = await getCuencaPageHTMLContent(url);
-  reservoirsCollection.push(await processZoneData(defaultHtml, defaultZone));
-
-  // Process other zones with Playwright
-  const otherZones = ZONES.filter((z) => !z.isDefault);
-  const otherZonePromises = otherZones.map(async (zone) => {
+  const zonesPromises = ZONES.map(async (zone) => {
+    let browser: Browser | null = null;
     try {
-      const html = await getUpdatedWithZoneOptionTable(url, zone.codigo);
-      return processZoneData(html, zone);
+      const { page, browser: browserInstance } = await getCuencaPageContent(
+        url,
+        zone.codigo
+      );
+      browser = browserInstance;
+
+      const result = await processZoneData(page, zone);
+      return result;
     } catch (error) {
       console.error(`Failed to scrape zone ${zone.codigo}:`, error);
       return {
@@ -44,10 +37,14 @@ export const scrapeCuencaGuadalquivir = async (
         nombreZona: zone.nombre,
         embalses: [],
       };
+    } finally {
+      if (browser) {
+        await browser.close();
+      }
     }
   });
-  const otherZonesReservoirs = await Promise.all(otherZonePromises);
-  reservoirsCollection.push(...otherZonesReservoirs);
+  const zonesReservoirs = await Promise.all(zonesPromises);
+  reservoirsCollection.push(...zonesReservoirs);
 
   return reservoirsCollection;
 };
