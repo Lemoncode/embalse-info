@@ -11,9 +11,11 @@
   "packageManager": "npm@10.0.0",
   "scripts": {
     "scripts": "tsx ./run-scripts",
-    "start": "npm run scripts -- start"
+    "start": "npm run scripts -- start",
+    "test": "vitest" 
   },
   "devDependencies": {
+    "@types/jest": "^30.0.0",
     "@types/prompts": "^2.4.9",
     "prompts": "^2.4.2",
     "tsx": "^4.20.3",
