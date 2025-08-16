@@ -25,9 +25,15 @@ export const getEstadoCuencaDuero = async (): Promise<Reservoir[]> => {
       const currentVolume = $(tds[2]).text().trim();
       const normalizedName = name.toLowerCase();
 
-      // Data Filtering: Only add the reservoir if it has a valid name and capacity,
-      // and it's not a summary row like 'total' or '% del total'.
-      if (capacity && normalizedName && !normalizedName.startsWith('total') && !normalizedName.startsWith('% del total')) {
+      // Data Filtering: Solo añadir si name, capacity y currentVolume tienen valor,
+      // y no es una fila resumen como 'total' o '% del total'.
+      if (
+        name &&
+        capacity &&
+        currentVolume &&
+        !normalizedName.startsWith('total') &&
+        !normalizedName.startsWith('% del total')
+      ) {
         reservoirs.push({
           name,
           capacity,
