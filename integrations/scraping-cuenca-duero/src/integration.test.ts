@@ -1,13 +1,12 @@
-// Import Vitest's global functions for clarity and strong typing
+// integration.test.ts (Versión Final Correcta)
 import { describe, it, expect, vi, type Mock } from 'vitest';
 
 import axios from 'axios';
 import { getEstadoCuencaDuero } from './integration';
 
-// We use vi.mock() to mock the axios module
 vi.mock('axios');
 
-// Our fake HTML data for a controlled testing environment
+// HTML de prueba que incluye el caso del guión
 const fakeHtml = `
   <html>
     <body>
@@ -15,8 +14,8 @@ const fakeHtml = `
         <tbody>
           <tr>
             <td>Embalse A</td>
-            <td>100</td>
-            <td>50</td>
+            <td>1.000,5</td>
+            <td>50,5</td>
           </tr>
           <tr>
             <td>Total</td>
@@ -26,7 +25,7 @@ const fakeHtml = `
           <tr>
             <td>Embalse B</td>
             <td>200</td>
-            <td>100</td>
+            <td>-</td>
           </tr>
         </tbody>
       </table>
@@ -35,20 +34,16 @@ const fakeHtml = `
 `;
 
 describe('getEstadoCuencaDuero', () => {
-  it('should return a clean array of reservoirs from valid HTML', async () => {
-    // ARRANGE: Set up the test scenario and mock dependencies.
-    // We configure the axios.get mock to return our fake HTML.
+  it('should return a clean array of reservoirs with numbers and nulls', async () => {
     (axios.get as Mock).mockResolvedValueOnce({ data: fakeHtml });
-    
-    // ACT: Execute the function being tested.
+
     const result = await getEstadoCuencaDuero();
 
-    // ASSERT: Verify that the outcome is as expected.
-    // We expect the 'Total' row to have been filtered out.
+    // El test ahora espera NÚMEROS y NULL
     expect(result).toHaveLength(2);
     expect(result).toEqual([
-      { name: 'Embalse A', capacity: '100', currentVolume: '50' },
-      { name: 'Embalse B', capacity: '200', currentVolume: '100' },
+      { name: 'Embalse A', capacity: 1000.5, currentVolume: 50.5 },
+      { name: 'Embalse B', capacity: 200, currentVolume: null },
     ]);
   });
 });

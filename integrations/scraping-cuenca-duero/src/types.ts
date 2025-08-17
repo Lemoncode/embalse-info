@@ -4,6 +4,6 @@
 // We use 'export' so we can import and use it in other files.
 export interface Reservoir {
   name: string;
-  capacity: string;
-  currentVolume: string;
+  capacity: number | null;
+  currentVolume: number | null;
 }
