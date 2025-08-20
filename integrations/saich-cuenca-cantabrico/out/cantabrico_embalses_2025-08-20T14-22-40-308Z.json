@@ -1,0 +1,512 @@
+{
+  "generatedAt": "2025-08-20T14:22:40.303Z",
+  "total": 23,
+  "stations": [
+    {
+      "id": "1406",
+      "nombre": "Embalse de Salime",
+      "rio": "Navia",
+      "municipio": "Grandas de Salime",
+      "sistema": "Navia",
+      "zonaHidrologica": "Navia",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "coords": {
+        "lat": 43.236603,
+        "lon": -6.8476214
+      },
+      "embalse": {
+        "fecha": "2025-08-20 14:55:00",
+        "nivelMsnm": 209.06,
+        "volumenActualHm3": 138.53,
+        "porcentajeLleno": 58.26,
+        "nmnMsnm": 224.5,
+        "volumenTotalHm3": 237.8
+      }
+    },
+    {
+      "id": "1408",
+      "nombre": "Embalse de Doiras",
+      "rio": "Navia",
+      "municipio": "Boal",
+      "sistema": "Navia",
+      "zonaHidrologica": "Navia",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "coords": {
+        "lat": 43.387093,
+        "lon": -6.8262415
+      },
+      "embalse": {
+        "fecha": "2025-08-20 15:55:00",
+        "nivelMsnm": 101.41,
+        "volumenActualHm3": 72.19,
+        "porcentajeLleno": 74.82,
+        "nmnMsnm": 109.2,
+        "volumenTotalHm3": 96.483
+      }
+    },
+    {
+      "id": "1409",
+      "nombre": "Embalse de Arbón",
+      "rio": "Navia",
+      "municipio": "Navia",
+      "sistema": "Navia",
+      "zonaHidrologica": "Navia",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "coords": {
+        "lat": 43.478622,
+        "lon": -6.7279067
+      },
+      "embalse": {
+        "fecha": "2025-08-20 15:55:00",
+        "nivelMsnm": 31.52,
+        "volumenActualHm3": 35.67,
+        "porcentajeLleno": 88.3,
+        "nmnMsnm": 33.2,
+        "volumenTotalHm3": 40.396
+      }
+    },
+    {
+      "id": "1333",
+      "nombre": "Embalse de Tanes",
+      "rio": "Nalón",
+      "municipio": "Caso",
+      "sistema": "Nalón",
+      "zonaHidrologica": "Nalón",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "coords": {
+        "lat": 43.220562,
+        "lon": -5.4278193
+      },
+      "embalse": {
+        "fecha": "2025-08-20 14:55:00",
+        "nivelMsnm": 486.88,
+        "volumenActualHm3": 27.92,
+        "porcentajeLleno": 83.9,
+        "nmnMsnm": 491,
+        "volumenTotalHm3": 33.274
+      }
+    },
+    {
+      "id": "1334",
+      "nombre": "Embalse de Rioseco",
+      "rio": "Nalón",
+      "municipio": "Caso",
+      "sistema": "Nalón",
+      "zonaHidrologica": "Nalón",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "coords": {
+        "lat": 43.22814,
+        "lon": -5.473163
+      },
+      "embalse": {
+        "fecha": "2025-08-20 14:55:00",
+        "nivelMsnm": 377.33,
+        "volumenActualHm3": 2.66,
+        "porcentajeLleno": 62.11,
+        "nmnMsnm": 380.5,
+        "volumenTotalHm3": 4.284
+      }
+    },
+    {
+      "id": "1345",
+      "nombre": "Embalse de Alfilorios",
+      "rio": "Barrea",
+      "municipio": "Oviedo",
+      "sistema": "Nalón",
+      "zonaHidrologica": "Nalón",
+      "tipoEstacion": "embalse",
+      "camara": "SI",
+      "coords": {
+        "lat": 43.293625,
+        "lon": -5.9192085
+      },
+      "embalse": {
+        "fecha": "2025-08-20 16:15:00",
+        "nivelMsnm": 394.59,
+        "volumenActualHm3": 4.25,
+        "porcentajeLleno": 52.06,
+        "nmnMsnm": 404.76,
+        "volumenTotalHm3": 8.156
+      }
+    },
+    {
+      "id": "1346",
+      "nombre": "Embalse de Valdemurio",
+      "rio": "Trubia",
+      "municipio": "Quirós",
+      "sistema": "Nalón",
+      "zonaHidrologica": "Nalón",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "coords": {
+        "lat": 43.199154,
+        "lon": -6.0191503
+      },
+      "embalse": {
+        "fecha": "2025-08-20 14:55:00",
+        "nivelMsnm": 330.27,
+        "volumenActualHm3": 0.29,
+        "porcentajeLleno": 39.77,
+        "nmnMsnm": 333,
+        "volumenTotalHm3": 1.43
+      }
+    },
+    {
+      "id": "1337",
+      "nombre": "Embalse de El Furacón",
+      "rio": "Nalón",
+      "municipio": "Oviedo",
+      "sistema": "Nalón",
+      "zonaHidrologica": "Nalón",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "coords": {
+        "lat": 43.36757,
+        "lon": -5.964186
+      },
+      "embalse": {
+        "fecha": "2025-08-20 16:15:00",
+        "nivelMsnm": 75.58,
+        "volumenActualHm3": 0.34,
+        "porcentajeLleno": 63.88,
+        "nmnMsnm": 77.5,
+        "volumenTotalHm3": 0.6
+      }
+    },
+    {
+      "id": "1340",
+      "nombre": "Embalse de Priañes",
+      "rio": "Nora",
+      "municipio": "Oviedo",
+      "sistema": "Nalón",
+      "zonaHidrologica": "Nalón",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "coords": {
+        "lat": 43.38239,
+        "lon": -5.974994
+      },
+      "embalse": {
+        "fecha": "2025-08-20 16:15:00",
+        "nivelMsnm": 74.5,
+        "volumenActualHm3": 0.83,
+        "porcentajeLleno": 70.94,
+        "nmnMsnm": 77.5,
+        "volumenTotalHm3": 1.91
+      }
+    },
+    {
+      "id": "1355",
+      "nombre": "Embalse de La Florida-Pilotuerto",
+      "rio": "Narcea",
+      "municipio": "Tineo",
+      "sistema": "Nalón",
+      "zonaHidrologica": "Narcea",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "coords": {
+        "lat": 43.291195,
+        "lon": -6.4291134
+      },
+      "embalse": {
+        "fecha": "2025-08-20 16:15:00",
+        "nivelMsnm": 245.38,
+        "volumenActualHm3": null,
+        "porcentajeLleno": null,
+        "nmnMsnm": 246.4,
+        "volumenTotalHm3": 0.795
+      }
+    },
+    {
+      "id": "1356",
+      "nombre": "Embalse de La Barca",
+      "rio": "Narcea",
+      "municipio": "Belmonte de Miranda",
+      "sistema": "Nalón",
+      "zonaHidrologica": "Narcea",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "coords": {
+        "lat": 43.32036,
+        "lon": -6.303788
+      },
+      "embalse": {
+        "fecha": "2025-08-20 14:55:00",
+        "nivelMsnm": 210.01,
+        "volumenActualHm3": 31.25,
+        "porcentajeLleno": 94.25,
+        "nmnMsnm": 211,
+        "volumenTotalHm3": 33.155
+      }
+    },
+    {
+      "id": "1272",
+      "nombre": "Embalse de Cordiñanes",
+      "rio": "Cares",
+      "municipio": "Valdeón",
+      "sistema": "Deva",
+      "zonaHidrologica": "Deva",
+      "tipoEstacion": "embalse",
+      "camara": "SI",
+      "coords": {
+        "lat": 43.159702,
+        "lon": -4.914108
+      },
+      "embalse": {
+        "fecha": "2025-08-20 15:55:00",
+        "nivelMsnm": 895,
+        "volumenActualHm3": 0.14,
+        "porcentajeLleno": null,
+        "nmnMsnm": 895.5,
+        "volumenTotalHm3": 0.16
+      }
+    },
+    {
+      "id": "1253",
+      "nombre": "Embalse de La Cohilla",
+      "rio": "Nansa",
+      "municipio": "Polaciones",
+      "sistema": "Nansa",
+      "zonaHidrologica": "Nansa",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "coords": {
+        "lat": 43.133133,
+        "lon": -4.387966
+      },
+      "embalse": {
+        "fecha": "2025-08-20 15:55:00",
+        "nivelMsnm": 741.75,
+        "volumenActualHm3": 1.55,
+        "porcentajeLleno": 13.58,
+        "nmnMsnm": 777.85,
+        "volumenTotalHm3": 11.419
+      }
+    },
+    {
+      "id": "1255",
+      "nombre": "Embalse de La Lastra",
+      "rio": "Nansa",
+      "municipio": "Tudanca",
+      "sistema": "Nansa",
+      "zonaHidrologica": "Nansa",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "coords": {
+        "lat": 43.14917,
+        "lon": -4.3774943
+      },
+      "embalse": {
+        "fecha": "2025-08-20 15:55:00",
+        "nivelMsnm": 443.54,
+        "volumenActualHm3": 0.01,
+        "porcentajeLleno": 32.34,
+        "nmnMsnm": 447.6,
+        "volumenTotalHm3": 0.1
+      }
+    },
+    {
+      "id": "1254",
+      "nombre": "Embalse de Palombera",
+      "rio": "Nansa",
+      "municipio": "Herrerías",
+      "sistema": "Nansa",
+      "zonaHidrologica": "Nansa",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "coords": {
+        "lat": 43.297394,
+        "lon": -4.455236
+      },
+      "embalse": {
+        "fecha": "2025-08-20 15:55:00",
+        "nivelMsnm": 98.58,
+        "volumenActualHm3": 0.27,
+        "porcentajeLleno": 20.74,
+        "nmnMsnm": 104.1,
+        "volumenTotalHm3": 1.8
+      }
+    },
+    {
+      "id": "1231",
+      "nombre": "Embalse Alsa-Mediajo",
+      "rio": "Torina",
+      "municipio": "San Miguel de Aguayo",
+      "sistema": "Saja",
+      "zonaHidrologica": "Saja",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "coords": {
+        "lat": 43.09466,
+        "lon": -3.9999213
+      },
+      "embalse": {
+        "fecha": "2025-08-20 15:55:00",
+        "nivelMsnm": 836.66,
+        "volumenActualHm3": 20.42,
+        "porcentajeLleno": 62.94,
+        "nmnMsnm": 842,
+        "volumenTotalHm3": 21.46
+      }
+    },
+    {
+      "id": "1177",
+      "nombre": "Embalse de Ordunte",
+      "rio": "Nervión",
+      "municipio": "Valle de Mena",
+      "sistema": "Nervión",
+      "zonaHidrologica": "Nervión",
+      "tipoEstacion": "embalse",
+      "camara": "SI",
+      "coords": {
+        "lat": 43.160793,
+        "lon": -3.283349
+      },
+      "embalse": {
+        "fecha": "2025-08-20 15:55:00",
+        "nivelMsnm": 302.55,
+        "volumenActualHm3": 15.25,
+        "porcentajeLleno": 68.74,
+        "nmnMsnm": 308,
+        "volumenTotalHm3": 22.181
+      }
+    },
+    {
+      "id": "1079",
+      "nombre": "Embalse de Arriarán",
+      "rio": "Arriaran",
+      "municipio": "Beasáin",
+      "sistema": "Oria",
+      "zonaHidrologica": "Oria",
+      "tipoEstacion": "embalse",
+      "camara": "SI",
+      "coords": {
+        "lat": 43.069294,
+        "lon": -2.2400346
+      },
+      "embalse": {
+        "fecha": "2025-08-20 16:15:00",
+        "nivelMsnm": 280.93,
+        "volumenActualHm3": null,
+        "porcentajeLleno": null,
+        "nmnMsnm": 284.5,
+        "volumenTotalHm3": 3.2
+      }
+    },
+    {
+      "id": "1078",
+      "nombre": "Embalse de Ibiur",
+      "rio": "Ibiur",
+      "municipio": "Baliarrain",
+      "sistema": "Oria",
+      "zonaHidrologica": "Oria",
+      "tipoEstacion": "embalse",
+      "camara": "SI",
+      "coords": {
+        "lat": 43.081993,
+        "lon": -2.1243746
+      },
+      "embalse": {
+        "fecha": "2025-08-20 16:15:00",
+        "nivelMsnm": 165.9,
+        "volumenActualHm3": 6.7,
+        "porcentajeLleno": 88.38,
+        "nmnMsnm": 168.35,
+        "volumenTotalHm3": 7.58
+      }
+    },
+    {
+      "id": "1108",
+      "nombre": "Embalse de Añarbe",
+      "rio": "Añarbe",
+      "municipio": "Goizueta",
+      "sistema": "Urumea",
+      "zonaHidrologica": "Urumea",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "coords": {
+        "lat": 43.21234,
+        "lon": -1.8755156
+      },
+      "embalse": {
+        "fecha": "2025-08-20 14:55:00",
+        "nivelMsnm": 149.24,
+        "volumenActualHm3": 27.7,
+        "porcentajeLleno": 74.3,
+        "nmnMsnm": 156,
+        "volumenTotalHm3": 37.279
+      }
+    },
+    {
+      "id": "1071",
+      "nombre": "Embalse Leurtza Inferior",
+      "rio": "Leurza",
+      "municipio": "Urroz",
+      "sistema": "Bidasoa",
+      "zonaHidrologica": "Bidasoa",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "coords": {
+        "lat": 43.072735,
+        "lon": -1.7119687
+      },
+      "embalse": {
+        "fecha": "2025-08-20 16:00:00",
+        "nivelMsnm": 659.22,
+        "volumenActualHm3": null,
+        "porcentajeLleno": null,
+        "nmnMsnm": null,
+        "volumenTotalHm3": 37.279
+      }
+    },
+    {
+      "id": "1070",
+      "nombre": "Embalse Leurtza Superior",
+      "rio": "Leurza",
+      "municipio": "Beintza-Labaien",
+      "sistema": "Bidasoa",
+      "zonaHidrologica": "Bidasoa",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "coords": {
+        "lat": 43.06842,
+        "lon": -1.7165666
+      },
+      "embalse": {
+        "fecha": "2025-08-20 16:15:00",
+        "nivelMsnm": 660.84,
+        "volumenActualHm3": null,
+        "porcentajeLleno": null,
+        "nmnMsnm": null,
+        "volumenTotalHm3": 37.279
+      }
+    },
+    {
+      "id": "1847",
+      "nombre": "Embalse de Endara-San Antón",
+      "rio": "Endara",
+      "municipio": "Lesaka",
+      "sistema": "Bidasoa",
+      "zonaHidrologica": "Bidasoa",
+      "tipoEstacion": "embalse",
+      "camara": "NO",
+      "coords": {
+        "lat": 43.27703,
+        "lon": -1.7723929
+      },
+      "embalse": {
+        "fecha": "2025-08-20 14:55:00",
+        "nivelMsnm": 241.54,
+        "volumenActualHm3": 4.24,
+        "porcentajeLleno": 83.33,
+        "nmnMsnm": 244.6,
+        "volumenTotalHm3": 5.098
+      }
+    }
+  ]
+}
