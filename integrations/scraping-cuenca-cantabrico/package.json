@@ -1,0 +1,15 @@
+{
+  "name": "scraping-cuenca-cantabrico",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "start": "tsx --watch src/console-runner.ts"
+  },
+  "dependencies": {
+    "db-model": "^1.0.0"
+  }
+}
