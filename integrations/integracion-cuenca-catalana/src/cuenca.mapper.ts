@@ -1,5 +1,6 @@
 import { EmbalseCatalanApi } from './api/cuenca.api-model';
 import { EmbalseUpdateSAIHEntity } from 'db-model';
+import { formatApiDate } from './business';
 
 export function mapApiToEmbalses(
   apiData: Record<string, EmbalseCatalanApi>
@@ -9,7 +10,7 @@ export function mapApiToEmbalses(
       id: Number(id.replace('-', '')),
       nombre: embalse.name,
       aguaActualSAIH: embalse.popup.volume.value, // volumen actual
-      fechaMedidaSAIH: new Date(embalse.popup.volume.time).toISOString(), // fecha de la medida
+      fechaMedidaSAIH: formatApiDate(embalse.popup.volume.time), // fecha de la medida
     };
   });
 }
