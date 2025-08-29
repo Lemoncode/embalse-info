@@ -1,7 +1,7 @@
-import axios from "axios";
-import { EmbalseCatalanApi } from "./cuenca.api-model";
-import { mapApiToEmbalses } from "./cuenca.mapper";
-import { EmbalseCatalan } from "@/cuenca.vm";
+import axios from 'axios';
+import { EmbalseCatalanApi } from './cuenca.api-model';
+import { mapApiToEmbalses } from '../cuenca.mapper';
+import { EmbalseCatalan } from '@/cuenca.vm';
 
 /**
  * Gets the data from the Catalan reservoirs API.

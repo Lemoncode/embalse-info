@@ -1,4 +1,4 @@
-import { EmbalseCatalanApi } from './cuenca.api-model';
+import { EmbalseCatalanApi } from './api/cuenca.api-model';
 import { EmbalseUpdateSAIHEntity } from 'db-model';
 
 export function mapApiToEmbalses(
