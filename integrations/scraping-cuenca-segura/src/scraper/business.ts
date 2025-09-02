@@ -11,54 +11,11 @@ const reservoirProvince: Record<string, string> = {
   'La Pedrera': 'Alicante',
 };
 
-export function extractDateFromSummary($table: CheerioAPI): string | null {
-  const summary = $table('#n0').attr('summary');
-  const match = summary ? summary.match(/\((\d{2}\/\d{2}\/\d{4})\)/) : null;
-  return match ? match[1] : null;
-}
-
-export function extractReservoirRows($: CheerioAPI): Array<Element> {
-  return $('#n0 tbody tr').toArray();
-}
-
-export function parseReservoirRow(
-  row: Element,
-  fecha: string,
-  idOffset: number = 1,
-  $: CheerioAPI
-): EmbalsesSegura | null {
-  const $row = $(row);
-  const cols = $row.find('td');
-  if (cols.length !== 4) return null;
-
-  const embalse = $(cols[0]).text().trim();
-  if (!embalse || 
-      embalse.toLowerCase().includes('total') || 
-      embalse.toLowerCase().includes('resto')) {
-    return null;
-  }
-
-  const capacidadTotalHm3 = Number($(cols[1]).text().trim());
-  const volumenActualHm3 = Number($(cols[2]).text().trim());
-  const porcentajeActual = Number($(cols[3]).text().trim());
-  const provincia = reservoirProvince[embalse];
-
-  return {
-    id: idOffset,
-    embalse,
-    provincia,
-    porcentajeActual,
-    capacidadTotalHm3,
-    volumenActualHm3,
-    fecha,
-  };
-}
-
 export function extractAnnualStatsRows($: CheerioAPI): Array<Element> {
   return $('#n1 tbody tr').toArray();
 }
 
-// New function to extract capacity data from main table
+// Function to extract capacity data from main table
 export function getReservoirCapacities($: CheerioAPI): Record<string, { capacity: number; percentage: number }> {
   const capacityMap: Record<string, { capacity: number; percentage: number }> = {};
   
@@ -86,7 +43,7 @@ export function getReservoirCapacities($: CheerioAPI): Record<string, { capacity
   return capacityMap;
 }
 
-// Updated parseAnnualStatsRow to use capacity data
+// parseAnnualStatsRow function to use capacity data
 export function parseAnnualStatsRow(
   row: Element,
   rowIndex: number,
@@ -98,15 +55,14 @@ export function parseAnnualStatsRow(
   const dateCol = $row.find('th').first().text().trim();
   if (!dateCol) return [];
 
-  // Skip "Resto" - only include the 5 main reservoirs
   const reservoirNames = ['Fuensanta', 'Talave', 'Cenajo', 'Camarillas', 'La Pedrera'];
   const result: EmbalsesSegura[] = [];
 
   cols.each((i, col) => {
-    if (i >= reservoirNames.length) return; // Skip "Resto" and "Total"
+    if (i >= reservoirNames.length) return;
     const embalse = reservoirNames[i];
     const volumenActualHm3 = Number($(col).text().trim());
-    const provincia = reservoirProvince[embalse] || 'Murcia';
+    const provincia = reservoirProvince[embalse];
     
     // Get capacity and calculate percentage
     const capacityData = capacityMap[embalse];
@@ -120,7 +76,7 @@ export function parseAnnualStatsRow(
       id,
       embalse,
       provincia,
-      porcentajeActual: Math.round(porcentajeActual * 100) / 100, // Round to 2 decimals
+      porcentajeActual: Math.round(porcentajeActual * 100) / 100,
       capacidadTotalHm3,
       volumenActualHm3,
       fecha: dateCol,
