@@ -3,3 +3,7 @@ export const formatApiDate = (isoString: string): string => {
   const [year, month, day] = datePart.split('-');
   return `${day}/${month}/${year}`;
 };
+
+export const formatVolumeToFixedTwo = (volume: number): number => {
+  return Number(volume.toFixed(2));
+};
