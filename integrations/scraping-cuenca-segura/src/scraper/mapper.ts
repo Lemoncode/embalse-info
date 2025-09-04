@@ -29,19 +29,19 @@ export function mapEmbalsesToEntities(
 
   cols.forEach((col, i) => {
     if (i >= reservoirNames.length) return;
-    
+
     const embalse = reservoirNames[i];
     const volumenActualHm3 = Number(col);
     const provincia = reservoirProvince[embalse];
-    
+
     // Get capacity and calculate percentage
     const capacityData = capacityMap[embalse];
     const capacidadTotalHm3 = capacityData?.capacity || 0;
     const porcentajeActual = capacidadTotalHm3 > 0 ? (volumenActualHm3 / capacidadTotalHm3) * 100 : 0;
-    
+
     // Create unique ID based on row and reservoir
     const id = (rowIndex * 10) + (i + 1);
-    
+
     result.push({
       id,
       embalse,
@@ -67,7 +67,7 @@ export function mapToEmbalseUpdateSAIH(
   return embalsesSegura.map((embalse) => ({
     id: embalse.id,
     nombre: embalse.embalse,
-    aguaActualSAIH: embalse.volumenActualHm3,
+    aguaActualSAIH: Math.round(embalse.volumenActualHm3 * 100) / 100,
     fechaMedidaSAIH: embalse.fecha,
   }));
 }
