@@ -1,6 +1,6 @@
 import { EmbalseUpdateSAIHEntity } from 'db-model';
 import { EmbalsesJucar } from '@/api';
-import { formatFechaComunicacionVol } from '@/scraper'
+import { formatFechaComunicacionVol } from '@/scraper';
 
 /**
  * Maps subCuencasArray to EmbalsesJucar array format.
@@ -17,9 +17,12 @@ export function mapEmbalsesToEntities(subCuencasArray: any[]): EmbalsesJucar[] {
         id: embalse.idEstacionRemota,
         embalse: embalse.fldTNombre,
         provincia: embalse.fldTProvincia,
-        porcentajeActual: capacidadTotalHm3 > 0 ? (volumenActualHm3 / capacidadTotalHm3) * 100 : null,
+        porcentajeActual:
+          capacidadTotalHm3 > 0
+            ? (volumenActualHm3 / capacidadTotalHm3) * 100
+            : null,
         capacidadTotalHm3,
-        volumenActualHm3,
+        volumenActualHm3: volumenActualHm3.toFixed(2),
         caudalRecibido: embalse.valorCaudalRecibido,
         caudalSalida: embalse.valorCaudalSalida,
         fecha: formatFechaComunicacionVol(embalse.fechaComunicacionVol),
