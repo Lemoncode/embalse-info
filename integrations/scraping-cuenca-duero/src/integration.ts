@@ -1,7 +1,7 @@
 // integration.ts (Versión Final Correcta)
 import axios from 'axios';
 import { load } from 'cheerio';
-import { Reservoir } from './types';
+import { EmbalseDuero } from './api/cuenca.model';
 import { parseReservoirsFromHtml } from './scraper/business';
 
 // Define the URL we are going to scrape
@@ -9,7 +9,7 @@ const URL = 'https://www.saihduero.es/situacion-embalses';
 
 
 // This is our main function
-export const getEstadoCuencaDuero = async (): Promise<Reservoir[]> => {
+export const getEstadoCuencaDuero = async (): Promise<EmbalseDuero[]> => {
   try {
     const response = await axios.get(URL);
     const html = response.data;
