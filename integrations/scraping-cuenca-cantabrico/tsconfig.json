@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "skipLibCheck": true,
+        "isolatedModules": true,
+        "esModuleInterop": true,
+        "baseUrl": "./",
+        "paths": {
+            "@/*": [
+                "src/*"
+            ],
+            "@/api/*": [
+                "src/api/*"
+            ],
+            "@/scraper/*": [
+                "src/scraper/*"
+            ]
+        }
+    },
+    "include": [
+        "src"
+    ]
+}
