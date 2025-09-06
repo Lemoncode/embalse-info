@@ -1,0 +1,16 @@
+{
+  "name": "arcgis",
+  "version": "1.0.0",
+  "private": "true",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "scripts": {
+    "start": "tsx --watch src/console-runner.ts"
+  },
+  "dependencies": {
+    "db-model": "^1.0.0",
+    "axios": "^1.7.0"
+  }
+}
