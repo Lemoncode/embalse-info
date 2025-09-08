@@ -1,70 +1,86 @@
 import axios from "axios";
+import { ArcGisEntry } from "./arcgis-embalse-model"; // Solo importamos ArcGisEntry
 
-const API_URL =
-  process.env.API_URL ??
-  "https://services-eu1.arcgis.com/RvnYk1PBUJ9rrAuT/arcgis/rest/services/Embalses_Total/FeatureServer/0/query";
+const API_URL = "https://services-eu1.arcgis.com/RvnYk1PBUJ9rrAuT/arcgis/rest/services/Embalses_Total/FeatureServer/0/query";
 
-type ArcgisFeature = { attributes?: Record<string, unknown> };
-
-/** Trae TODOS los registros de la fecha más reciente (Fecha_str) */
-export const getLatestEntries = async (): Promise<Record<string, unknown>[]> => {
-  // 1) Fecha más reciente
-  const maxDateResp = await axios.get(API_URL, {
+const fetchLatestDate = async (): Promise<string> => {
+  const response = await axios.get(API_URL, {
     params: {
-      f: "json",
       where: "1=1",
       outFields: "Fecha_str",
       orderByFields: "fecha DESC",
       resultRecordCount: 1,
-      returnGeometry: false,
+      f: "json",
     },
     timeout: 20000,
   });
 
-  const feats1: ArcgisFeature[] = maxDateResp.data?.features ?? [];
-  if (!feats1.length) throw new Error("No se pudo obtener Fecha_str.");
+  const features = response.data.features;
+  if (!features || features.length === 0) {
+    throw new Error("No se pudo obtener la Fecha_str más reciente.");
+  }
 
-  const latestFechaStr =
-    (feats1[0].attributes?.["Fecha_str"] as string | undefined) ??
-    ((feats1[0] as any)["Fecha_str"] as string | undefined);
+  const latestFechaStr = features[0].attributes?.Fecha_str as string;
+  if (!latestFechaStr) {
+    throw new Error("La respuesta no contenía 'Fecha_str' para la fecha más reciente.");
+  }
+  return latestFechaStr;
+};
 
-  if (!latestFechaStr) throw new Error("La respuesta no contenía 'Fecha_str'.");
+// Trae todos los registros de ArcGisEntry para una fecha específica.
+const fetchEntriesByDate = async (
+  date: string,
+  offset = 0,
+  allResults: ArcGisEntry[] = []
+): Promise<ArcGisEntry[]> => {
+  const response = await axios.get(API_URL, {
+    params: {
+      where: `Fecha_str = '${date}'`,
+      outFields: "*",
+      returnGeometry: false,
+      f: "json",
+      resultOffset: offset,
+      orderByFields: "OBJECTID ASC", 
+    },
+    timeout: 30000,
+  });
 
-  // 2) Paginación estable por OBJECTID
-  const pageSize = 2000;
-  let offset = 0;
-  const all: Record<string, unknown>[] = [];
+  const features = response.data.features;
+  if (!features || features.length === 0) {
+    return allResults;
+  }
 
-  // Importante: ArcGIS recomienda ordenar por un campo indexado (p.ej. OBJECTID)
-  const baseParams = {
-    f: "json",
-    where: `Fecha_str = '${latestFechaStr}'`,
-    outFields: "*",
-    returnGeometry: false,
-    orderByFields: "OBJECTID ASC",
-    resultRecordCount: pageSize,
-  } as const;
+  const newResults = features.map((f: any) => f.attributes as ArcGisEntry);
+  const accumulatedResults = [...allResults, ...newResults];
 
-  for (;;) {
-    const resp = await axios.get(API_URL, {
-      params: { ...baseParams, resultOffset: offset },
-      timeout: 30000,
-    });
+  if (features.length === 2000) {
+    return fetchEntriesByDate(date, offset + features.length, accumulatedResults);
+  } else {
+    return accumulatedResults;
+  }
+};
 
-    const feats: ArcgisFeature[] = resp.data?.features ?? [];
-    if (!feats.length) break;
+//Trae todos los registros de la fecha más reciente en su formato ArcGisEntry original.
 
-        
-        for (const f of feats) {
-            all.push(f.attributes ?? (f as any));
-        }
+export const getLatestEntries = async (): Promise<ArcGisEntry[]> => {
+  try {
+    // 1) Obtiene la fecha más reciente
+    const latestDate = await fetchLatestDate();
+    console.log(`Última fecha obtenida: ${latestDate}`);
 
-        offset += feats.length;
+    // 2) Obtiene todos los registros para la fecha más reciente
+    const allArcGisEntries = await fetchEntriesByDate(latestDate);
+    console.log(`Se obtuvieron ${allArcGisEntries.length} registros para la fecha ${latestDate}.`);
 
-        // Si devuelve menos que el tamaño de página, ya no hay más
-        if (feats.length < pageSize) break;
-
+    if (!allArcGisEntries.length) {
+      console.warn("No se encontraron registros para la fecha más reciente.");
+      return [];
     }
 
-    return all;
+    // Devuelve directamente los ArcGisEntry
+    return allArcGisEntries;
+  } catch (error) {
+    console.error("Error al obtener las entradas de los embalses:", error);
+    throw error;
+  }
 };

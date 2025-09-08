@@ -1,10 +1,7 @@
 import { getLatestEntries } from "./api";
+import{ArcGisEntry} from "./api/arcgis-embalse-model"
 
-/**
- * Trae los datos del ArcGIS (fecha más reciente) y los devuelve como array de objects
- * con todos los atributos (tal y como hace el repo original).
- */
-export async function scrapeSeedEmbalses(): Promise<Record<string, unknown>[]> {
+export async function scrapeSeedEmbalses(): Promise<ArcGisEntry[]> {
   const data = await getLatestEntries();
   return data;
 }
