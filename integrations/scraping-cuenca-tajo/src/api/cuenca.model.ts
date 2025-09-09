@@ -1,19 +1,8 @@
 import { EmbalseUpdateSAIHEntity } from "db-model";
 
-export interface EmbalsesTajo {
-  id: number;
-  embalse: string;
-  cotaEmbalse: number;
-  volumenEmbalseHm3: number; // o VOLUMEN DEL AGUA EMBALSADA
-  precipitacionUltimaHora?: number;
-  precipitacionUltimas24Horas?: number;
-  pluviometro?: number;
-  velocidadViento?: number;
-  direccionViento?: number;
-  temperaturaAmbiente?: number;
-  humedadRelativa?: number;
-  presionAtmosferica?: number;
-  radiacionSolarTotal?: number;
+export interface SubcuencaInfo {
+  nombreSubcuenca: string;
+  embalses: EmbalseUpdateSAIHEntity[];
 }
 
 export const SUBCUENCAS: string[] = [
@@ -27,4 +16,12 @@ export const SUBCUENCAS: string[] = [
   "TAJUÑA",
   "TIÉTAR",
   "ÁRRAGO",
+];
+
+export const VOLUME_TITLES = [
+  "VOLUMEN EMBALSE",
+  "VOLUMEN DE AGUA EMBALSADA",
+  "VOLUMEN DEL AGUA EMBALSADA",
+  "VOLUMEN EMBALSE TAJO",
+  "VOLUMEN EMBALSE TIETAR",
 ];
