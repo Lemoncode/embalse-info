@@ -1,20 +1,35 @@
 import type { EmbalseUpdateSAIHEntity } from "db-model";
+import { Browser } from "playwright";
+import { getCuencaPageContent, SUBCUENCAS } from "./api";
+import { getReservoirsFromTable } from "./scraper";
 
-export const scrapeCuencaTajo = async (
-  url: string
-): Promise<EmbalseUpdateSAIHEntity[]> => {
-  return [
-    {
-      id: 1,
-      nombre: "Embalse de Navamuño",
-      aguaActualSAIH: 2500000000,
-      fechaMedidaSAIH: "03/09/2025",
-    },
-    {
-      id: 2,
-      nombre: "Embalse de Baños",
-      aguaActualSAIH: 400000000,
-      fechaMedidaSAIH: "03/09/2025",
-    },
-  ];
+export const scrapeCuencaTajo = async (url: string) => {
+  const reservoirsCollection: string[] = [];
+
+  const subcuencasPromises = SUBCUENCAS.map(async (subcuenca) => {
+    let browser: Browser | null = null;
+    try {
+      const { page, browser: browserInstance } = await getCuencaPageContent(
+        url
+      );
+      browser = browserInstance;
+
+      const result = await getReservoirsFromTable(page, subcuenca);
+      return result;
+    } catch (error) {
+      console.error(error);
+      return "not found";
+    } finally {
+      if (browser) {
+        await browser.close();
+      }
+    }
+  });
+  const subcuencasReservoirs = await Promise.all(subcuencasPromises);
+  const validReservoirs = subcuencasReservoirs.filter(
+    (result): result is string[] => Array.isArray(result)
+  );
+  reservoirsCollection.push(...validReservoirs.flat());
+
+  return reservoirsCollection;
 };
