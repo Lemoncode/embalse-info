@@ -43,3 +43,22 @@ export function parseReservoirsFromHtml(html: string): EmbalseDuero[] {
 
   return reservoirs;
 }
+
+export const getCurrentDate = (html: string) => {
+  const $ = load(html);
+
+  const titleElement = $('div .title-table').text();
+  const currentValue = titleElement.split('Duero a día')[1].split('de').join(" ").trim();
+
+  const currentDate = new Date(currentValue);
+
+  return formatApiDate(currentDate);
+}
+
+const formatApiDate = (date: Date): string => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${day}/${month}/${year}`;
+};
