@@ -1,6 +1,5 @@
 // integration.ts (Versión Final Correcta)
 import axios from 'axios';
-import { load } from 'cheerio';
 import { EmbalseDuero } from './api/cuenca.model';
 import { parseReservoirsFromHtml, getCurrentDate, mapToEmbalseUpdateSAIH } from './scraper';
 
