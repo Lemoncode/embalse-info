@@ -26,8 +26,6 @@ export async function getCuencaPageContent(
 
   await page.goto(url);
 
-  await page.screenshot({ path: "after_goto.png", fullPage: true });
-
   // Navigate to Tajo's map
   const datosEnTiempoRealButton = page
     .locator('ons-toolbar-button[data-tmpl="#tmpl-datos-tiempo-real"]')
