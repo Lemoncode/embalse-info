@@ -5,12 +5,18 @@ import { EmbalseUpdateSAIHEntity } from "db-model";
 export async function getSubcuencaReservoirsTable(
   page: Page,
   subcuenca: string
-): Promise<Locator> {
+): Promise<Locator | null> {
   // Navigate to subcuenca table
   const table = page.locator(
     `ons-list-item:has(span.nombre-acordeon-1:text-is("${subcuenca}"))`
   );
   await table.scrollIntoViewIfNeeded();
+
+  // Verify if subcuenca exists
+  if (!(await table.isVisible())) {
+    console.warn(`Subcuenca "${subcuenca}" not found on page`);
+    return null;
+  }
 
   // Expand subcuencas table
   const chevron = table.locator("span.list-item__expand-chevron").first();
@@ -23,30 +29,34 @@ export async function getSubcuencaReservoirsTable(
     'ons-list-item:has(div.center.list-item__center:text-is("Embalse"))'
   );
 
-  if (await embalseContainer.isVisible()) {
-    // Expand "Embalse" section
-    const embalseChevron = embalseContainer.locator(
-      "span.list-item__expand-chevron"
-    );
+  // Verify if "Embalse" section for the subcuenca exists
+  if (!(await embalseContainer.isVisible())) {
+    console.warn(`No "Embalse" section found for subcuenca "${subcuenca}"`);
+    return null;
+  }
 
-    if (await embalseChevron.isVisible()) {
-      await embalseChevron.click();
-    }
+  // Expand "Embalse" section
+  const embalseChevron = embalseContainer.locator(
+    "span.list-item__expand-chevron"
+  );
+
+  if (await embalseChevron.isVisible()) {
+    await embalseChevron.click();
   }
 
   // Extract table
   const reservoirsTable = embalseContainer.locator(
     "div.expandable-content.list-item__expandable-content"
   );
+
   return reservoirsTable;
 }
 
 async function getReservoirsElements(
-  table: Promise<Locator>
+  table: Locator | null
 ): Promise<Locator[]> {
-  const reservoirsElements = (await table).locator(
-    "div.center.list-item__center"
-  );
+  if (!table) return [];
+  const reservoirsElements = table.locator("div.center.list-item__center");
 
   const reservoirCount = await reservoirsElements.count();
   const reservoirSelectors: Locator[] = [];
@@ -70,6 +80,7 @@ async function getReservoirDialog(reservoirElement: Locator): Promise<Locator> {
 
   // Await dialog to be visible
   const page = element.page();
+
   await page.waitForSelector("ons-dialog#dialog-estacion", {
     state: "visible",
     timeout: 10000,
@@ -77,6 +88,7 @@ async function getReservoirDialog(reservoirElement: Locator): Promise<Locator> {
 
   // Return dialog locator
   const dialog = page.locator("ons-dialog#dialog-estacion");
+
   return dialog;
 }
 
@@ -130,8 +142,6 @@ async function getLastValueFromProperty(
   if (await lastValueElement.isVisible()) {
     return lastValueElement;
   }
-
-  console.warn("Error finding last value");
   return null;
 }
 
@@ -155,27 +165,30 @@ async function getVolumeValueElements(volumeValueElement: Locator): Promise<{
 
 async function extractCurrentDate(
   volumeValueElement: Locator
-): Promise<string> {
-  const { fullText, labelText } = await getVolumeValueElements(
-    volumeValueElement
-  );
+): Promise<string | null> {
+  const { labelText } = await getVolumeValueElements(volumeValueElement);
   const dateRegex = /\d{1,2}\/\d{1,2}\/\d{4}/; // dd/mm/yyyy format
   const match = labelText.match(dateRegex);
 
-  if (match) {
-    return match[0];
-  }
-  return null;
+  return match ? match[0] : null;
 }
 
 async function extractCurrentVolume(
   volumeValueElement: Locator
-): Promise<number> {
+): Promise<number | null> {
   const { textWithoutLabel } = await getVolumeValueElements(volumeValueElement);
+
+  if (
+    !textWithoutLabel ||
+    textWithoutLabel.trim() === "" ||
+    textWithoutLabel === "n/d"
+  ) {
+    return NaN;
+  }
 
   const volume = parseFloat(textWithoutLabel);
 
-  return volume;
+  return Number.isFinite(volume) ? volume : null;
 }
 
 async function scrapeEmbalseTajo(
@@ -188,11 +201,14 @@ async function scrapeEmbalseTajo(
   const volumeProperty = await findVolumeProperty(dialog);
 
   if (!volumeProperty) {
-    console.log(`Skipping ${embalse}: No volume data available`);
+    console.warn(`Skipping ${embalse}: No volume data available`);
     return null;
   }
 
   const volumeValue = await getLastValueFromProperty(volumeProperty);
+  if (!volumeValue) {
+    return null;
+  }
 
   const volume = await extractCurrentVolume(volumeValue);
 
@@ -215,24 +231,27 @@ export async function reservoirInfoFromTable(
 ): Promise<EmbalseUpdateSAIHEntity[]> {
   const reservoirs: EmbalseUpdateSAIHEntity[] = [];
 
-  const table = getSubcuencaReservoirsTable(page, subcuenca);
+  try {
+    const table = await getSubcuencaReservoirsTable(page, subcuenca);
 
-  const reservoirsElements = getReservoirsElements(table);
+    const reservoirsElements = await getReservoirsElements(table);
 
-  for (const reservoirElement of await reservoirsElements) {
-    try {
-      const dialog = await getReservoirDialog(reservoirElement);
-      const data = await scrapeEmbalseTajo(dialog);
+    for (const reservoirElement of reservoirsElements) {
+      try {
+        const dialog = await getReservoirDialog(reservoirElement);
+        const data = await scrapeEmbalseTajo(dialog);
 
-      if (data) {
-        reservoirs.push(data);
+        if (data) {
+          reservoirs.push(data);
+        }
+
+        await closeDialog(dialog);
+      } catch (error) {
+        console.error("Error processing reservoir:", error);
       }
-
-      await closeDialog(dialog);
-    } catch (error) {
-      console.error("Error processing reservoir:", error);
     }
+  } catch (error) {
+    console.error(`Error processing subcuenca ${subcuenca}:`, error);
   }
-
   return reservoirs;
 }
