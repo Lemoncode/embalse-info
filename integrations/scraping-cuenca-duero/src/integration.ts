@@ -2,13 +2,14 @@
 import axios from 'axios';
 import { EmbalseDuero } from './api/cuenca.model';
 import { parseReservoirsFromHtml, getCurrentDate, mapToEmbalseUpdateSAIH } from './scraper';
+import { EmbalseUpdateSAIHEntity } from "db-model";
 
 // Define the URL we are going to scrape
 const URL = 'https://www.saihduero.es/situacion-embalses';
 
 
 // This is our main function
-export const getEstadoCuencaDuero = async (): Promise<EmbalseDuero[]> => {
+export const getEstadoCuencaDuero = async (): Promise<EmbalseUpdateSAIHEntity[]> => {
   try {
     const response = await axios.get(URL);
     const html = response.data;

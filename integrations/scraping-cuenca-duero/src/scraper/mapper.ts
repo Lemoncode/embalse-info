@@ -1,5 +1,5 @@
 import { EmbalseDuero } from '../api/cuenca.model';
-import { EmbalseUpdateSAIHEntity } from 'db-model';
+import { EmbalseUpdateSAIHEntity } from "db-model";
 
 /**
  * Maps EmbalsesAndalucia data to EmbalseUpdateSAIH format.
