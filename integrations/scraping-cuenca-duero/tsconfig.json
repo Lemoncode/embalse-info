@@ -1,17 +1,20 @@
 {
-  "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "skipLibCheck": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"],
-      "@/api/*": ["src/api/*"],
-      "@/scraper/*": ["src/scraper/*"]
-    }
-  },
-  "include": ["src"]
+	"compilerOptions": {
+		"target": "ES2020",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"skipLibCheck": true,
+		"isolatedModules": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"resolveJsonModule": true,
+		"outDir": "dist",
+		"baseUrl": "./",
+		"paths": {
+			"@/*": ["src/*"],
+			"@/api/*": ["src/api/*"],
+			"@/scraper/*": ["src/scraper/*"]
+		}
+	},
+	"include": ["src"]
 }
