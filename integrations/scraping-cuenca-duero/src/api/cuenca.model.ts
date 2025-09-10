@@ -2,8 +2,9 @@
 
 // This interface defines the "shape" of our reservoir data object.
 // We use 'export' so we can import and use it in other files.
-export interface Reservoir {
-  name: string;
-  capacity: string;
-  currentVolume: string;
+export interface EmbalseDuero {
+  id: number;
+  embalse: string;
+  capacidadActualHm3: number | null;
+  volumenActualHm3: number | null;
 }
