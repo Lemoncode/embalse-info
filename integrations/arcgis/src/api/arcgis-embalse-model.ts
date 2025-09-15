@@ -1,19 +1,15 @@
 export interface Cuenca {
   _id: string;
-  objectId: string;
   nombre: string;
-  comunidadAutonoma: string;
 }
 
 export interface Embalse {
   id: string;
-  objectId: string;
   embalse_id: number;
   nombre: string;
   cuenca: {
     _id: string;
     nombre: string;
-    comunidadAutonoma: string | null;
   };
   provincia: string | null;
   capacidad: number;
@@ -27,7 +23,6 @@ export interface Embalse {
 
 export interface MetaDatos {
   _id: string;
-  objectId: string;
   ultimaImportacionAemet: Date;
   ultimoStatus: string;
   ultimasImportacionesSAIH: {

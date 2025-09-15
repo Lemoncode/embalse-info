@@ -3,7 +3,7 @@ import { ArcGisEntry } from "./arcgis-embalse-model"; // Solo importamos ArcGisE
 
 const API_URL = "https://services-eu1.arcgis.com/RvnYk1PBUJ9rrAuT/arcgis/rest/services/Embalses_Total/FeatureServer/0/query";
 
-const fetchLatestDate = async (): Promise<string> => {
+export const fetchLatestDate = async (): Promise<string> => {
   const response = await axios.get(API_URL, {
     params: {
       where: "1=1",
@@ -28,7 +28,7 @@ const fetchLatestDate = async (): Promise<string> => {
 };
 
 // Trae todos los registros de ArcGisEntry para una fecha específica.
-const fetchEntriesByDate = async (
+export const fetchEntriesByDate = async (
   date: string,
   offset = 0,
   allResults: ArcGisEntry[] = []
@@ -57,30 +57,5 @@ const fetchEntriesByDate = async (
     return fetchEntriesByDate(date, offset + features.length, accumulatedResults);
   } else {
     return accumulatedResults;
-  }
-};
-
-//Trae todos los registros de la fecha más reciente en su formato ArcGisEntry original.
-
-export const getLatestEntries = async (): Promise<ArcGisEntry[]> => {
-  try {
-    // 1) Obtiene la fecha más reciente
-    const latestDate = await fetchLatestDate();
-    console.log(`Última fecha obtenida: ${latestDate}`);
-
-    // 2) Obtiene todos los registros para la fecha más reciente
-    const allArcGisEntries = await fetchEntriesByDate(latestDate);
-    console.log(`Se obtuvieron ${allArcGisEntries.length} registros para la fecha ${latestDate}.`);
-
-    if (!allArcGisEntries.length) {
-      console.warn("No se encontraron registros para la fecha más reciente.");
-      return [];
-    }
-
-    // Devuelve directamente los ArcGisEntry
-    return allArcGisEntries;
-  } catch (error) {
-    console.error("Error al obtener las entradas de los embalses:", error);
-    throw error;
   }
 };
