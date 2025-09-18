@@ -1,12 +1,12 @@
-import * as cheerio from 'cheerio';
-import { getCuencaPageHTMLContent } from '@/api';
-import { EmbalseUpdateSAIHEntity } from 'db-model';
+import * as cheerio from "cheerio";
+import { getCuencaPageHTMLContent } from "@/api";
+import { EmbalseUpdateSAIHEntity } from "@embalse-info/db";
 import {
   extractCurrentDate,
   extractProvinceTables,
   reservoirInfoFromTable,
-} from '@/scraper/business';
-import { mapToEmbalseUpdateSAIH } from '@/scraper/mapper';
+} from "@/scraper/business";
+import { mapToEmbalseUpdateSAIH } from "@/scraper/mapper";
 
 /**
  * Scrapes Andalusian reservoir data and returns it as an array.

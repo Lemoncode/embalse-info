@@ -1,4 +1,4 @@
-import { EmbalseUpdateSAIHEntity } from "db-model";
+import { EmbalseUpdateSAIHEntity } from "@embalse-info/db";
 
 export interface EmbalsesGuadalquivir {
   id: number;

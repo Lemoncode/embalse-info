@@ -1,8 +1,10 @@
-import type { EmbalseUpdateSAIHEntity } from "db-model";
+import type { EmbalseUpdateSAIHEntity } from "@embalse-info/db";
 import type { RawRow } from "./business";
 
 /** Mapea a EmbalseUpdateSAIHEntity*/
-export function mapToEmbalseUpdateSAIH(rows: RawRow[]): EmbalseUpdateSAIHEntity[] {
+export function mapToEmbalseUpdateSAIH(
+  rows: RawRow[]
+): EmbalseUpdateSAIHEntity[] {
   return rows.map<EmbalseUpdateSAIHEntity>((r) => ({
     id: r.id,
     nombre: r.nombre,

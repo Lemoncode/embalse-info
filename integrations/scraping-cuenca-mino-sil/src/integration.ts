@@ -1,4 +1,4 @@
-import type { Embalse } from "db-model";
+import type { Embalse } from "@embalse-info/db";
 
 export const getEstadoCuencaMinoSil = async (): Promise<Embalse[]> => {
   return [

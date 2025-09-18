@@ -10,7 +10,8 @@
     "start": "tsx --watch src/console-runner.ts"
   },
   "dependencies": {
-    "db-model": "^1.0.0",
-    "axios": "^1.7.0"
+    "@embalse-info/db": "^0.0.1",
+    "axios": "^1.7.0",
+    "mongodb": "^6.19.0"
   }
 }
