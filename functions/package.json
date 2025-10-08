@@ -6,7 +6,7 @@
     "build": "tsc",
     "watch": "tsc -w",
     "clean": "rimraf dist",
-    "prestart": "npm run clean && npm run build",
+    "prestart": "npm run clean && npm run build && sh ./create-dev-env.sh",
     "start": "func start"
   },
   "dependencies": {
