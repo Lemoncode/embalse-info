@@ -1,7 +1,8 @@
 import axios from "axios";
 import { ArcGisEntry } from "./arcgis-embalse-model"; // Solo importamos ArcGisEntry
 
-const API_URL = "https://services-eu1.arcgis.com/RvnYk1PBUJ9rrAuT/arcgis/rest/services/Embalses_Total/FeatureServer/0/query";
+const API_URL =
+  "https://services-eu1.arcgis.com/RvnYk1PBUJ9rrAuT/arcgis/rest/services/Embalses_Total/FeatureServer/0/query";
 
 export const fetchLatestDate = async (): Promise<string> => {
   const response = await axios.get(API_URL, {
@@ -22,7 +23,9 @@ export const fetchLatestDate = async (): Promise<string> => {
 
   const latestFechaStr = features[0].attributes?.Fecha_str as string;
   if (!latestFechaStr) {
-    throw new Error("La respuesta no contenía 'Fecha_str' para la fecha más reciente.");
+    throw new Error(
+      "La respuesta no contenía 'Fecha_str' para la fecha más reciente."
+    );
   }
   return latestFechaStr;
 };
@@ -40,7 +43,7 @@ export const fetchEntriesByDate = async (
       returnGeometry: false,
       f: "json",
       resultOffset: offset,
-      orderByFields: "OBJECTID ASC", 
+      orderByFields: "OBJECTID ASC",
     },
     timeout: 30000,
   });
@@ -54,7 +57,11 @@ export const fetchEntriesByDate = async (
   const accumulatedResults = [...allResults, ...newResults];
 
   if (features.length === 2000) {
-    return fetchEntriesByDate(date, offset + features.length, accumulatedResults);
+    return fetchEntriesByDate(
+      date,
+      offset + features.length,
+      accumulatedResults
+    );
   } else {
     return accumulatedResults;
   }

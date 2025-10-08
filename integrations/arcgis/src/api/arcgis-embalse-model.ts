@@ -1,37 +1,3 @@
-export interface Cuenca {
-  _id: string;
-  nombre: string;
-}
-
-export interface Embalse {
-  id: string;
-  embalse_id: number;
-  nombre: string;
-  cuenca: {
-    _id: string;
-    nombre: string;
-  };
-  provincia: string | null;
-  capacidad: number;
-  aguaActualAemet: number | null;
-  fechaMedidaAguaActualAemet: Date | null;
-  aguaActualSAIH: string | null;
-  fechaMedidaAguaActualSAIH: Date | null;
-  descripcion_id: string | null;
-  uso: string;
-}
-
-export interface MetaDatos {
-  _id: string;
-  ultimaImportacionAemet: Date;
-  ultimoStatus: string;
-  ultimasImportacionesSAIH: {
-    nombresitio: string;
-    ultimaimportacion: Date;
-    ultimoStatus: string;
-  }[];
-}
-
 export interface ArcGisEntry {
   OBJECTID_1?: number;
   EMBALSE_ID: number;
