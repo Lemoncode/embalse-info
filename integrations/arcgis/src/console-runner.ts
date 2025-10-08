@@ -1,4 +1,4 @@
-import { scrapeSeedEmbalses } from "./integration";
+import { scrapeSeedEmbalses } from "./integration.js";
 
 console.log("Starting ArcGis console runner...");
 const result = await scrapeSeedEmbalses();

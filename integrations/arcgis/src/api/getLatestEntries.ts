@@ -1,5 +1,5 @@
-import {fetchLatestDate, fetchEntriesByDate} from "./arcgis-embalse.api";
-import{ArcGisEntry} from "./arcgis-embalse-model"
+import { fetchLatestDate, fetchEntriesByDate } from "./arcgis-embalse.api.js";
+import { ArcGisEntry } from "./arcgis-embalse-model.js";
 
 //Trae todos los registros de la fecha más reciente en su formato ArcGisEntry original.
 
@@ -11,7 +11,9 @@ export const getLatestEntries = async (): Promise<ArcGisEntry[]> => {
 
     // 2) Obtiene todos los registros para la fecha más reciente
     const allArcGisEntries = await fetchEntriesByDate(latestDate);
-    console.log(`Se obtuvieron ${allArcGisEntries.length} registros para la fecha ${latestDate}.`);
+    console.log(
+      `Se obtuvieron ${allArcGisEntries.length} registros para la fecha ${latestDate}.`
+    );
 
     if (!allArcGisEntries.length) {
       console.warn("No se encontraron registros para la fecha más reciente.");

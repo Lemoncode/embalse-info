@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ArcGisEntry } from "./arcgis-embalse-model"; // Solo importamos ArcGisEntry
+import { ArcGisEntry } from "./arcgis-embalse-model.js";
 
 const API_URL =
   "https://services-eu1.arcgis.com/RvnYk1PBUJ9rrAuT/arcgis/rest/services/Embalses_Total/FeatureServer/0/query";
