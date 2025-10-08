@@ -1,7 +1,7 @@
-import axios from "axios";
-import { EmbalseCatalanApi } from "./cuenca.api-model";
-import { mapApiToEmbalses } from "./cuenca.mapper";
-import { EmbalseCatalan } from "@/cuenca.vm";
+import axios from 'axios';
+import { EmbalseCatalanApi } from './cuenca.api-model';
+import { mapApiToEmbalses } from '../cuenca.mapper';
+import { EmbalseUpdateSAIHEntity } from 'db-model';
 
 /**
  * Gets the data from the Catalan reservoirs API.
@@ -10,7 +10,7 @@ import { EmbalseCatalan } from "@/cuenca.vm";
  */
 export async function getCuencaCatalana(
   url: string
-): Promise<EmbalseCatalan[]> {
+): Promise<EmbalseUpdateSAIHEntity[]> {
   const { data } = await axios.get<Record<string, EmbalseCatalanApi>>(url);
   return mapApiToEmbalses(data);
 }

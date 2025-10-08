@@ -1,10 +1,10 @@
 {
-  "name": "integracion-cuenca-catalana",
+  "name": "scraping-cuenca-guadiana",
   "version": "1.0.0",
-  "private": "true",
+  "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.js"
+    ".": "./src/index.ts"
   },
   "scripts": {
     "start": "tsx --watch src/console-runner.ts"
