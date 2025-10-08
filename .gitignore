@@ -2,3 +2,7 @@ node_modules
 dist
 .turbo
 .next
+__azurite_db_*.json
+__blobstorage__/
+__queuestorage__/
+__tablestorage__/

@@ -13,6 +13,7 @@ const { projects }: { projects: string[] } = await prompts({
       value: integration, // value of the package.json name
     })),
     { title: "front", value: "front" },
+    { title: "functions", value: "functions" },
   ],
 });
 
@@ -23,4 +24,4 @@ if (projects.length === 0) {
 
 const filter = projects.map((project) => `--filter=${project}`).join(" ");
 
-export const command = `turbo watch start ${filter}`;
+export const command = `turbo run start ${filter} --no-daemon`;
