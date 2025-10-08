@@ -4,5 +4,5 @@ app.setup({
   enableHttpStream: true,
 });
 
-import "./functions/arcgis-function";
-import "./functions/scraping-cuenca-cantabrico-function";
+import "./functions/arcgis-function.js";
+import "./functions/scraping-cuenca-cantabrico-function.js";

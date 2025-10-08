@@ -15,7 +15,7 @@ const disconnect = async () => {
 interface DBServer {
   connect: (connectionURL: string) => Promise<void>;
   disconnect: () => Promise<void>;
-  db: Db;
+  db: Db | undefined;
 }
 
 export let dbServer: DBServer = {
