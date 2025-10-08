@@ -24,4 +24,4 @@ if (projects.length === 0) {
 
 const filter = projects.map((project) => `--filter=${project}`).join(" ");
 
-export const command = `turbo run start ${filter} --no-daemon`;
+export const command = `turbo run start ${filter}`;

@@ -10,6 +10,7 @@
   ],
   "packageManager": "npm@10.0.0",
   "scripts": {
+    "prescripts": "npm run start:db -w @embalse-info/db",
     "scripts": "tsx ./run-scripts",
     "start": "npm run scripts -- start",
     "test": "vitest" 

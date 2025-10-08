@@ -6,3 +6,5 @@ __azurite_db_*.json
 __blobstorage__/
 __queuestorage__/
 __tablestorage__/
+mongo-data
+.env
