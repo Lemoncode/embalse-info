@@ -1,0 +1,20 @@
+{
+  "name": "@embalse-info/db",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#*": "./src/*"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "prestart:db": "docker compose down --remove-orphans",
+    "start:db": "docker compose up -d",
+    "type-check": "tsc --noEmit --preserveWatchOutput"
+  },
+  "dependencies": {
+    "mongodb": "^6.19.0"
+  }
+}
