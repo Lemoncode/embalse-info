@@ -10,7 +10,7 @@ export interface Embalse {
   capacidad: number;
   aguaActualAemet: number | null;
   fechaMedidaAguaActualAemet: Date | null;
-  aguaActualSAIH: string | null;
+  aguaActualSAIH: number | null;
   fechaMedidaAguaActualSAIH: Date | null;
   descripcion_id: string | null;
   uso: string;

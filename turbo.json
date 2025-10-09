@@ -7,8 +7,10 @@
     },
     "build": {
      "outputs": ["dist/**/*"],
-     "dependsOn": ["type-check"]
+     "dependsOn": ["^build", "type-check"]
    },
-   "type-check": {}
+   "type-check": {
+     "dependsOn": ["^build"]
+   }
   }
 }

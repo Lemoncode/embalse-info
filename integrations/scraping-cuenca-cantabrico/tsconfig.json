@@ -1,23 +1,14 @@
 {
     "compilerOptions": {
         "target": "ESNext",
-        "module": "ESNext",
-        "moduleResolution": "bundler",
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
         "skipLibCheck": true,
         "isolatedModules": true,
         "esModuleInterop": true,
+        "declaration": true,
+        "outDir": "dist",
         "baseUrl": "./",
-        "paths": {
-            "@/*": [
-                "src/*"
-            ],
-            "@/api/*": [
-                "src/api/*"
-            ],
-            "@/scraper/*": [
-                "src/scraper/*"
-            ]
-        }
     },
     "include": [
         "src"
