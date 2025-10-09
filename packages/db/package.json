@@ -12,17 +12,20 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "run-p clean type-check build:db",
+    "build:db": "tsc",
     "clean": "rimraf dist",
     "prestart:db": "docker compose down --remove-orphans",
     "start:db": "docker compose up -d",
+    "start:console-runners": "tsx --require dotenv/config --watch src/console-runners/index.ts",
     "type-check": "tsc --noEmit --preserveWatchOutput"
   },
   "dependencies": {
     "mongodb": "^6.19.0"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
-    "rimraf": "^5.0.0"
+    "@types/prompts": "^2.4.9",
+    "arcgis": "*",
+    "prompts": "^2.4.2"
   }
 }

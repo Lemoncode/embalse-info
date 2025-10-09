@@ -3,20 +3,19 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "start": "func start",
     "watch": "tsc -w",
+    "build": "tsc",
     "clean": "rimraf dist",
-    "prestart": "npm run clean && npm run build",
-    "start": "func start"
+    "prestart": "run-p clean type-check build",
+    "type-check": "tsc --noEmit --preserveWatchOutput"
   },
   "dependencies": {
     "@azure/functions": "^4.0.0",
-    "@embalse-info/db": "^0.0.1"
+    "@embalse-info/db": "*"
   },
   "devDependencies": {
-    "@types/node": "^20.x",
-    "rimraf": "^5.0.0",
-    "typescript": "^4.0.0"
+    "@types/node": "^20.x"
   },
   "main": "dist/index.js"
 }

@@ -13,12 +13,15 @@
     "prescripts": "npm run start:db -w @embalse-info/db",
     "scripts": "tsx ./run-scripts",
     "start": "npm run scripts -- start",
-    "test": "vitest" 
+    "start:console-runners": "npm run scripts -- console-runners",
+    "build": "turbo build",
+    "test": "vitest"
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
-    "@types/prompts": "^2.4.9",
-    "prompts": "^2.4.2",
+    "dotenv": "^17.2.3",
+    "npm-run-all2": "^8.0.4",
+    "rimraf": "^6.0.1",
     "tsx": "^4.20.3",
     "turbo": "^2.5.4",
     "typescript": "^5.8.3",

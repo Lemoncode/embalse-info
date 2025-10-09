@@ -1,5 +1,5 @@
 export interface Embalse {
-  id: string;
+  _id: string;
   embalse_id: number;
   nombre: string;
   cuenca: {

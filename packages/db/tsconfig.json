@@ -5,11 +5,10 @@
     "moduleResolution": "NodeNext",
     "outDir": "dist",
     "rootDir": "src",
-    "declaration": true,
-    "sourceMap": true,
     "skipLibCheck": true,
     "isolatedModules": true,
     "esModuleInterop": true,
+    "declaration": true,
     "strict": false
   },
   "include": ["src/**/*"],

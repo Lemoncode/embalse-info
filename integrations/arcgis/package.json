@@ -1,13 +1,19 @@
 {
   "name": "arcgis",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "private": "true",
   "type": "module",
   "exports": {
-    ".": "./src/index.js"
+    ".": "./dist/index.js"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "start": "tsx --watch src/console-runner.ts"
+    "start": "tsx --watch src/console-runner.ts",
+    "build": "run-p clean type-check build:arcgis",
+    "build:arcgis": "tsc",
+    "clean": "rimraf dist", 
+    "type-check": "tsc --noEmit --preserveWatchOutput"
   },
   "dependencies": {
     "db-model": "^1.0.0",
