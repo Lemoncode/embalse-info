@@ -5,4 +5,3 @@ app.setup({
 });
 
 import "./functions/arcgis-function.js";
-import "./functions/scraping-function.js";

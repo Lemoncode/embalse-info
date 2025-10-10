@@ -1,6 +1,6 @@
-import { getCantabricoPayload } from "./api/index.js";
-import { toRawRows } from "./scraper/business.js";
-import { mapToEmbalseUpdateSAIH } from "./scraper/mapper.js";
+import { getCantabricoPayload } from "@/api";
+import { toRawRows } from "@/scraper/business";
+import { mapToEmbalseUpdateSAIH } from "@/scraper/mapper";
 import type { EmbalseUpdateSAIHEntity } from "db-model";
 
 /** Orquesta: API → normaliza → mapea a tu entidad final */

@@ -4,21 +4,12 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./src/index.ts"
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "scripts": {
-    "start": "tsx --watch src/console-runner.ts",
-    "build": "run-p clean type-check build:cantabrico",
-    "build:cantabrico": "tsc",
-    "clean": "rimraf dist",
-    "type-check": "tsc --noEmit --preserveWatchOutput"
+    "start": "tsx --watch src/console-runner.ts"
   },
   "dependencies": {
     "db-model": "^1.0.0"
-  },
-  "devDependencies": {
-    "tsc-alias": "^1.8.16"
   }
 }
