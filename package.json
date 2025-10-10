@@ -12,6 +12,7 @@
   "scripts": {
     "prescripts": "npm run start:db -w @embalse-info/db",
     "scripts": "tsx ./run-scripts",
+    "prestart": "turbo build",
     "start": "npm run scripts -- start",
     "start:console-runners": "npm run scripts -- console-runners",
     "build": "turbo build",

@@ -22,6 +22,13 @@ export async function scrapingsFunction(
 }
 
 app.timer("scrapings-function", {
+  retry: {
+    strategy: "fixedDelay",
+    delayInterval: {
+      seconds: 10,
+    },
+    maxRetryCount: 4,
+  },
   schedule: "0 * * * * *",
   handler: scrapingsFunction,
 });
