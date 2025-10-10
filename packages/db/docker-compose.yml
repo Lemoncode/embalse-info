@@ -1,0 +1,12 @@
+services:
+  embalse-info:
+    container_name: embalse-info
+    image: mongo:8
+    ports:
+      - "27017:27017"
+    volumes:
+      - type: bind
+        source: ./mongo-data
+        target: /data/db
+volumes:
+  mongo-data:

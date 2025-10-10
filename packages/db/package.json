@@ -1,0 +1,31 @@
+{
+  "name": "@embalse-info/db",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#*": "./dist/*"
+  },
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "run-p clean type-check build:db",
+    "build:db": "tsc",
+    "clean": "rimraf dist",
+    "prestart:db": "docker compose down --remove-orphans",
+    "start:db": "docker compose up -d",
+    "start:console-runners": "tsx --require dotenv/config --watch src/console-runners/index.ts",
+    "type-check": "tsc --noEmit --preserveWatchOutput"
+  },
+  "dependencies": {
+    "mongodb": "^6.19.0"
+  },
+  "devDependencies": {
+    "@types/prompts": "^2.4.9",
+    "arcgis": "*",
+    "prompts": "^2.4.2"
+  }
+}

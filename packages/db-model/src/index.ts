@@ -1,3 +1,3 @@
 // Barrel for db-model package
 
-export * from './model';
+export * from "./model.js";
