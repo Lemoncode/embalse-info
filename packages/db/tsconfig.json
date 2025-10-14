@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "outDir": "dist",
+    "rootDir": "src",
     "skipLibCheck": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "verbatimModuleSyntax": false,
     "declaration": true,
-    "baseUrl": "./"
+    "strict": false
   },
   "include": ["src/**/*"],
   "exclude": ["dist", "node_modules"]

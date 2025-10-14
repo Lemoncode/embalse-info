@@ -1,0 +1,21 @@
+{
+  "name": "functions",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "start": "func start",
+    "watch": "tsc -w",
+    "build": "tsc",
+    "clean": "rimraf dist",
+    "prestart": "run-p clean type-check build",
+    "type-check": "tsc --noEmit --preserveWatchOutput"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.0.0",
+    "@embalse-info/db": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x"
+  },
+  "main": "dist/index.js"
+}

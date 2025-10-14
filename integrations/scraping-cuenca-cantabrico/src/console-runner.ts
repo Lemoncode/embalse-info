@@ -1,4 +1,4 @@
-import { scrapeCuencaCantabrica } from "./integration";
+import { scrapeCuencaCantabrica } from "./integration.js";
 
 // Imprime por terminal el resultado final
 console.log("Estado de la Cuenca Cantábrica:");

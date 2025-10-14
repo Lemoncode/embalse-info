@@ -4,6 +4,13 @@
     "start": {
       "cache": false,
       "persistent": true
-    }
+    },
+    "build": {
+     "outputs": ["dist/**/*"],
+     "dependsOn": ["^build", "type-check"]
+   },
+   "type-check": {
+     "dependsOn": ["^build"]
+   }
   }
 }
