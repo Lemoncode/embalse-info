@@ -1,21 +1,18 @@
-import * as cheerio from 'cheerio';
-import { getCuencaPageHTMLContent } from '@/api';
-import { EmbalseUpdateSAIHEntity } from 'db-model';
+import * as cheerio from "cheerio";
+import { getCuencaPageHTMLContent } from "./api/index.js";
+import { EmbalseUpdateSAIHEntity } from "db-model";
 import {
   extractCurrentDate,
   extractProvinceTables,
   reservoirInfoFromTable,
-} from '@/scraper/business';
-import { mapToEmbalseUpdateSAIH } from '@/scraper/mapper';
+} from "./scraper/business.js";
+import { mapToEmbalseUpdateSAIH } from "./scraper/mapper.js";
 
-/**
- * Scrapes Andalusian reservoir data and returns it as an array.
- * @param url - The URL to scrape the data from
- */
-export async function scrapeCuencaMediterranea(
-  url: string
-): Promise<EmbalseUpdateSAIHEntity[]> {
-  const html = await getCuencaPageHTMLContent(url);
+const URL = "https://www.redhidrosurmedioambiente.es/saih/resumen/embalses";
+export async function scrapeCuencaMediterranea(): Promise<
+  EmbalseUpdateSAIHEntity[]
+> {
+  const html = await getCuencaPageHTMLContent(URL);
   const $: cheerio.CheerioAPI = cheerio.load(html);
 
   // Extract tables organized by province

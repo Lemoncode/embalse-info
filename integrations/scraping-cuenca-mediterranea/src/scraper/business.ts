@@ -1,4 +1,4 @@
-import { EmbalsesAndalucia } from "@/api";
+import type { EmbalsesAndalucia } from "../api/index.js";
 import * as cheerio from "cheerio";
 import { AnyNode } from "domhandler";
 
