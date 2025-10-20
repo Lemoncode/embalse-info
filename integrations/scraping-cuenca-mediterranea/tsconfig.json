@@ -1,17 +1,16 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "outDir": "dist",
     "skipLibCheck": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"],
-      "@/api/*": ["src/api/*"],
-      "@/scraper/*": ["src/scraper/*"]
-    }
+    "verbatimModuleSyntax": false,
+    "declaration": true,
+    "baseUrl": "./"
   },
-  "include": ["src"]
+  "include": ["src/**/*"],
+  "exclude": ["dist", "node_modules"]
 }

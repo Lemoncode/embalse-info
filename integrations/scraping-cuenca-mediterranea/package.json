@@ -4,10 +4,16 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./dist/index.js"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "start": "tsx --watch src/console-runner.ts"
+    "start": "tsx --watch src/console-runner.ts",
+    "build": "run-p clean type-check build:scraping-cuenca-mediterranea",
+    "build:scraping-cuenca-mediterranea": "tsc",
+    "clean": "rimraf dist", 
+    "type-check": "tsc --noEmit --preserveWatchOutput"
   },
   "dependencies": {
     "db-model": "^1.0.0"

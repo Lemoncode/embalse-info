@@ -1,5 +1,5 @@
-import { EmbalsesAndalucia } from '../api';
-import { EmbalseUpdateSAIHEntity } from 'db-model';
+import type { EmbalsesAndalucia } from "../api/index.js";
+import { EmbalseUpdateSAIHEntity } from "db-model";
 
 /**
  * Maps EmbalsesAndalucia data to EmbalseUpdateSAIH format.

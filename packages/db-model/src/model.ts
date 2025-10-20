@@ -4,3 +4,7 @@ export interface EmbalseUpdateSAIHEntity {
   aguaActualSAIH: number;
   fechaMedidaSAIH: string;
 }
+export interface InfoDestinoArcgis {
+  nombre: string;
+  idArcgis: number;
+}
