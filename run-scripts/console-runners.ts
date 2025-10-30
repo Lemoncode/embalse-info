@@ -8,7 +8,7 @@ const { selected }: { selected: string } = await prompts({
   name: "selected",
   message: "[console-runners] Select a console runner to execute",
   choices: CONSOLE_RUNNERS_DB
-    ? [{ title: "packages/db", value: "packages/db" }]
+    ? [{ title: "packages/db", value: "@embalse-info/db" }]
     : [],
 });
 

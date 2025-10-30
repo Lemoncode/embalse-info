@@ -2,6 +2,7 @@ import { scrapeSeedEmbalses } from "arcgis";
 import { getEmbalsesContext } from "./embalses.context.js";
 import { mapperFromCuencasMediterraneaToArcgis } from "./embalses.mappers.js";
 import { scrapeCuencaMediterranea } from "scraping-cuenca-mediterranea";
+import { parseDate } from "./embalses.helpers.js";
 
 export const embalsesRepository = {
   actualizarEmbalses: async (): Promise<boolean> => {
@@ -47,7 +48,7 @@ export const embalsesRepository = {
         {
           $set: {
             aguaActualSAIH: embalse.aguaActualSAIH,
-            fechaMedidaAguaActualSAIH: new Date(embalse.fechaMedidaSAIH),
+            fechaMedidaAguaActualSAIH: parseDate(embalse.fechaMedidaSAIH),
           },
         }
       );

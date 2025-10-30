@@ -1,5 +1,31 @@
 # embalse-info
 
+## Pasos para actualizar la semilla de las cuencas
+
+```bash
+npm run start:console-runners
+```
+
+> Lanzar desde la raíz del proyecto.
+
+Seleccionar la opción `db-console-runners`:
+
+```bash
+? [console-runners] Select a console runner to execute ›
+❯   packages/db
+```
+
+Luego, seleccionar el runner `cuencas-seed`:
+
+```bash
+✔ Connection string (Press enter to use default):  … mongodb://localhost:27017/embalse-info
+? Which test-runner do you want to run? › - Use arrow-keys. Return to submit.
+❯   cuencas-seed
+    exit
+```
+
+Y ya estará actualizada la semilla de las cuencas.
+
 ## Pasos para activar las azure functions
 
 ### Cómo levantar Azurite (emulador de Azure Storage) en Docker

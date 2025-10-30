@@ -29,6 +29,6 @@ app.timer("scrapings-function", {
     },
     maxRetryCount: 4,
   },
-  schedule: "0 * * * * *",
+  schedule: "40 * * * * *",
   handler: scrapingsFunction,
 });

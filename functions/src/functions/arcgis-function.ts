@@ -26,6 +26,6 @@ app.timer("arcgis-function", {
     },
     maxRetryCount: 4,
   },
-  schedule: "0 2 * * * *",
+  schedule: "0 * * * * *",
   handler: arcgisFunction,
 });
