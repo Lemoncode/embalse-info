@@ -7,7 +7,7 @@ export const mapArgGisEntryToCuenca = (arcGisEntry: ArcGisEntry): Cuenca => ({
 });
 
 export const mapArgGisEntryToEmbalse = (arcGisEntry: ArcGisEntry): Embalse => ({
-  _id: arcGisEntry.OBJECTID_1.toString(),
+  _id: arcGisEntry.embalse_id_1.toString(),
   embalse_id: arcGisEntry.EMBALSE_ID,
   nombre: arcGisEntry.embalse_nombre,
   cuenca: mapArgGisEntryToCuenca(arcGisEntry),
