@@ -1,4 +1,4 @@
-import { Cuenca, Embalse, MetaDatos } from "@embalse-info/db";
+import { Cuenca, Embalse, MetaDatos } from "db-model";
 import { ArcGisEntry } from "./api/arcgis-embalse-model.js";
 
 export const mapArgGisEntryToCuenca = (arcGisEntry: ArcGisEntry): Cuenca => ({

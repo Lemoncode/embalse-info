@@ -1,5 +1,5 @@
 import { getLatestEntries } from "./api/getLatestEntries.js";
-import { Cuenca, Embalse } from "@embalse-info/db";
+import { Cuenca, Embalse } from "db-model";
 import {
   mapArgGisEntryToCuenca,
   mapArgGisEntryToEmbalse,
