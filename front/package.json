@@ -8,9 +8,11 @@
   },
   "dependencies": {
     "@embalse-info/db": "*",
+    "@types/react-select": "^5.0.0",
     "next": "^15.4.1",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "react-select": "^5.10.2"
   },
   "devDependencies": {
     "@types/react": "^19.1.8",

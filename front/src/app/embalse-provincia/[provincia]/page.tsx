@@ -1,39 +1,8 @@
 import Link from "next/link";
+import { getEmbalsesPorProvincia, formatEmbalseForUrl } from "../../../data/embalses";
 
 interface Props {
   params: Promise<{ provincia: string }>;
-}
-
-// Datos mock de embalses por provincia
-function getEmbalsesPorProvincia(provincia: string) {
-  const embalses = {
-    madrid: [
-      { id: 1, nombre: "Embalse de Santillana", capacidad: 91.2 },
-      { id: 2, nombre: "Embalse del Atazar", capacidad: 425.9 },
-    ],
-    barcelona: [
-      { id: 3, nombre: "Embalse de Sau", capacidad: 177.0 },
-      { id: 4, nombre: "Embalse de La Baells", capacidad: 115.0 },
-    ],
-    valencia: [
-      { id: 5, nombre: "Embalse de Tous", capacidad: 378.9 },
-      { id: 6, nombre: "Embalse de Alarcón", capacidad: 1112.0 },
-    ],
-    sevilla: [
-      { id: 7, nombre: "Embalse de La Minilla", capacidad: 274.0 },
-      { id: 8, nombre: "Embalse del Pintado", capacidad: 210.0 },
-    ],
-    toledo: [
-      { id: 9, nombre: "Embalse de Castrejón", capacidad: 516.0 },
-      { id: 10, nombre: "Embalse de Azután", capacidad: 654.0 },
-    ],
-    cáceres: [
-      { id: 11, nombre: "Embalse de Alcántara", capacidad: 3162.0 },
-      { id: 12, nombre: "Embalse de Valdecañas", capacidad: 1446.0 },
-    ],
-  };
-
-  return embalses[provincia as keyof typeof embalses] || [];
 }
 
 export default async function EmbalseProvinciaPage({ params }: Props) {
@@ -73,13 +42,11 @@ export default async function EmbalseProvinciaPage({ params }: Props) {
             gap: "15px",
           }}
         >
-          {getEmbalsesPorProvincia(provincia.toLowerCase()).map(
+          {getEmbalsesPorProvincia(provincia).map(
             (embalse, index) => (
               <Link
                 key={index}
-                href={`/embalse/${embalse.nombre
-                  .toLowerCase()
-                  .replace(/ /g, "-")}`}
+                href={`/embalse/${formatEmbalseForUrl(embalse.nombre)}`}
                 style={{
                   display: "block",
                   padding: "20px",
