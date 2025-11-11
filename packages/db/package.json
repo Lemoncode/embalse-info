@@ -13,7 +13,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "run-p clean type-check build:db",
-    "build:db": "tsc",
+    "build:db": "tsc --project tsconfig.prod.json",
     "clean": "rimraf dist",
     "prestart:db": "docker compose down --remove-orphans",
     "start:db": "docker compose up -d",

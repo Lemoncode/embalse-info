@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
+    "target": "ES2017",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "outDir": "dist",
-    "rootDir": "src",
     "skipLibCheck": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "declaration": true,
-    "strict": false
+    "baseUrl": "./src",
+    "paths": {
+      "#*": ["*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["dist", "node_modules"]

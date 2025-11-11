@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface Props {
   children: React.ReactNode;
@@ -8,7 +8,7 @@ const RootLayout = (props: Props) => {
   const { children } = props;
   return (
     <html lang="en">
-      <body>
+      <body suppressHydrationWarning={true}>
         <main>{children}</main>
       </body>
     </html>

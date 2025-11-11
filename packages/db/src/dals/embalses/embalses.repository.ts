@@ -72,4 +72,10 @@ export const embalsesRepository = {
 
     return actualizados > 0;
   },
+  obtenerEmbalses: async () => {
+    return getEmbalsesContext().find().toArray();
+  },
+  obtenerEmbalsePorId: async (id: string) => {
+    return getEmbalsesContext().findOne({ embalse_id: Number(id) });
+  },
 };
