@@ -34,6 +34,7 @@ export default function EmbalseAutocomplete() {
   return (
     <>
       <Select
+        instanceId="embalse-search"
         value={selectedEmbalse}
         onChange={handleChange}
         options={options}
