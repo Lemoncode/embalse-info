@@ -1,5 +1,5 @@
 import { getCuencasContext } from "./cuencas.context.js";
-import { Cuenca } from "./cuencas.model.js";
+import { Cuenca } from "db-model";
 
 export const cuencasRepository = {
   actualizarCuencas: async (cuentas: Cuenca[]): Promise<boolean> => {
