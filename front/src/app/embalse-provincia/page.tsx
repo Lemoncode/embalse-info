@@ -29,9 +29,7 @@ export default function EmbalsesProvinciaPage() {
 
       <div className="rest-section">
         <h3>El resto añadir</h3>
-        <p>
-          Las demás provincias de España se añadirán próximamente.
-        </p>
+        <p>Las demás provincias de España se añadirán próximamente.</p>
       </div>
     </div>
   );
