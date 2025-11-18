@@ -1,12 +1,12 @@
-import { EmbalseDuero } from '../api/cuenca.model';
-import { load } from 'cheerio';
+import { EmbalseDuero } from "../api/cuenca.model";
+import { load } from "cheerio";
 
 // Función auxiliar para parsear string a number o null
 function _parseToNumberOrNull(value: string): number | null {
   const trimmed = value.trim();
-  if (trimmed === '-' || trimmed === '') return null;
+  if (trimmed === "-" || trimmed === "") return null;
   // Quitar puntos de miles y cambiar coma decimal por punto
-  const normalized = trimmed.replace(/\./g, '').replace(',', '.');
+  const normalized = trimmed.replace(/\./g, "").replace(",", ".");
   const num = Number(normalized);
   return isNaN(num) ? null : num;
 }
@@ -16,21 +16,21 @@ export function parseReservoirsFromHtml(html: string): EmbalseDuero[] {
   const $ = load(html);
   const reservoirs: EmbalseDuero[] = [];
 
-  $('tbody > tr').each((index, element) => {
-    const tds = $(element).find('td');
+  $("tbody > tr").each((index, element) => {
+    const tds = $(element).find("td");
     const embalse = $(tds[0]).text().trim();
     const capacityRaw = $(tds[1]).text().trim();
     const currentVolumeRaw = $(tds[2]).text().trim();
     const normalizedName = embalse.toLowerCase();
     const provinceHeader = $(element).find('td[colspan="11"]');
-    const detectedProvince = provinceHeader.text().trim()
+    const detectedProvince = provinceHeader.text().trim();
     const capacity = _parseToNumberOrNull(capacityRaw);
     const currentVolume = _parseToNumberOrNull(currentVolumeRaw);
     if (
       !detectedProvince &&
       embalse &&
-      !normalizedName.startsWith('total') &&
-      !normalizedName.startsWith('% del total')
+      !normalizedName.startsWith("total") &&
+      !normalizedName.startsWith("% del total")
     ) {
       reservoirs.push({
         id: index,
@@ -47,18 +47,22 @@ export function parseReservoirsFromHtml(html: string): EmbalseDuero[] {
 export const getCurrentDate = (html: string) => {
   const $ = load(html);
 
-  const titleElement = $('div .title-table').text();
+  const titleElement = $("div .title-table").text();
 
-  if (!titleElement.includes('Duero a día')) {
-    throw new Error('El formato del título no contiene "Duero a día". Verifica el HTML proporcionado.');
+  if (!titleElement.includes("Duero a día")) {
+    throw new Error(
+      'El formato del título no contiene "Duero a día". Verifica el HTML proporcionado.'
+    );
   }
 
-  const parts = titleElement.split('Duero a día');
+  const parts = titleElement.split("Duero a día");
   if (parts.length < 2) {
-    throw new Error('No se pudo extraer la fecha del título. Verifica el formato del HTML.');
+    throw new Error(
+      "No se pudo extraer la fecha del título. Verifica el formato del HTML."
+    );
   }
 
-  const currentValue = parts[1].split('de').join(" ").trim();
+  const currentValue = parts[1].split("de").join(" ").trim();
 
   const currentDate = new Date(currentValue);
   if (isNaN(currentDate.getTime())) {
