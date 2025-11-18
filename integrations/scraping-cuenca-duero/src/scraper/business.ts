@@ -48,12 +48,25 @@ export const getCurrentDate = (html: string) => {
   const $ = load(html);
 
   const titleElement = $('div .title-table').text();
-  const currentValue = titleElement.split('Duero a día')[1].split('de').join(" ").trim();
+
+  if (!titleElement.includes('Duero a día')) {
+    throw new Error('El formato del título no contiene "Duero a día". Verifica el HTML proporcionado.');
+  }
+
+  const parts = titleElement.split('Duero a día');
+  if (parts.length < 2) {
+    throw new Error('No se pudo extraer la fecha del título. Verifica el formato del HTML.');
+  }
+
+  const currentValue = parts[1].split('de').join(" ").trim();
 
   const currentDate = new Date(currentValue);
+  if (isNaN(currentDate.getTime())) {
+    throw new Error(`La fecha extraída no es válida: ${currentValue}`);
+  }
 
   return formatApiDate(currentDate);
-}
+};
 
 const formatApiDate = (date: Date): string => {
   const year = date.getFullYear();
