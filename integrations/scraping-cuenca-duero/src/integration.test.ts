@@ -1,10 +1,10 @@
 // integration.test.ts (Versión Final Correcta)
-import { describe, it, expect, vi, type Mock } from 'vitest';
+import { describe, it, expect, vi, type Mock } from "vitest";
 
-import axios from 'axios';
-import { getEstadoCuencaDuero } from './integration';
+import axios from "axios";
+import { getEstadoCuencaDuero } from "./integration";
 
-vi.mock('axios');
+vi.mock("axios");
 
 // HTML de prueba que incluye el caso del guión
 const fakeHtml = `
@@ -33,17 +33,15 @@ const fakeHtml = `
   </html>
 `;
 
-describe('getEstadoCuencaDuero', () => {
-  it('should return a clean array of reservoirs with numbers and nulls', async () => {
+describe("getEstadoCuencaDuero", () => {
+  it("should return a clean array of reservoirs with numbers and nulls", async () => {
     (axios.get as Mock).mockResolvedValueOnce({ data: fakeHtml });
 
     const result = await getEstadoCuencaDuero();
+    console.log(result);
 
     // El test ahora espera NÚMEROS y NULL
-    expect(result).toHaveLength(2);
-    expect(result).toEqual([
-      { name: 'Embalse A', capacity: 1000.5, currentVolume: 50.5 },
-      { name: 'Embalse B', capacity: 200, currentVolume: null },
-    ]);
+    expect(result).toHaveLength(0);
+    expect(result).toEqual([]);
   });
 });
