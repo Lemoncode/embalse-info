@@ -9,7 +9,10 @@ const RootLayout = (props: Props) => {
   const { children } = props;
   return (
     <html lang="en">
-      <body className="bg-gray-100 text-gray-900 flex flex-col min-h-screen">
+      <body
+        className="bg-gray-100 text-gray-900 flex flex-col min-h-screen"
+        suppressHydrationWarning
+      >
         <header className="bg-gray-800 text-white p-4 text-center">
           <p className="text-3xl">Soy un header</p>
         </header>
