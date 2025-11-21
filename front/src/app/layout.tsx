@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import "./globals.css";
 
 interface Props {
   children: React.ReactNode;
@@ -8,8 +9,14 @@ const RootLayout = (props: Props) => {
   const { children } = props;
   return (
     <html lang="en">
-      <body>
-        <main>{children}</main>
+      <body className="bg-gray-100 text-gray-900 flex flex-col min-h-screen">
+        <header className="bg-blue-800 text-white p-4 text-center">
+          <h1 className="text-2xl font-bold">Soy un header</h1>
+        </header>
+        <main className="grow p-8">{children}</main>
+        <footer className="bg-gray-800 text-white p-4 text-center">
+          <p>Soy un footer</p>
+        </footer>
       </body>
     </html>
   );
