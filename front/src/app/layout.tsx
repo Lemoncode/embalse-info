@@ -10,8 +10,8 @@ const RootLayout = (props: Props) => {
   return (
     <html lang="en">
       <body className="bg-gray-100 text-gray-900 flex flex-col min-h-screen">
-        <header className="bg-blue-800 text-white p-4 text-center">
-          <h1 className="text-2xl font-bold">Soy un header</h1>
+        <header className="bg-gray-800 text-white p-4 text-center">
+          <p className="text-3xl">Soy un header</p>
         </header>
         <main className="grow p-8">{children}</main>
         <footer className="bg-gray-800 text-white p-4 text-center">
