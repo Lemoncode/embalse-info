@@ -8,7 +8,8 @@ export default async function EmbalseDetallePage({ params }: Props) {
   const { embalse } = await params;
   return (
     <div className="flex flex-col gap-8">
-      <h2 className="text-4xl">Detalle del embalse: {embalse}</h2>
+      <h2>Detalle del embalse: {embalse}</h2>
+      <p>Hola hgola h uhfrf hfueh</p>
     </div>
   );
 }
