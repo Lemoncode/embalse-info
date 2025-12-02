@@ -1,2 +1,88 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@import "@fontsource/nunito-sans/400.css";
+@import "@fontsource/nunito-sans/500.css";
+@import "@fontsource/nunito-sans/600.css";
+
+@plugin "daisyui/theme" {
+  name: "info-embalse";
+  default: true;
+  color-scheme: light;
+
+  --color-primary: #1b9aaa;
+  --color-accent: #d9d900;
+
+  --color-base-100: #feffff; /* White background */
+  --color-base-200: #eaeaea; /* Grey background */
+  --color-base-content: #060d14; /* Text color */
+}
+
+@theme {
+  --font-sans: "Nunito Sans", sans-serif;
+
+  /* Title color */
+  --color-title: #051c1f;
+
+  /* Accesible visited link color */
+  --color-visited-link: #257782;
+
+  /*Primary color palette*/
+
+  --color-brand-50: #e8f5f7;
+  --color-brand-100: #d1ebee;
+  --color-brand-200: #a4d7dd;
+  --color-brand-300: #76c2cc;
+  --color-brand-400: #49aebb;
+  --color-brand-500: #1b9aaa; /* Primary color */
+  --color-brand-600: #167b88;
+  --color-brand-700: #105c66;
+  --color-brand-800: #0b3e44;
+  --color-brand-900: #051f22;
+  --color-brand-950: #01161a;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-title opacity-95;
+  }
+
+  p,
+  body {
+    @apply opacity-85;
+  }
+
+  /* H1 Title 36px */
+  h1 {
+    @apply text-4xl leading-none font-semibold;
+  }
+
+  /* H2 Title 28px */
+  h2 {
+    @apply text-[28px] leading-normal font-semibold;
+  }
+
+  /* H3 Subtitle 24px */
+  h3 {
+    @apply text-2xl leading-none font-medium;
+  }
+
+  /* Text 14px */
+  p,
+  body {
+    @apply text-base-content text-base leading-normal font-normal;
+  }
+}
+
+@layer utilities {
+  /*Accesible link */
+
+  .link-accessible {
+    @apply link text-title visited:text-visited-link font-bold opacity-95;
+  }
+}
