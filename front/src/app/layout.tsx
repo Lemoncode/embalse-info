@@ -1,5 +1,6 @@
 import React from "react";
 import "./globals.css";
+import { FooterComponent, HeaderComponent } from "./layouts";
 
 interface Props {
   children: React.ReactNode;
@@ -8,18 +9,14 @@ interface Props {
 const RootLayout = (props: Props) => {
   const { children } = props;
   return (
-    <html lang="en">
+    <html lang="en" data-theme="info-embalse">
       <body
-        className="bg-gray-100 text-gray-900 flex flex-col min-h-screen"
+        className="bg-base-200 text-base-content flex min-h-screen flex-col"
         suppressHydrationWarning
       >
-        <header className="bg-gray-800 text-white p-4 text-center">
-          <p className="text-3xl">Soy un header</p>
-        </header>
+        <HeaderComponent />
         <main className="grow p-8">{children}</main>
-        <footer className="bg-gray-800 text-white p-4 text-center">
-          <p>Soy un footer</p>
-        </footer>
+        <FooterComponent />
       </body>
     </html>
   );
