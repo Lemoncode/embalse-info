@@ -16,8 +16,8 @@ export const ReservoirGauge = ({
   // TODO: replace hardcoded % for real reservoir filled water percentage
 
   return (
-    <div className="card bg-base-100 items-center gap-6 p-4">
-      <h2>Embalse de {name}</h2>
+    <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4">
+      <h2 className="text-center">Embalse de {name}</h2>
       <GaugeChart percentage={0.67} measurementDate={measurementDate} />
       <GaugeLegend
         currentVolume={currentVolume}
