@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { mockData } from "../../model/reservoir-data";
+import { ReservoirGauge } from "./reservoir-gauge";
 
 interface Props {
   params: Promise<{ embalse: string }>;
@@ -6,9 +8,12 @@ interface Props {
 
 export default async function EmbalseDetallePage({ params }: Props) {
   const { embalse } = await params;
+
+  const reservoirData = mockData;
+
   return (
     <div className="flex flex-col gap-8">
-      <h2>Detalle del embalse: {embalse}</h2>
+      <ReservoirGauge name={embalse} {...reservoirData} />
     </div>
   );
 }
