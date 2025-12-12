@@ -1,0 +1,28 @@
+import { ReservoirData } from "../../../model/reservoir-data";
+import { GaugeChart } from "./gauge-chart";
+import { GaugeLegend } from "./gauge-legend.component";
+
+interface Props extends ReservoirData {
+  name: string;
+}
+
+export const ReservoirGauge = ({
+  name,
+  currentVolume,
+  totalCapacity,
+  measurementDate,
+}: Props) => {
+  // const percentage = currentVolume / totalCapacity;
+  // TODO: replace hardcoded % for real reservoir filled water percentage
+
+  return (
+    <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4">
+      <h2 className="text-center">Embalse de {name}</h2>
+      <GaugeChart percentage={0.67} measurementDate={measurementDate} />
+      <GaugeLegend
+        currentVolume={currentVolume}
+        totalCapacity={totalCapacity}
+      />
+    </div>
+  );
+};
