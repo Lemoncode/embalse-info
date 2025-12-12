@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { mockData } from "../../model/reservoir-data";
 import { ReservoirGauge } from "./reservoir-gauge";
 
@@ -13,7 +12,12 @@ export default async function EmbalseDetallePage({ params }: Props) {
 
   return (
     <div className="flex flex-col gap-8">
-      <ReservoirGauge name={embalse} {...reservoirData} />
+      <ReservoirGauge
+        name={embalse}
+        currentVolume={reservoirData.currentVolume}
+        totalCapacity={reservoirData.totalCapacity}
+        measurementDate={reservoirData.measurementDate}
+      />
     </div>
   );
 }
