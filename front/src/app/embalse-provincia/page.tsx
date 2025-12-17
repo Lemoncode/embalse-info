@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { PROVINCIAS } from "@/core/constants";
+import { Card } from "@/common/components/card.component";
 
 export default function EmbalsesProvinciaPage() {
   return (
-    <div className="flex flex-col gap-8 rounded-2xl bg-(--color-base-100) p-4">
+    <Card>
       <h2>Embalses por provincias</h2>
       <div className="flex flex-col gap-4">
         {PROVINCIAS.map(({ id, name }) => (
@@ -16,6 +17,6 @@ export default function EmbalsesProvinciaPage() {
           </Link>
         ))}
       </div>
-    </div>
+    </Card>
   );
 }

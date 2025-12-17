@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { PROVINCIAS } from "@/core/constants";
+import { EMBALSES } from "@/core/constants/embalses.constants";
+import { Card } from "@/common/components/card.component";
 
 interface Props {
   params: Promise<{ provincia: string }>;
@@ -12,13 +14,19 @@ export default async function EmbalseProvinciaListadoPage({ params }: Props) {
     (province) => province.id === provincia,
   )?.name;
 
+  const embalsesProvincia = EMBALSES.filter(
+    (embalse) => embalse.provinciaId === provincia,
+  );
+
   return (
-    <div className="flex flex-col gap-8">
+    <Card>
       <h2>Embalses de {nombreProvincia}</h2>
 
-      <Link href="/embalse/casasola" className="link-accessible">
-        Embalse de Casasola
-      </Link>
-    </div>
+      {embalsesProvincia.map(({ id, name }) => (
+        <Link key={id} href={`/embalse/${id}`} className="link-accessible">
+          {name}
+        </Link>
+      ))}
+    </Card>
   );
 }
