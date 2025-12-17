@@ -6,6 +6,7 @@ interface Props {
 
 export default async function EmbalseProvinciaListadoPage({ params }: Props) {
   const { provincia } = await params;
+  // TODO: usar la constante PROVINCIAS y si coincide el id pintar el name
   return (
     <div className="flex flex-col gap-8">
       <h2>Embalses de {provincia}</h2>
