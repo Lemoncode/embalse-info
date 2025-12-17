@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { PROVINCIAS } from "@/core/constants";
-import { EMBALSES } from "@/core/constants/embalses.constants";
+import { EMBALSES } from "@/core/constants/reservoir.constants";
 import { Card } from "@/common/components/card.component";
 
 interface Props {
@@ -27,6 +27,11 @@ export default async function EmbalseProvinciaListadoPage({ params }: Props) {
           {name}
         </Link>
       ))}
+      <img
+        className="mt-4 w-full rounded-xl sm:w-1/2 lg:w-1/3"
+        src="/images/embalse-generico.jpg"
+        alt="Mapa de embalses"
+      />
     </Card>
   );
 }

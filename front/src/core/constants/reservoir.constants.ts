@@ -1,10 +1,6 @@
-interface Embalse {
-  id: string;
-  name: string;
-  provinciaId: string;
-}
+import { Reservoir } from "@/common/models";
 
-export const EMBALSES: Embalse[] = [
+export const EMBALSES: Reservoir[] = [
   // Álava
   { id: "ullibarri-gamboa", name: "Ullibarri-Gamboa", provinciaId: "alava" },
   { id: "zadorra", name: "Zadorra", provinciaId: "alava" },
