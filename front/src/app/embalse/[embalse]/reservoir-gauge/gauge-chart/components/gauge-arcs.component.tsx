@@ -2,7 +2,7 @@
 
 import * as d3 from "d3";
 import { useEffect, useRef } from "react";
-import { calculateFilledAngle, drawArc } from "./gauge-arcs.business";
+import { calculateFilledAngle, drawAnimatedArc, drawArc } from "./gauge-arcs.business";
 import { arcConfig, gaugeDimensions } from "./model";
 
 interface GaugeArcsProps {
@@ -36,7 +36,7 @@ export const GaugeArcs = ({ percentage }: GaugeArcsProps) => {
 
     // 2. Filled arc (primary color, based on percentage prop)
     const filledEndAngle = calculateFilledAngle(percentage);
-    drawArc({
+    drawAnimatedArc({
       arcGroup,
       endAngle: filledEndAngle,
       fillColor: "var(--color-primary)",
