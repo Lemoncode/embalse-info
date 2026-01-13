@@ -15,7 +15,7 @@ const RootLayout = (props: Props) => {
         suppressHydrationWarning
       >
         <HeaderComponent />
-        <main className="grow p-8">{children}</main>
+        <main className="flex grow flex-col">{children}</main>
         <FooterComponent />
       </body>
     </html>
