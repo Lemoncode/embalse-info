@@ -51,9 +51,10 @@ export const drawArc = ({ arcGroup, endAngle, fillColor }: DrawArcParams, animat
   }
 };
 
+
 export const drawAnimatedArc = ({ arcGroup, endAngle, fillColor }: DrawArcParams) => {
   const arcGeneratorStart = createArcGenerator(arcConfig.startAngle);
-  const arcGeneratorEnd = createArcGenerator(endAngle);
+  
 
   arcGroup
     .append("path")
