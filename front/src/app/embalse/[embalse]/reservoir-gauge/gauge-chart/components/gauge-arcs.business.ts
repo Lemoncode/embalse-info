@@ -19,7 +19,7 @@ const createArcGenerator = (endAngle: number) => {
     .cornerRadius(arcConfig.cornerRadius);
 };
 
-// TODO: add unit tests for calculateFilledAngle
+
 
 export const calculateFilledAngle = (percentage: number): number => {
   // Ensure percentage is within valid range [0, 1]

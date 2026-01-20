@@ -31,7 +31,7 @@ export const GaugeArcs = ({ percentage }: GaugeArcsProps) => {
     drawArc({
       arcGroup,
       endAngle: arcConfig.endAngle,
-      fillColor: "var(--color-total-water)",
+      fillColor: "var(--color-total-water)",      
     });
 
     // 2. Filled arc (primary color, based on percentage prop)
