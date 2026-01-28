@@ -1,32 +1,26 @@
-"use client";
-import { use, useState } from "react";
+import React from "react";
+import { DatosEmbalse } from "../embalse.vm";
 
-export const ReservoirCardDetail = ({ datosEmbalse }) => {
-  const [isOpen, setIsOpen] = useState(false);
+interface Props {
+  datosEmbalse: DatosEmbalse;
+}
+
+export const ReservoirCardDetail: React.FC<Props> = (props) => {
+  const { datosEmbalse } = props;
   return (
     <div className="flex w-full flex-col items-start gap-4">
-      <h3>
-        Datos del embalse
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          style={{ marginLeft: "9rem", border: "none", fontSize: "1.2rem" }}
-        >
-          {isOpen ? "▲" : "▼"}
-        </button>
-      </h3>
-      {isOpen && (
-        <ul>
-          <li>Cuenca: {datosEmbalse.Cuenca}</li>
-          <li>Provincia: {datosEmbalse.Provincia}</li>
-          <li>Municipio: {datosEmbalse.Municipio}</li>
-          <li>Río: {datosEmbalse.Rio}</li>
-          <li>Embalses Aguas Abajo: {datosEmbalse.EmbalsesAguasAbajo}</li>
-          <li>Tipo de Presa: {datosEmbalse.TipoDePresa}</li>
-          <li>Año de Construcción: {datosEmbalse.AnioConstruccion}</li>
-          <li>Superficie: {datosEmbalse.Superficie} </li>
-          <li>Localización: {datosEmbalse.Localizacion}</li>
-        </ul>
-      )}
+      <h3>Datos del embalse</h3>
+      <ul>
+        <li>Cuenca: {datosEmbalse.cuenca}</li>
+        <li>Provincia: {datosEmbalse.provincia}</li>
+        <li>Municipio: {datosEmbalse.municipio}</li>
+        <li>Río: {datosEmbalse.rio}</li>
+        <li>Embalses Aguas Abajo: {datosEmbalse.embalsesAguasAbajo}</li>
+        <li>Tipo de Presa: {datosEmbalse.tipoDePresa}</li>
+        <li>Año de Construcción: {datosEmbalse.anioConstruccion}</li>
+        <li>Superficie: {datosEmbalse.superficie} </li>
+        <li>Localización: {datosEmbalse.localizacion}</li>
+      </ul>
     </div>
   );
 };

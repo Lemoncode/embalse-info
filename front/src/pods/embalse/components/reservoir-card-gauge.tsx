@@ -1,17 +1,15 @@
-import { ReservoirData } from "@/model/reservoir-data";
+import { ReservoirData } from "../embalse.vm";
 import { GaugeChart } from "./reservoir-gauge";
 import { GaugeLegend } from "./reservoir-gauge/gauge-chart/components/gauge-legend.component";
 
-interface Props extends ReservoirData {
+interface Props {
   name: string;
+  reservoirData: ReservoirData;
 }
 
-export const ReservoirCardGauge = ({
-  name,
-  currentVolume,
-  totalCapacity,
-  measurementDate,
-}: Props) => {
+export const ReservoirCardGauge: React.FC<Props> = (props) => {
+  const { name, reservoirData } = props;
+  const { currentVolume, totalCapacity, measurementDate } = reservoirData;
   // const percentage = currentVolume / totalCapacity;
   // TODO: replace hardcoded % for real reservoir filled water percentage
 
