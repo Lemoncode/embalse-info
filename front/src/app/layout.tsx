@@ -1,6 +1,6 @@
 import React from "react";
 import "./globals.css";
-import { FooterComponent, HeaderComponent } from "./layouts";
+import { FooterComponent, HeaderComponent } from "../layouts";
 
 interface Props {
   children: React.ReactNode;

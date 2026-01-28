@@ -1,6 +1,6 @@
-import { gaugeDimensions } from "./components/model";
-import { GaugeInformation } from "./components";
-import { GaugeArcs } from "./components/gauge-arcs.component";
+import { gaugeDimensions } from "./model";
+import { GaugeInformation } from "./gauge-information.component";
+import { GaugeArcs } from "./gauge-arcs.component";
 
 interface Props {
   percentage: number;
