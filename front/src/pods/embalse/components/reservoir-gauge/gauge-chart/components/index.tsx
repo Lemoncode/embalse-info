@@ -10,8 +10,7 @@ interface Props {
 }
 
 export const ReservoirGauge = (props: Props) => {
-  const { name, percentage, measurementDate, currentVolume, totalCapacity } =
-    props;
+  const { name, measurementDate, currentVolume, totalCapacity } = props;
   return (
     <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4 shadow-lg">
       <h2 className="text-center">Embalse de {name}</h2>
