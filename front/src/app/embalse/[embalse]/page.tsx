@@ -1,7 +1,7 @@
+import { ReservoirCardGauge } from "@/pods/embalse/components/reservoir-card-gauge";
 import { mockData } from "../../../model/reservoir-data";
-import { ReservoirCardGauge } from "../../../pods/embalse/components/reservoir-gauge";
-import { ReservoirCardDetail } from "../../../pods/embalse/components/reservoir-card-detail";
-import { ReservoirCardInfo } from "../../../pods/embalse/components/reservoir-card-info.component";
+import { ReservoirCardInfo } from "@/pods/embalse/components/reservoir-card-info.component";
+import { ReservoirCardDetail } from "@/pods/embalse/components/reservoir-card-detail";
 
 interface Props {
   params: Promise<{ embalse: string }>;
