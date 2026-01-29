@@ -53,6 +53,55 @@ _/functions/local.settings.json_
 
 ### Arrancar las funciones de Azure
 
+Antes de arrancar las funciones de Azure, asegurate de tener instaladas su cli.
+
+Para instalarlo en Mac,
+
+```bash
+brew tap azure functions
+
+brew install azure-functions-core-tools@4
+```
+
+> Ojo tienes que tener homebrew instalado.
+
+Si tienes Windows
+
+**IMPORTANTE**: Esto lo no hemos probado, ver si funciona correctamente
+
+```bash
+  Opción 1 - npm (si ya tienes Node.js):
+  npm install -g azure-functions-core-tools@4 --unsafe-perm true
+
+  Opción 2 - winget:
+  winget install Microsoft.Azure.FunctionsCoreTools
+
+  Opción 3 - Chocolatey:
+  choco install azure-functions-core-tools
+
+  Opción 4 - Instalador MSI:
+  Descargar directamente desde https://learn.microsoft.com/en-us/azure/azure-functions/functions-run-local
+```
+
+Y en linux
+
+```bash
+Opción 1 - npm (si ya tienes Node.js):
+  npm install -g azure-functions-core-tools@4 --unsafe-perm true
+
+  Opción 2 - Ubuntu/Debian (apt):
+  curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+  sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+  sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-$(lsb_release -cs)-prod
+   $(lsb_release -cs) main" > /etc/apt/sources.list.d/dotnetdev.list'
+  sudo apt update
+  sudo apt install azure-functions-core-tools-4
+
+  Opción 3 - Fedora/RHEL/CentOS:
+  sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+  sudo dnf install azure-functions-core-tools-4
+```
+
 En la raíz del proyecto, ejecutar:
 
 ```bash
