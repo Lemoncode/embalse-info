@@ -18,6 +18,7 @@ export interface Embalse {
   _id: string;
   embalse_id: number;
   nombre: string;
+  slug: string;
   cuenca: {
     _id: string;
     nombre: string;
