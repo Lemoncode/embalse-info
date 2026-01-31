@@ -4,6 +4,14 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "run-p clean type-check build:db-model",
+    "build:db-model": "tsc",
+    "clean": "rimraf dist",
+    "type-check": "tsc --noEmit --preserveWatchOutput"
   }
 }

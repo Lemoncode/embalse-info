@@ -1,4 +1,4 @@
-import { Cuenca, Embalse, MetaDatos } from "db-model";
+import { Cuenca, Embalse, generateSlug, MetaDatos } from "db-model";
 import { ArcGisEntry } from "./api/arcgis-embalse-model.js";
 
 export const mapArgGisEntryToCuenca = (arcGisEntry: ArcGisEntry): Cuenca => ({
@@ -10,6 +10,7 @@ export const mapArgGisEntryToEmbalse = (arcGisEntry: ArcGisEntry): Embalse => ({
   _id: arcGisEntry.embalse_id_1.toString(),
   embalse_id: arcGisEntry.EMBALSE_ID,
   nombre: arcGisEntry.embalse_nombre,
+  slug: generateSlug(arcGisEntry.embalse_nombre),
   cuenca: mapArgGisEntryToCuenca(arcGisEntry),
   provincia: null, // No disponible en ArcGisEntry
   capacidad: arcGisEntry.agua_total,
