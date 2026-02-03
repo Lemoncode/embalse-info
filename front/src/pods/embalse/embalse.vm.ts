@@ -15,6 +15,7 @@ export interface ReservoirInfo {
 }
 
 export interface ReservoirData {
+  nombre: string;
   currentVolume: number;
   totalCapacity: number;
   measurementDate: string;

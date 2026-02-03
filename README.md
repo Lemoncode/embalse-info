@@ -58,9 +58,8 @@ Antes de arrancar las funciones de Azure, asegurate de tener instaladas su cli.
 Para instalarlo en Mac,
 
 ```bash
-brew tap azure functions
-
-brew install azure-functions-core-tools@4
+  brew tap azure/functions
+  brew install azure-functions-core-tools@4
 ```
 
 > Ojo tienes que tener homebrew instalado.

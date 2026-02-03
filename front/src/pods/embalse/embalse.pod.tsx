@@ -1,12 +1,10 @@
 import React from "react";
 import { Embalse } from "./embalse.component";
-
+import { ReservoirData } from "./embalse.vm";
 interface Props {
-  embalse: string;
+  reservoirData: ReservoirData;
 }
-
 export const EmbalsePod: React.FC<Props> = (props) => {
-  const { embalse } = props;
-
-  return <Embalse embalse={embalse} />;
+  const { reservoirData } = props;
+  return <Embalse reservoirData={reservoirData} />;
 };
