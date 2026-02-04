@@ -125,3 +125,13 @@ Y ya estarán las funciones levantadas y ejecutándose.
 ```bash
 docker start azurite
 ```
+
+# [Temporal] Probando detalle embalse
+
+Está pendiente conectar typeahead con el detalle del embalse. De momento, se puede probar accediendo directamente a las siguientes URLs:
+
+```bash
+http://localhost:3000/embalse/vinuela-la
+
+http://localhost:3000/embalse/villagudin
+```
