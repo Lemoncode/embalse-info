@@ -7,11 +7,12 @@ import { Embalse } from "./api";
 import { EmbalseSearchModel } from "./embalse-search.vm";
 import { mapEmbalseToSearch } from "./embalse-search.mapper";
 
-interface EmbalseSearchProps {
+interface Props {
   embalses: Embalse[];
 }
 
-export const EmbalseSearch: React.FC<EmbalseSearchProps> = ({ embalses }) => {
+export const EmbalseSearch: React.FC<Props> = (props) => {
+  const { embalses } = props;
   const [filteredEmbalses, setFilteredEmbalses] = useState<
     EmbalseSearchModel[]
   >([]);
