@@ -4,12 +4,8 @@ import { useState, useEffect } from "react";
 import { useCombobox } from "downshift";
 import { SearchIcon } from "./components/search-icon";
 import { Embalse, getEmbalsesCollection } from "./api";
-import { EmbalseSearchModel } from "./embalse-search.model";
-
-const mapEmbalseToSearch = (embalse: Embalse): EmbalseSearchModel => ({
-  slug: embalse._id,
-  name: `${embalse.name} (${embalse.province})`,
-});
+import { EmbalseSearchModel } from "./embalse-search.vm";
+import { mapEmbalseToSearch } from "./embalse-search.mapper";
 
 export const EmbalseSearch: React.FC = () => {
   const [embalses, setEmbalses] = useState<Embalse[]>([]);
