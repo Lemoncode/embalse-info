@@ -1,7 +1,9 @@
-import { EmbalseSearchModel } from "./embalse-search.vm";
-import { Embalse } from "./api";
+import * as vm from "./embalse-search.vm";
+import * as api from "db-model";
 
-export const mapEmbalseToSearch = (embalse: Embalse): EmbalseSearchModel => ({
+export const mapEmbalseToSearch = (
+  embalse: api.Embalse,
+): vm.EmbalseSearchModel => ({
   slug: embalse._id,
-  name: `${embalse.name} (${embalse.province})`,
+  name: `${embalse.nombre} (${embalse.provincia})`,
 });
