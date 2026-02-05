@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useCombobox } from "downshift";
+import { useRouter } from "next/navigation";
 import { SearchIcon } from "./components/search-icon";
 import { Embalse, getEmbalsesCollection } from "./api";
 import { EmbalseSearchModel } from "./embalse-search.model";
@@ -12,6 +13,7 @@ const mapEmbalseToSearch = (embalse: Embalse): EmbalseSearchModel => ({
 });
 
 export const EmbalseSearch: React.FC = () => {
+   const router = useRouter();
   const [embalses, setEmbalses] = useState<Embalse[]>([]);
   const [filteredEmbalses, setFilteredEmbalses] = useState<
     EmbalseSearchModel[]
@@ -47,7 +49,8 @@ export const EmbalseSearch: React.FC = () => {
     },
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
-        console.log("Embalse seleccionado: ", selectedItem);
+        //console.log("Embalse seleccionado: ", selectedItem);
+        router.push(`/embalse/${selectedItem.slug}`);
       }
     },
   });

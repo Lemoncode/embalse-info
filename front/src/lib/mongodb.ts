@@ -13,14 +13,16 @@ const globalForMongo = globalThis as typeof globalThis & {
 };
 
 //crea el cliente solo si no existe ya (singleton)
-function getClient(): MongoClient {
+async function  getClient(): Promise<MongoClient> {
     if (!globalForMongo._mongoClient) {
         globalForMongo._mongoClient = new MongoClient(connectionString);
+        await globalForMongo._mongoClient.connect();
     }
 
     return globalForMongo._mongoClient;
 }
 //lo que exportamo devuelve la instancia de Db lista para hacer queries
-export function getDb(): Db {
-    return getClient().db();
+export async function getDb(): Promise<Db> {
+    const client = await getClient();
+    return client.db();
 }
