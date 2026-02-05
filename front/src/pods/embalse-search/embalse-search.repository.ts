@@ -14,14 +14,25 @@ export async function getEmbalsesFromDb(): Promise<Embalse[]> {
           _id: 1,
           nombre: 1,
           provincia: 1,
+          slug: 1,
         },
       },
     )
     .toArray();
 
   return docs.map((doc) => ({
-    _id: doc._id?.toString() ?? "",
+    _id: doc.slug ?? createSlug(doc.nombre ?? ""),
     nombre: doc.nombre ?? "",
     provincia: doc.provincia ?? "",
   }));
 }
+
+const createSlug = (nombre: string): string => {
+  return nombre
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/ñ/g, "n")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+};
