@@ -5,7 +5,7 @@ import type { Embalse } from "db-model";
 
 export async function getEmbalseBySlug(slug: string): Promise<Embalse | null> {
     //conecta con BD y trae datos en base al slug
-  const db = getDb();
+  const db = await getDb();
   const doc = await db.collection("embalses").findOne({ slug });
 
   if (!doc) {
