@@ -1,5 +1,5 @@
 import type { EmbalseUpdateSAIHEntity } from "db-model";
-import type { RawRow } from "./business";
+import type { RawRow } from "./business.js";
 
 /** Mapea a EmbalseUpdateSAIHEntity*/
 export function mapToEmbalseUpdateSAIH(

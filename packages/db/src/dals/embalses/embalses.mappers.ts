@@ -34,3 +34,23 @@ export const mapperFromCuencasMediterraneaToArcgis = new Map<
   [379, { nombre: "Jarrama", idArcgis: 358 }],
   [380, { nombre: "Andévalo", idArcgis: 355 }],
 ]);
+
+// Ojo Embalse de La Florida-Pilotuerto, Valdemurio, El Furacón, Priañes, Cordiñanes, La Lastra, Leurtza Inferior, Leurtza Superior, Endara-San Antón
+
+export const mapperFromCuencasCantabricoToArcgis = new Map<
+  number,
+  InfoDestinoArcgis
+>([
+  [1406, { nombre: "Salime", idArcgis: 270 }],
+  [1408, { nombre: "Doiras", idArcgis: 121 }],
+  [1409, { nombre: "Arbón", idArcgis: 26 }],
+  [1356, { nombre: "La Barca", idArcgis: 40 }],
+  [1333, { nombre: "Tanes", idArcgis: 305 }],
+  [1334, { nombre: "Rioseco", idArcgis: 385 }],
+  [1345, { nombre: "Alfilorios", idArcgis: 17 }],
+  [1253, { nombre: "La Cohilla", idArcgis: 103 }],
+  [1231, { nombre: "Alsa - Mediajo", idArcgis: 310 }],
+  [1177, { nombre: "Ordunte", idArcgis: 217 }],
+  [1078, { nombre: "Ibiur", idArcgis: 377 }],
+  [1108, { nombre: "Añarbe", idArcgis: 34 }],
+]);
