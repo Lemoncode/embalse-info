@@ -4,7 +4,7 @@ import { getDb } from "@/lib/mongodb";
 import type { Embalse } from "./api/api.model";
 
 export async function getEmbalsesFromDb(): Promise<Embalse[]> {
-  const db = getDb();
+  const db = await getDb();
   const docs = await db
     .collection("embalses")
     .find(
