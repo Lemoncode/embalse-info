@@ -19,15 +19,13 @@ export const mapArgGisEntryToEmbalse = (arcGisEntry: ArcGisEntry): Embalse => {
     capacidad: arcGisEntry.agua_total,
     aguaActualAemet: arcGisEntry.agua_actual,
     fechaMedidaAguaActualAemet: new Date(arcGisEntry.fecha),
-    aguaActualSAIH: null,
-    fechaMedidaAguaActualSAIH: null,
     descripcion_id: null, // No disponible en ArcGisEntry
     uso: arcGisEntry.Uso,
   };
 };
 
 export const mapArgGisEntryToMetaDatos = (
-  arcGisEntry: ArcGisEntry
+  arcGisEntry: ArcGisEntry,
 ): MetaDatos => ({
   _id: arcGisEntry.OBJECTID_1.toString(),
   ultimaImportacionAemet: new Date(arcGisEntry.fecha),
