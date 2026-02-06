@@ -1,27 +1,23 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useCombobox } from "downshift";
 import { useRouter } from "next/navigation";
 import { SearchIcon } from "./components/search-icon";
-import { Embalse, getEmbalsesCollection } from "./api";
-import { EmbalseSearchModel } from "./embalse-search.model";
+import { Embalse } from "./api";
+import { EmbalseSearchModel } from "./embalse-search.vm";
+import { mapEmbalseToSearch } from "./embalse-search.mapper";
 
-const mapEmbalseToSearch = (embalse: Embalse): EmbalseSearchModel => ({
-  slug: embalse._id,
-  name: `${embalse.name} (${embalse.province})`,
-});
+interface Props {
+  embalses: Embalse[];
+}
 
-export const EmbalseSearch: React.FC = () => {
-   const router = useRouter();
-  const [embalses, setEmbalses] = useState<Embalse[]>([]);
+export const EmbalseSearch: React.FC<Props> = (props) => {
+  const { embalses } = props;
+  const router = useRouter();
   const [filteredEmbalses, setFilteredEmbalses] = useState<
     EmbalseSearchModel[]
   >([]);
-
-  useEffect(() => {
-    getEmbalsesCollection().then(setEmbalses);
-  }, []);
 
   const getFilteredEmbalses = (inputValue: string): EmbalseSearchModel[] => {
     const lower = inputValue.toLowerCase();
@@ -29,8 +25,8 @@ export const EmbalseSearch: React.FC = () => {
     return embalses
       .filter(
         (e) =>
-          e.name.toLowerCase().includes(lower) ||
-          e.province.toLowerCase().includes(lower),
+          e.nombre.toLowerCase().includes(lower) ||
+          e.provincia.toLowerCase().includes(lower),
       )
       .map(mapEmbalseToSearch);
   };

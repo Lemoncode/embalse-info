@@ -1,4 +1,4 @@
 export interface EmbalseSearchModel {
-  slug: string; // embalse id used in the URL
+  slug: string; // Name of the reservoir for the URL
   name: string; // Combination of name (province)
 }

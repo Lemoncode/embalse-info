@@ -1,8 +1,10 @@
 import { EmbalseSearch } from "@/pods/embalse-search";
-import Link from "next/link";
+import { getEmbalsesCollection } from "@/pods/embalse-search/api";
 
-const RootPage = () => {
-  return <EmbalseSearch />;
+const RootPage = async () => {
+  const embalses = await getEmbalsesCollection();
+
+  return <EmbalseSearch embalses={embalses} />;
 };
 
 export default RootPage;
