@@ -10,7 +10,7 @@ export const GaugeLegend = ({ currentVolume, totalCapacity }: Props) => {
       <div className="flex items-center gap-2">
         <span className="bg-primary h-4 w-4 rounded-full" />
         <span className="text-base-content text-base">
-          Embalsada: {currentVolume}m³
+          Embalsada: {currentVolume}Hm³
         </span>
       </div>
 
@@ -18,7 +18,7 @@ export const GaugeLegend = ({ currentVolume, totalCapacity }: Props) => {
       <div className="flex items-center gap-2">
         <span className="bg-total-water h-4 w-4 rounded-full" />
         <span className="text-base-content text-base">
-          Total: {totalCapacity}m³
+          Total: {totalCapacity}Hm³
         </span>
       </div>
     </div>
