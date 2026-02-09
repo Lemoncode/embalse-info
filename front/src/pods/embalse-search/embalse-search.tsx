@@ -1,19 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useCombobox } from "downshift";
 import { useRouter } from "next/navigation";
 import { SearchIcon } from "./components/search-icon";
 import { Embalse, getEmbalsesCollection } from "./api";
 import { EmbalseSearchModel } from "./embalse-search.model";
-
-const mapEmbalseToSearch = (embalse: Embalse): EmbalseSearchModel => ({
-  slug: embalse._id,
-  name: `${embalse.name} (${embalse.province})`,
-});
+import { getFilteredEmbalses } from "./embalses-search.business";
+import { useEffect } from "react";
 
 export const EmbalseSearch: React.FC = () => {
-   const router = useRouter();
+  const router = useRouter();
   const [embalses, setEmbalses] = useState<Embalse[]>([]);
   const [filteredEmbalses, setFilteredEmbalses] = useState<
     EmbalseSearchModel[]
@@ -22,18 +19,6 @@ export const EmbalseSearch: React.FC = () => {
   useEffect(() => {
     getEmbalsesCollection().then(setEmbalses);
   }, []);
-
-  const getFilteredEmbalses = (inputValue: string): EmbalseSearchModel[] => {
-    const lower = inputValue.toLowerCase();
-
-    return embalses
-      .filter(
-        (e) =>
-          e.name.toLowerCase().includes(lower) ||
-          e.province.toLowerCase().includes(lower),
-      )
-      .map(mapEmbalseToSearch);
-  };
 
   const {
     isOpen,
@@ -45,7 +30,9 @@ export const EmbalseSearch: React.FC = () => {
     items: filteredEmbalses,
     itemToString: (item) => (item ? item.name : ""),
     onInputValueChange: ({ inputValue: newValue }) => {
-      setFilteredEmbalses(newValue ? getFilteredEmbalses(newValue) : []);
+      setFilteredEmbalses(
+        newValue ? getFilteredEmbalses(newValue, embalses) : [],
+      );
     },
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
