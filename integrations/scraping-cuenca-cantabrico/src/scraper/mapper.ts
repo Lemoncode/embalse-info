@@ -1,5 +1,6 @@
 import type { EmbalseUpdateSAIHEntity } from "db-model";
 import type { RawRow } from "./business.js";
+import { mapStringToDateFormat } from './helpers.js'
 
 /** Mapea a EmbalseUpdateSAIHEntity*/
 export function mapToEmbalseUpdateSAIH(
@@ -9,6 +10,6 @@ export function mapToEmbalseUpdateSAIH(
     id: r.id,
     nombre: r.nombre,
     aguaActualSAIH: r.volumenActualHm3,
-    fechaMedidaSAIH: r.fecha,
+    fechaMedidaSAIH: mapStringToDateFormat(r.fecha),
   }));
 }
