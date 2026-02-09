@@ -34,3 +34,17 @@ export const mapperFromCuencasMediterraneaToArcgis = new Map<
   [379, { nombre: "Jarrama", idArcgis: 358 }],
   [380, { nombre: "Andévalo", idArcgis: 355 }],
 ]);
+
+// OJO Pasteral, Sant Ponç, Gaià, Siurana, Foix, Cavallers
+
+export const mapperFromCuencasCatalanaToArcgis = new Map<
+  number,
+  InfoDestinoArcgis
+>([
+  [171169001, { nombre: "Susqueda", idArcgis: 301 }],
+  [170600001, { nombre: "Boadella", idArcgis: 53 }],
+  [430537001, { nombre: "Riudecanyes", idArcgis: 259 }],
+  [83036001, { nombre: "Sau", idArcgis: 290 }],
+  [81419003, { nombre: "La Llosa del Cavall", idArcgis: 178 }],
+  [82687001, { nombre: "La Baells", idArcgis: 36 }],
+]);
