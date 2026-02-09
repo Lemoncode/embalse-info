@@ -35,7 +35,7 @@ export const mapperFromCuencasMediterraneaToArcgis = new Map<
   [380, { nombre: "Andévalo", idArcgis: 355 }],
 ]);
 
-// Ojo Embalse de La Florida-Pilotuerto, Valdemurio, El Furacón, Priañes, Cordiñanes, La Lastra, Leurtza Inferior, Leurtza Superior, Endara-San Antón
+// Ojo Embalse de La Florida-Pilotuerto, Valdemurio, El Furacón, Priañes, Cordiñanes, La Lastra, Palombera, Arriarán, Leurtza Inferior, Leurtza Superior, Endara-San Antón
 
 export const mapperFromCuencasCantabricoToArcgis = new Map<
   number,

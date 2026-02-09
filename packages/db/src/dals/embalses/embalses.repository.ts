@@ -74,17 +74,17 @@ export const embalsesRepository = {
     return actualizados > 0;
   },
   actualizarCuencaCantabrico: async (): Promise<boolean> => {
-    const embalsesCantabrica = await scrapeCuencaCantabrica();
+    const embalsesCantabrico = await scrapeCuencaCantabrica();
 
     console.log(
-      `Se han scrapeado ${embalsesCantabrica.length} embalses de la Cuenca Cantábrica`
+      `Se han scrapeado ${embalsesCantabrico.length} embalses de la Cuenca Cantábrica`
     );
 
     let actualizados = 0;
     let noEncontrados = 0;
     let sinMapper = 0;
 
-    for (const embalse of embalsesCantabrica) {
+    for (const embalse of embalsesCantabrico) {
       const infoDestino = mapperFromCuencasCantabricoToArcgis.get(embalse.id);
 
       if (!infoDestino) {
@@ -121,7 +121,7 @@ export const embalsesRepository = {
     }
 
     console.log(
-      `Resumen Cuenca Mediterránea: ${actualizados} actualizados, ${noEncontrados} no encontrados, ${sinMapper} sin mapper`
+      `Resumen Cuenca Cantábrico: ${actualizados} actualizados, ${noEncontrados} no encontrados, ${sinMapper} sin mapper`
     );
 
     return actualizados > 0;

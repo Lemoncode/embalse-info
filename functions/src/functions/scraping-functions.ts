@@ -22,10 +22,10 @@ export async function scrapingsFunction(
   }
 
   if (responseCuencaCantabrico) {
-    context.log(`Se han actualizado los embalses de la cuenca Cantábrico`);
+    context.log(`Se han actualizado los embalses de la cuenca Cantábrica`);
   } else {
     context.log(
-      "No se han podido actualizar los embalses de la cuenca Cantábrico"
+      "No se han podido actualizar los embalses de la cuenca Cantábrica"
     );
   }
 
