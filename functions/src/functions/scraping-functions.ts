@@ -11,11 +11,21 @@ export async function scrapingsFunction(
   const responseCuencaMediterranea =
     await embalsesRepository.actualizarCuencaMediterranea();
 
+  const responseCuencaCatalana = await embalsesRepository.actualizarCuencaCatalana();
+
   if (responseCuencaMediterranea) {
     context.log(`Se han actualizado los embalses de la cuenca Mediterránea`);
   } else {
     context.log(
       "No se han podido actualizar los embalses de la cuenca Mediterránea"
+    );
+  }
+
+  if (responseCuencaCatalana) {
+    context.log(`Se han actualizado los embalses de la cuenca Catalana`);
+  } else {
+    context.log(
+      "No se han podido actualizar los embalses de la cuenca Catalana"
     );
   }
   await dbServer.disconnect();

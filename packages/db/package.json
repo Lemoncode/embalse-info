@@ -28,6 +28,7 @@
     "@types/prompts": "^2.4.9",
     "arcgis": "*",
     "prompts": "^2.4.2",
-    "scraping-cuenca-mediterranea": "*"
+    "scraping-cuenca-mediterranea": "*",
+    "scraping-cuenca-catalana": "*"
   }
 }

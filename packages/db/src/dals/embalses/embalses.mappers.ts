@@ -35,7 +35,7 @@ export const mapperFromCuencasMediterraneaToArcgis = new Map<
   [380, { nombre: "Andévalo", idArcgis: 355 }],
 ]);
 
-// OJO Pasteral, Sant Ponç, Gaià, Siurana, Foix, Cavallers
+// OJO Pasteral, Gaià, Siurana, Foix, Cavallers (no sale en el scraping)
 
 export const mapperFromCuencasCatalanaToArcgis = new Map<
   number,
@@ -47,4 +47,5 @@ export const mapperFromCuencasCatalanaToArcgis = new Map<
   [83036001, { nombre: "Sau", idArcgis: 290 }],
   [81419003, { nombre: "La Llosa del Cavall", idArcgis: 178 }],
   [82687001, { nombre: "La Baells", idArcgis: 36 }],
+  [250753004, { nombre: "Sant Pons", idArcgis: 280 }],
 ]);
