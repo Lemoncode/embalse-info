@@ -87,8 +87,44 @@ export const embalsesRepository = {
     for (const embalseGuadalquivir of embalsesGuadalquivir) {
       for (const embalse of embalseGuadalquivir.embalses) {
         const infoDestino = mapperFromCuencasGuadalquivirToArcgis.get(embalse.id);
+
+        if (!infoDestino) {
+          sinMapper++;
+          console.warn(`Sin mapper para ID ${embalse.id} - ${embalse.nombre}`);
+          continue;
+        }
+
+        console.log(
+          `🔍 Mapeando: ID scraping ${embalse.id} -> _id BD ${infoDestino.idArcgis} (${infoDestino.nombre})`
+        );
+
+        const { matchedCount } = await getEmbalsesContext().updateOne(
+          { _id: infoDestino.idArcgis.toString() },
+          {
+            $set: {
+              aguaActualSAIH: embalse.aguaActualSAIH,
+              fechaMedidaAguaActualSAIH: parseDate(embalse.fechaMedidaSAIH),
+            },
+          }
+        );
+
+        if (matchedCount > 0) {
+          actualizados++;
+          console.log(
+            `Actualizado: ${infoDestino.nombre} (_id: ${infoDestino.idArcgis}) -> ${embalse.aguaActualSAIH} hm³`
+          );
+        } else {
+          noEncontrados++;
+          console.warn(
+            `No encontrado en BD: _id ${infoDestino.idArcgis} - ${infoDestino.nombre}`
+          );
+        }
       }
     }
+
+    console.log(
+      `Resumen Cuenca Duero: ${actualizados} actualizados, ${noEncontrados} no encontrados, ${sinMapper} sin mapper`
+    );
 
     return actualizados > 0;
   }
