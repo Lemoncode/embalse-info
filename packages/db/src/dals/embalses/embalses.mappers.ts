@@ -35,7 +35,9 @@ export const mapperFromCuencasMediterraneaToArcgis = new Map<
   [380, { nombre: "Andévalo", idArcgis: 355 }],
 ]);
 
-// OJO Pasteral, Gaià, Siurana, Foix, Cavallers (no sale en el scraping)
+// OJO Pasteral, Gaià, Siurana, Foix
+
+// id => 89 Está en Lleida pero pertenece a la cuenca del Ebro.
 
 export const mapperFromCuencasCatalanaToArcgis = new Map<
   number,
