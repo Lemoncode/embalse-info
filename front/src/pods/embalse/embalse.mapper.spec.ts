@@ -12,6 +12,7 @@ describe("mapEmbalseToReservoirData", () => {
   };
 
   it("should prioritize SAIH data over AEMET when both are available", () => {
+    // Arrange
     const mockEmbalse: Embalse = {
       ...mockEmbalseBase,
       aguaActualSAIH: 800,
@@ -20,8 +21,10 @@ describe("mapEmbalseToReservoirData", () => {
       fechaMedidaAguaActualAemet: new Date("2024-01-10"),
     } as Embalse;
 
+    // Act
     const result = mapEmbalseToReservoirData(mockEmbalse);
 
+    // Assert
     expect(result.currentVolume).toBe(800);
     expect(result.measurementDate).toBe("15/01/2024");
   });

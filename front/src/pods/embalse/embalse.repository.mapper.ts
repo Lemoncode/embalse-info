@@ -1,23 +1,24 @@
-
 import type { Embalse } from "db-model";
-export function repositoryMapper(doc: Embalse) {
+import { createEmptyEmbalse } from "./embalse.vm";
 
-    return {
-        _id: doc._id.toString(),
-        embalse_id: doc.embalse_id,
-        nombre: doc.nombre,
-        slug: doc.slug,
+export const mapEmbalse = (embalse: Embalse) =>
+  Boolean(embalse)
+    ? {
+        _id: embalse._id.toString(),
+        embalse_id: embalse.embalse_id,
+        nombre: embalse.nombre,
+        slug: embalse.slug,
         cuenca: {
-        _id: doc.cuenca?._id?.toString() ?? "",
-        nombre: doc.cuenca?.nombre ?? "",
+          _id: embalse.cuenca?._id?.toString() ?? "",
+          nombre: embalse.cuenca?.nombre ?? "",
         },
-        provincia: doc.provincia ?? null,
-        capacidad: doc.capacidad,
-        aguaActualAemet: doc.aguaActualAemet ?? null,
-        fechaMedidaAguaActualAemet: doc.fechaMedidaAguaActualAemet ?? null,
-        aguaActualSAIH: doc.aguaActualSAIH ?? null,
-        fechaMedidaAguaActualSAIH: doc.fechaMedidaAguaActualSAIH ?? null,
-        descripcion_id: doc.descripcion_id ?? null,
-        uso: doc.uso ?? "",
-    }
-}
+        provincia: embalse.provincia ?? null,
+        capacidad: embalse.capacidad,
+        aguaActualAemet: embalse.aguaActualAemet ?? null,
+        fechaMedidaAguaActualAemet: embalse.fechaMedidaAguaActualAemet ?? null,
+        aguaActualSAIH: embalse.aguaActualSAIH ?? null,
+        fechaMedidaAguaActualSAIH: embalse.fechaMedidaAguaActualSAIH ?? null,
+        descripcion_id: embalse.descripcion_id ?? null,
+        uso: embalse.uso ?? "",
+      }
+    : createEmptyEmbalse();
