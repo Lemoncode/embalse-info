@@ -1,7 +1,8 @@
 import { scrapeSeedEmbalses } from "arcgis";
 import { getEmbalsesContext } from "./embalses.context.js";
-import { mapperFromCuencasMediterraneaToArcgis } from "./embalses.mappers.js";
+import { mapperFromCuencasMediterraneaToArcgis, mapperFromCuencasGuadalquivirToArcgis } from "./embalses.mappers.js";
 import { scrapeCuencaMediterranea } from "scraping-cuenca-mediterranea";
+import { scrapeCuencaGuadalquivir } from 'scraping-cuenca-guadalquivir';
 import { parseDate } from "./embalses.helpers.js";
 
 export const embalsesRepository = {
@@ -72,4 +73,23 @@ export const embalsesRepository = {
 
     return actualizados > 0;
   },
+  actualizarCuencaGuadalquivir: async (): Promise<boolean> => {
+    const embalsesGuadalquivir = await scrapeCuencaGuadalquivir();
+
+    console.log(
+      `Se han scrapeado ${embalsesGuadalquivir.length} embalses de la Cuenca Mediterránea`
+    );
+
+    let actualizados = 0;
+    let noEncontrados = 0;
+    let sinMapper = 0;
+
+    for (const embalseGuadalquivir of embalsesGuadalquivir) {
+      for (const embalse of embalseGuadalquivir.embalses) {
+        const infoDestino = mapperFromCuencasGuadalquivirToArcgis.get(embalse.id);
+      }
+    }
+
+    return actualizados > 0;
+  }
 };
