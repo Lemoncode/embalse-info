@@ -37,6 +37,7 @@ export const mapperFromCuencasMediterraneaToArcgis = new Map<
 
 // Ojo Embalse de La Florida-Pilotuerto, Valdemurio, El Furacón, Priañes, Cordiñanes, La Lastra, Palombera, Arriarán, Leurtza Inferior, Leurtza Superior
 
+// id => 272 Está en la cuenca cantábrico oriental, pero está en la provincia de Almería. He investigado y está en Navarra.
 
 export const mapperFromCuencasCantabricoToArcgis = new Map<
   number,
