@@ -35,7 +35,11 @@ export const mapperFromCuencasMediterraneaToArcgis = new Map<
   [380, { nombre: "Andévalo", idArcgis: 355 }],
 ]);
 
-// OJO Aguilar de Campoo
+// OJO Aguilar de Campoo, Cernadilla, Puente Porto, Ricobayo, Rábanos, Saucelle, Valparaíso, Las Vencías, Villagonzalo, Villalcampo, Nª Sª de Agavanzal, Aldeadávila, Almendra, Burgomillodo, Casares de Arbas, Aguilar
+
+// id => 293 En la base de datos está en la cuenca del Duero, pero la provincia es Almería. Según estoy investigando está en la provincia del País Vasco (Ebro).
+// id => 87 En la base de datos está en la cuenca del Duero, pero la provincia es Lugo. Según estoy investigando está en la provincia de Zamora.
+// id => 276 En la base de datos está en la cuenca del Duero, la provincia es Almería. Según estoy investigando está en la provincia de Valladolid.
 
 export const mapperFromCuencasDueroToArcgis = new Map<
   number,
