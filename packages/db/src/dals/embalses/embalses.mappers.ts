@@ -34,3 +34,15 @@ export const mapperFromCuencasMediterraneaToArcgis = new Map<
   [379, { nombre: "Jarrama", idArcgis: 358 }],
   [380, { nombre: "Andévalo", idArcgis: 355 }],
 ]);
+
+// Ojo Cenza, Chandrexa, Las Conchas, Edrada-Mao, Frieira, Guístolas, Matalavilla, Montefurado, Os Peares,
+// Peñarrubia, Las Portas, Prada, Pías (San Agustín), Las Rozas, Salas, San. Estevo, San Martiño, San Pedro
+// San Sebastián, Santa Eulalia, Sequeiros, Vilasouto, Albarellos, Bao, Bárcena, La Campañana, Castrelo
+
+export const mapperFromCuencasMinoSilToArcgis = new Map<
+  number,
+  InfoDestinoArcgis
+>([
+  [1, { nombre: "Belesar", idArcgis: 45 }],
+  [2, { nombre: "Velle", idArcgis: 335 }],
+])

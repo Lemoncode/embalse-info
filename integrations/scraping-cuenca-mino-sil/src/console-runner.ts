@@ -1,4 +1,4 @@
-import { getEstadoCuencaMinoSil } from "./integration";
+import { getEstadoCuencaMinoSil } from "./integration.js";
 
 console.log("Estado de la Cuenca Miño Sil:");
 const result = await getEstadoCuencaMinoSil();
