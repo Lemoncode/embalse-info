@@ -35,7 +35,7 @@ export const mapperFromCuencasMediterraneaToArcgis = new Map<
   [380, { nombre: "Andévalo", idArcgis: 355 }],
 ]);
 
-// Ojo VALBONA, TORANES, MORA, BALAGUERAS, L'ALCORA, ONDA
+// Ojo VALBONA, TORANES, MORA, BALAGUERAS, L'ALCORA, ONDA, Cortes II, El Naranjero,
 
 export const mapperFromCuencasJucarToArcgis = new Map<
   number,

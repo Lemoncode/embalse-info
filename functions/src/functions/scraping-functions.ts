@@ -11,6 +11,8 @@ export async function scrapingsFunction(
   const responseCuencaMediterranea =
     await embalsesRepository.actualizarCuencaMediterranea();
 
+  const responseCuencaJucar = await embalsesRepository.actualizarCuencaJucar();
+
   if (responseCuencaMediterranea) {
     context.log(`Se han actualizado los embalses de la cuenca Mediterránea`);
   } else {
@@ -18,6 +20,15 @@ export async function scrapingsFunction(
       "No se han podido actualizar los embalses de la cuenca Mediterránea"
     );
   }
+
+  if (responseCuencaJucar) {
+    context.log(`Se han actualizado los embalses de la cuenca Jucar`);
+  } else {
+    context.log(
+      "No se han podido actualizar los embalses de la cuenca Jucar"
+    );
+  }
+
   await dbServer.disconnect();
 }
 
