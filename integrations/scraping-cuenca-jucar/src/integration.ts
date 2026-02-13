@@ -1,9 +1,9 @@
 import * as cheerio from 'cheerio';
-import { getCuencaPageHTMLContent } from '@/api';
+import { getCuencaPageHTMLContent } from './api/index.js';
 import {
   extractReservoirsFromJucarPage,
   mapToEmbalseUpdateSAIH,
-} from '@/scraper';
+} from './scraper/index.js';
 import { EmbalseUpdateSAIHEntity } from 'db-model';
 
 /**

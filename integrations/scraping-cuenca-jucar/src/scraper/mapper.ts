@@ -1,6 +1,6 @@
 import { EmbalseUpdateSAIHEntity } from 'db-model';
-import { EmbalsesJucar } from '@/api';
-import { formatFechaComunicacionVol } from '@/scraper';
+import { EmbalsesJucar } from '../api/index.js';
+import { formatFechaComunicacionVol } from '../scraper/index.js';
 
 /**
  * Maps subCuencasArray to EmbalsesJucar array format.
