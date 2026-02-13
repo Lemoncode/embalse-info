@@ -24,7 +24,7 @@ export const embalsesRepository = {
     const embalsesMediterranea = await scrapeCuencaMediterranea();
 
     console.log(
-      `Se han scrapeado ${embalsesMediterranea.length} embalses de la Cuenca Mediterranea`
+      `Se han scrapeado ${embalsesMediterranea.length} embalses de la Cuenca Mediterránea`
     );
 
     let actualizados = 0;
