@@ -14,10 +14,10 @@ export async function scrapingsFunction(
   const responseCuencaDuero = await embalsesRepository.actualizarCuencaDuero()
 
   if (responseCuencaMediterranea) {
-    context.log(`Se han actualizado los embalses de la cuenca Duero`);
+    context.log(`Se han actualizado los embalses de la cuenca Mediterránea`);
   } else {
     context.log(
-      "No se han podido actualizar los embalses de la cuenca Duero"
+      "No se han podido actualizar los embalses de la cuenca Mediterránea"
     );
   }
 
