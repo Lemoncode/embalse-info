@@ -84,8 +84,8 @@ export const embalsesRepository = {
     let noEncontrados = 0;
     let sinMapper = 0;
 
-    for (const embalseGuadalquivir of embalsesGuadalquivir) {
-      for (const embalse of embalseGuadalquivir.embalses) {
+    for (const embalseGuadalquivirPorZonas of embalsesGuadalquivir) {
+      for (const embalse of embalseGuadalquivirPorZonas.embalses) {
         const infoDestino = mapperFromCuencasGuadalquivirToArcgis.get(embalse.id);
 
         if (!infoDestino) {
