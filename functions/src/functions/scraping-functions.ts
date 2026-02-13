@@ -14,10 +14,10 @@ export async function scrapingsFunction(
   const responseCuencaGuadalquivir = await embalsesRepository.actualizarCuencaGuadalquivir();
 
   if (responseCuencaMediterranea) {
-    context.log(`Se han actualizado los embalses de la cuenca Guadalquivir`);
+    context.log(`Se han actualizado los embalses de la cuenca Mediterránea`);
   } else {
     context.log(
-      "No se han podido actualizar los embalses de la cuenca Guadalquivir"
+      "No se han podido actualizar los embalses de la cuenca Mediterránea"
     );
   }
 
