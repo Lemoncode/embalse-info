@@ -14,7 +14,7 @@ export function mapEmbalsesToEntities(subCuencasArray: any[]): EmbalsesJucar[] {
       const capacidadTotalHm3 = embalse.fldFVolumenNMN ?? 0;
       const volumenActualHm3 = embalse.valorVolumenEmbalse ?? 0;
       reservoirs.push({
-        id: embalse.idEstacionRemota,
+        id: Number(embalse.idEstacionRemota),
         embalse: embalse.fldTNombre,
         provincia: embalse.fldTProvincia,
         porcentajeActual:
