@@ -13,13 +13,7 @@ export const ReservoirCardDetail: React.FC<Props> = (props) => {
       <ul>
         <li>Cuenca: {datosEmbalse.cuenca}</li>
         <li>Provincia: {datosEmbalse.provincia}</li>
-        <li>Municipio: {datosEmbalse.municipio}</li>
-        <li>Río: {datosEmbalse.rio}</li>
-        <li>Embalses Aguas Abajo: {datosEmbalse.embalsesAguasAbajo}</li>
-        <li>Tipo de Presa: {datosEmbalse.tipoDePresa}</li>
-        <li>Año de Construcción: {datosEmbalse.anioConstruccion}</li>
-        <li>Superficie: {datosEmbalse.superficie} </li>
-        <li>Localización: {datosEmbalse.localizacion}</li>
+        <li>Uso: {datosEmbalse.uso}</li>
       </ul>
     </div>
   );
