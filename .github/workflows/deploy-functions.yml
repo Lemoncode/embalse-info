@@ -1,0 +1,52 @@
+name: Deploy Azure Functions
+
+on:
+  push:
+    branches: [ "main" ]
+
+concurrency:
+  group: functions-prod
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repository code
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Setup Node.js runtime
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: |
+            package-lock.json
+            functions/package-lock.json
+
+      # Install dependencies for the entire repository (monorepo support)
+      # If you are NOT using npm workspaces, replace this with:
+      # run: npm ci --prefix functions
+      - name: Install dependencies
+        run: npm ci
+
+      # Build the Azure Functions project only
+      - name: Build functions
+        working-directory: functions
+        run: npm run build
+
+      # Remove devDependencies to reduce deployment size
+      - name: Prune dev dependencies
+        working-directory: functions
+        run: npm prune --omit=dev
+
+      # Deploy to Azure using publish profile
+      - name: Deploy to Azure Functions
+        uses: Azure/functions-action@v1
+        with:
+          app-name: fn-info-embalse-prod
+          package: functions
+          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
