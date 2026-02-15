@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@azure/functions": "^4.0.0",
-    "@embalse-info/db": "*"
+    "@embalse-info/db": "file:../packages/db"
   },
   "devDependencies": {
     "@types/node": "^20.x"
