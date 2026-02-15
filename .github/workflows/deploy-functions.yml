@@ -106,7 +106,14 @@ jobs:
           # Install only production dependencies inside deploy/
           # This creates deploy/node_modules ready for Azure runtime
           cd deploy
-          npm install --omit=dev --ignore-scripts --install-links
+          npm install --omit=dev --ignore-scripts
+
+          # Replace symlinks with real copies so the deploy zip is self-contained
+          find node_modules -type l | while read link; do
+            target=$(readlink -f "$link")
+            rm "$link"
+            cp -R "$target" "$link"
+          done
 
       # Deploy the prepared folder to Azure Functions
       - name: Deploy to Azure Functions
