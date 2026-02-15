@@ -5,6 +5,7 @@ import type { Embalse } from "./api/api.model";
 
 export async function getEmbalsesFromDb(): Promise<Embalse[]> {
   try {
+    console.log("[embalse-search] getEmbalsesFromDb: querying MongoDB...");
     const db = await getDb();
     const docs = await db
       .collection("embalses")
@@ -21,14 +22,16 @@ export async function getEmbalsesFromDb(): Promise<Embalse[]> {
       )
       .toArray();
 
+    console.log(`[embalse-search] getEmbalsesFromDb: found ${docs.length} documents`);
     return docs.map((doc) => ({
       _id: doc.slug ?? createSlug(doc.nombre ?? ""),
       nombre: doc.nombre ?? "",
       provincia: doc.provincia ?? "",
     }));
-  } catch {
+  } catch (error) {
     console.warn(
-      "getEmbalsesFromDb: MongoDB not available (build time?), returning empty array"
+      "getEmbalsesFromDb: MongoDB not available (build time?), returning empty array.",
+      "Error:", error instanceof Error ? error.message : error
     );
     return [];
   }
