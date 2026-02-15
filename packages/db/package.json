@@ -22,13 +22,13 @@
     "type-check": "tsc --noEmit --preserveWatchOutput"
   },
   "dependencies": {
-    "mongodb": "^6.19.0"
+    "arcgis": "*",
+    "db-model": "*",
+    "mongodb": "^6.19.0",
+    "scraping-cuenca-mediterranea": "*"
   },
   "devDependencies": {
     "@types/prompts": "^2.4.9",
-    "arcgis": "*",
-    "db-model": "*",
-    "prompts": "^2.4.2",
-    "scraping-cuenca-mediterranea": "*"
+    "prompts": "^2.4.2"
   }
 }

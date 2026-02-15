@@ -44,32 +44,60 @@ jobs:
       - name: Prepare deploy folder
         run: |
           rm -rf deploy
-          mkdir -p deploy/packages
+          mkdir -p deploy/packages deploy/integrations
 
           # Copy required runtime files
           cp functions/host.json deploy/host.json
           cp -R functions/dist deploy/dist
 
-          # Copy the internal workspace package so it can be installed via "file:"
+          # Copy all workspace packages needed at runtime
           cp -R packages/db deploy/packages/db
+          cp -R packages/db-model deploy/packages/db-model
+          cp -R integrations/arcgis deploy/integrations/arcgis
+          cp -R integrations/scraping-cuenca-mediterranea deploy/integrations/scraping-cuenca-mediterranea
 
-          # Strip devDependencies from the copied db package
-          # so npm doesn't try to resolve workspace-only packages
+          # Strip devDependencies and rewrite workspace refs to file: paths
           node -e "
             const fs = require('fs');
-            const p = 'deploy/packages/db/package.json';
-            const pkg = JSON.parse(fs.readFileSync(p,'utf8'));
-            delete pkg.devDependencies;
-            fs.writeFileSync(p, JSON.stringify(pkg, null, 2));
+
+            function patchPkg(p, depOverrides) {
+              const pkg = JSON.parse(fs.readFileSync(p, 'utf8'));
+              delete pkg.devDependencies;
+              if (depOverrides) {
+                pkg.dependencies = { ...pkg.dependencies, ...depOverrides };
+              }
+              fs.writeFileSync(p, JSON.stringify(pkg, null, 2));
+            }
+
+            // db: point workspace deps to file: paths
+            patchPkg('deploy/packages/db/package.json', {
+              'arcgis': 'file:../../integrations/arcgis',
+              'db-model': 'file:../db-model',
+              'scraping-cuenca-mediterranea': 'file:../../integrations/scraping-cuenca-mediterranea'
+            });
+
+            // arcgis: point db-model to file: path
+            patchPkg('deploy/integrations/arcgis/package.json', {
+              'db-model': 'file:../../packages/db-model'
+            });
+
+            // scraping-cuenca-mediterranea: point db-model to file: path
+            patchPkg('deploy/integrations/scraping-cuenca-mediterranea/package.json', {
+              'db-model': 'file:../../packages/db-model'
+            });
+
+            // db-model: just strip devDeps
+            patchPkg('deploy/packages/db-model/package.json');
           "
 
           # Generate a deploy-specific package.json.
-          # We inject a file-based dependency so Azure can install the internal package.
           node -e "
             const fs = require('fs');
             const pkg = JSON.parse(fs.readFileSync('functions/package.json','utf8'));
             pkg.name = 'functions-deploy';
             pkg.main = 'dist/index.js';
+            delete pkg.devDependencies;
+            delete pkg.scripts;
             pkg.dependencies = pkg.dependencies || {};
             pkg.dependencies['@embalse-info/db'] = 'file:./packages/db';
             fs.writeFileSync('deploy/package.json', JSON.stringify(pkg, null, 2));
