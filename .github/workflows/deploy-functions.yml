@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout repository code
+      # Checkout repository source code
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -24,32 +24,38 @@ jobs:
           node-version: "22"
           cache: "npm"
 
-      # Install dependencies for the whole monorepo (npm workspaces)
+      # Install all monorepo dependencies (npm workspaces)
       - name: Install dependencies
         run: npm ci
 
-      # Build ONLY the functions workspace (tsc output to functions/dist)
+      # Build the internal workspace package first.
+      # This ensures that TypeScript can resolve @embalse-info/db
+      # and that declaration files (.d.ts) exist before building functions.
+      - name: Build db package (types)
+        run: npm run -w @embalse-info/db build
+
+      # Build ONLY the functions workspace (TypeScript -> dist/)
+      # This runs clean + type-check + build
       - name: Build functions workspace
         run: npm run -w functions ci
 
-      # Prepare a deploy folder that contains:
-      # - host.json at the root
-      # - dist/ at the root
-      # - a package.json that references the internal db package via "file:"
-      # - the internal package code under ./packages/db
+      # Prepare a clean deployment folder that Azure expects.
+      # Azure Functions requires host.json at the root.
+      # We also copy compiled dist output and the internal db package.
       - name: Prepare deploy folder
         run: |
           rm -rf deploy
           mkdir -p deploy/packages
 
-          # Copy runtime files expected by Azure Functions
+          # Copy required runtime files
           cp functions/host.json deploy/host.json
           cp -R functions/dist deploy/dist
 
-          # Copy the internal workspace package so it can be installed with "file:"
+          # Copy the internal workspace package so it can be installed via "file:"
           cp -R packages/db deploy/packages/db
 
-          # Generate a deploy-specific package.json
+          # Generate a deploy-specific package.json.
+          # We inject a file-based dependency so Azure can install the internal package.
           node -e "
             const fs = require('fs');
             const pkg = JSON.parse(fs.readFileSync('functions/package.json','utf8'));
@@ -60,11 +66,12 @@ jobs:
             fs.writeFileSync('deploy/package.json', JSON.stringify(pkg, null, 2));
           "
 
-          # Generate a deploy-specific package-lock.json by installing in deploy/
+          # Install only production dependencies inside deploy/
+          # This creates deploy/node_modules ready for Azure runtime
           cd deploy
-          npm install --omit=dev
+          npm install --omit=dev --ignore-scripts
 
-      # Deploy the deploy/ folder (it is now a complete Functions app root)
+      # Deploy the prepared folder to Azure Functions
       - name: Deploy to Azure Functions
         uses: Azure/functions-action@v1
         with:
