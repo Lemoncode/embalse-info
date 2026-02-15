@@ -53,6 +53,16 @@ jobs:
           # Copy the internal workspace package so it can be installed via "file:"
           cp -R packages/db deploy/packages/db
 
+          # Strip devDependencies from the copied db package
+          # so npm doesn't try to resolve workspace-only packages
+          node -e "
+            const fs = require('fs');
+            const p = 'deploy/packages/db/package.json';
+            const pkg = JSON.parse(fs.readFileSync(p,'utf8'));
+            delete pkg.devDependencies;
+            fs.writeFileSync(p, JSON.stringify(pkg, null, 2));
+          "
+
           # Generate a deploy-specific package.json.
           # We inject a file-based dependency so Azure can install the internal package.
           node -e "
