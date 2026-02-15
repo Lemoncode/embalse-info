@@ -1,9 +1,22 @@
 import Link from "next/link";
 import { PROVINCIAS } from "@/core/constants";
 import { Card } from "@/common/components/card.component";
+import { Metadata } from "next";
 
 interface Props {
   params: Promise<{ provincia: string }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { provincia } = await params;
+
+  const nombreProvincia = PROVINCIAS.find(
+    (province) => province.id === provincia,
+  )?.name;
+
+  return {
+    title: `Embalses de ${nombreProvincia}`,
+  };
 }
 
 export default async function EmbalseProvinciaListadoPage({ params }: Props) {
