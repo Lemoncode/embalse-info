@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "next dev"
+    "start": "next dev",
+    "build": "next build",
+    "start-prod": "next start -p $PORT"
   },
   "dependencies": {
     "@fontsource/nunito-sans": "^5.2.7",
