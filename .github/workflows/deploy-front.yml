@@ -62,3 +62,11 @@ jobs:
           publish-profile: ${{ secrets.AZURE_FRONT_PUBLISH_PROFILE }}
           images: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
           restart: true
+
+      # Warm-up: force ISR regeneration so first real user gets data
+      - name: Warm-up (force ISR regeneration)
+        run: |
+          echo "Waiting for App Service to start..."
+          sleep 30
+          curl -s -o /dev/null -w "%{http_code}" https://info-embalse-front-prod-ecguababcfdsepga.westeurope-01.azurewebsites.net/
+          echo " - Warm-up done, ISR regeneration triggered"
