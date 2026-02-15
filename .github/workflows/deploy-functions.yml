@@ -1,0 +1,73 @@
+name: Deploy Azure Functions
+
+on:
+  push:
+    branches: ["main"]
+
+concurrency:
+  group: functions-prod
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repository code
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Setup Node.js runtime
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      # Install dependencies for the whole monorepo (npm workspaces)
+      - name: Install dependencies
+        run: npm ci
+
+      # Build ONLY the functions workspace (tsc output to functions/dist)
+      - name: Build functions workspace
+        run: npm run -w functions ci
+
+      # Prepare a deploy folder that contains:
+      # - host.json at the root
+      # - dist/ at the root
+      # - a package.json that references the internal db package via "file:"
+      # - the internal package code under ./packages/db
+      - name: Prepare deploy folder
+        run: |
+          rm -rf deploy
+          mkdir -p deploy/packages
+
+          # Copy runtime files expected by Azure Functions
+          cp functions/host.json deploy/host.json
+          cp -R functions/dist deploy/dist
+
+          # Copy the internal workspace package so it can be installed with "file:"
+          cp -R packages/db deploy/packages/db
+
+          # Generate a deploy-specific package.json
+          node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('functions/package.json','utf8'));
+            pkg.name = 'functions-deploy';
+            pkg.main = 'dist/index.js';
+            pkg.dependencies = pkg.dependencies || {};
+            pkg.dependencies['@embalse-info/db'] = 'file:./packages/db';
+            fs.writeFileSync('deploy/package.json', JSON.stringify(pkg, null, 2));
+          "
+
+          # Generate a deploy-specific package-lock.json by installing in deploy/
+          cd deploy
+          npm install --omit=dev
+
+      # Deploy the deploy/ folder (it is now a complete Functions app root)
+      - name: Deploy to Azure Functions
+        uses: Azure/functions-action@v1
+        with:
+          app-name: fn-info-embalse-prod
+          package: deploy
+          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}

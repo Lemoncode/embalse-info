@@ -3,7 +3,7 @@ import { dbServer, embalsesRepository } from "@embalse-info/db";
 
 export async function scrapingsFunction(
   myTimer: Timer,
-  context: InvocationContext
+  context: InvocationContext,
 ): Promise<void> {
   await dbServer.connect(process.env.MONGODB_CONNECTION_STRING as string);
   context.log("Scrapings function executed at:", new Date().toISOString());
@@ -15,7 +15,7 @@ export async function scrapingsFunction(
     context.log(`Se han actualizado los embalses de la cuenca Mediterránea`);
   } else {
     context.log(
-      "No se han podido actualizar los embalses de la cuenca Mediterránea"
+      "No se han podido actualizar los embalses de la cuenca Mediterránea",
     );
   }
   await dbServer.disconnect();
@@ -29,6 +29,6 @@ app.timer("scrapings-function", {
     },
     maxRetryCount: 4,
   },
-  schedule: "40 * * * * *",
+  schedule: process.env.SCRAPING_SCHEDULE ?? "0 0 */4 * * *", // Every 4 hours
   handler: scrapingsFunction,
 });
