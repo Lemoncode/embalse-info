@@ -31,7 +31,7 @@ jobs:
       # Build all workspace packages first (db, db-model, arcgis, etc.)
       # This ensures all internal dependencies generate their dist and type declarations
       - name: Build all internal packages
-        run: npm run build --workspaces --if-present
+        run: npm run build
 
       # Build ONLY the functions workspace (TypeScript -> dist/)
       # This runs clean + type-check + build
