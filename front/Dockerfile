@@ -43,10 +43,10 @@ ENV PORT=3000
 # - static assets in .next/static
 # - public assets in /public
 COPY --from=builder /app/front/.next/standalone ./
-COPY --from=builder /app/front/.next/static ./.next/static
-COPY --from=builder /app/front/public ./public
+COPY --from=builder /app/front/.next/static ./front/.next/static
+COPY --from=builder /app/front/public ./front/public
 
 EXPOSE 3000
 
 # Start Next standalone server
-CMD ["node", "server.js"]
+CMD ["node", "front/server.js"]
