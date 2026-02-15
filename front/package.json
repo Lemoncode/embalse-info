@@ -6,7 +6,7 @@
   "scripts": {
     "start": "next dev",
     "build": "next build",
-    "start-prod": "next start -p $PORT"
+    "start-prod": "node .next/standalone/server.js"
   },
   "dependencies": {
     "@fontsource/nunito-sans": "^5.2.7",
