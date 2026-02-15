@@ -80,10 +80,30 @@ jobs:
           cd deploy
           npm install --omit=dev --ignore-scripts
 
-      # Deploy the prepared folder to Azure Functions
+      # Create deployment zip
+      - name: Create deployment package
+        run: cd deploy && zip -r ../deploy.zip .
+
+      # Deploy using Azure CLI (avoids Kudu zipdeploy issues)
       - name: Deploy to Azure Functions
-        uses: Azure/functions-action@v1.5.3
-        with:
-          app-name: fn-info-embalse-prod
-          package: deploy
-          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
+        run: |
+          # Extract SCM credentials from publish profile
+          PUBLISH_PROFILE='${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}'
+          SCM_USER=$(echo "$PUBLISH_PROFILE" | grep -o 'userName="[^"]*"' | head -1 | sed 's/userName="//;s/"//')
+          SCM_PASS=$(echo "$PUBLISH_PROFILE" | grep -o 'userPWD="[^"]*"' | head -1 | sed 's/userPWD="//;s/"//')
+          SCM_URL=$(echo "$PUBLISH_PROFILE" | grep -o 'publishUrl="[^"]*"' | head -1 | sed 's/publishUrl="//;s/"//')
+
+          echo "Deploying to https://${SCM_URL}/api/publish..."
+          HTTP_STATUS=$(curl -s -o /dev/stderr -w "%{http_code}" \
+            -X POST "https://${SCM_URL}/api/publish" \
+            -u "${SCM_USER}:${SCM_PASS}" \
+            -H "Content-Type: application/zip" \
+            --data-binary @deploy.zip)
+
+          echo "HTTP Status: ${HTTP_STATUS}"
+          if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
+            echo "Deployment successful!"
+          else
+            echo "Deployment failed with status ${HTTP_STATUS}"
+            exit 1
+          fi
