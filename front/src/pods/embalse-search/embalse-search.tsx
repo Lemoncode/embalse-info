@@ -62,8 +62,13 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
 
           <div className="flex flex-col gap-4">
             <div className="relative">
-              <label className="input input-bordered flex w-full items-center gap-2">
+              <label
+                htmlFor="embalse-search"
+                className="input input-bordered flex w-full items-center gap-2"
+              >
                 <input
+                  id="embalse-search"
+                  aria-label="Buscar embalse por nombre o provincia"
                   {...getInputProps({
                     placeholder: "La tolba",
                     className: "grow",
