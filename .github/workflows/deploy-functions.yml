@@ -106,7 +106,7 @@ jobs:
           # Install only production dependencies inside deploy/
           # This creates deploy/node_modules ready for Azure runtime
           cd deploy
-          npm install --omit=dev --ignore-scripts
+          npm install --omit=dev --ignore-scripts --install-links
 
       # Deploy the prepared folder to Azure Functions
       - name: Deploy to Azure Functions
