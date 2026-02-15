@@ -28,11 +28,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Build the internal workspace package first.
-      # This ensures that TypeScript can resolve @embalse-info/db
-      # and that declaration files (.d.ts) exist before building functions.
-      - name: Build db package (types)
-        run: npm run -w @embalse-info/db build
+      # Build all workspace packages first (db, db-model, arcgis, etc.)
+      # This ensures all internal dependencies generate their dist and type declarations
+      - name: Build all internal packages
+        run: npm run build --workspaces --if-present
 
       # Build ONLY the functions workspace (TypeScript -> dist/)
       # This runs clean + type-check + build
