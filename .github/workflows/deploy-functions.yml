@@ -82,7 +82,7 @@ jobs:
 
       # Deploy the prepared folder to Azure Functions
       - name: Deploy to Azure Functions
-        uses: Azure/functions-action@v2
+        uses: Azure/functions-action@v1.5.3
         with:
           app-name: fn-info-embalse-prod
           package: deploy
