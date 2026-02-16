@@ -1,4 +1,4 @@
-import { EmbalsesGuadalquivir, ZoneInfo } from "@/api";
+import { EmbalsesGuadalquivir, ZoneInfo } from "../api/index.js";
 import { EmbalseUpdateSAIHEntity } from "db-model";
 
 export function mapToEmbalseUpdateSAIH(

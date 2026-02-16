@@ -29,6 +29,8 @@ export async function scrapingsFunction(
 
     const responseCuencaDuero = await embalsesRepository.actualizarCuencaDuero();
 
+    const responseCuencaGuadalquivir = await embalsesRepository.actualizarCuencaGuadalquivir();
+
     if (responseCuencaMediterranea) {
       context.log(
         "scrapings-function: Se han actualizado los embalses de la cuenca Mediterránea",
@@ -61,6 +63,14 @@ export async function scrapingsFunction(
       context.log(
         "No se han podido actualizar los embalses de la cuenca Duero")
     }
+
+    if (responseCuencaGuadalquivir) {
+      context.log(`Se han actualizado los embalses de la cuenca Guadalquivir`);
+    } else {
+      context.log(
+        "No se han podido actualizar los embalses de la cuenca Guadalquivir")
+    }
+
   } catch (error) {
     context.error("scrapings-function: ERROR", error);
     throw error;

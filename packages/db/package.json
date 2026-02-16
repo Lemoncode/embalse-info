@@ -33,6 +33,7 @@
     "scraping-cuenca-mediterranea": "*",
     "scraping-cuenca-cantabrico": "*",
     "scraping-cuenca-catalana": "*",
-    "scraping-cuenca-duero": "*"
+    "scraping-cuenca-duero": "*",
+    "scraping-cuenca-guadalquivir": "*"
   }
 }
