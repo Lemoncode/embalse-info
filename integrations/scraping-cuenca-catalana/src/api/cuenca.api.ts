@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { EmbalseCatalanApi } from './cuenca.api-model';
-import { mapApiToEmbalses } from '../cuenca.mapper';
+import { EmbalseCatalanApi } from './cuenca.api-model.js';
+import { mapApiToEmbalses } from '../cuenca.mapper.js';
 import { EmbalseUpdateSAIHEntity } from 'db-model';
 
 /**

@@ -1,4 +1,4 @@
-import type { SaichFeature } from "@/api";
+import type { SaichFeature } from "../api/index.js";
 
 export interface RawRow {
   id: number; // codigo_general

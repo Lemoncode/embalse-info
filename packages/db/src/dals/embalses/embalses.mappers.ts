@@ -35,8 +35,72 @@ export const mapperFromCuencasMediterraneaToArcgis = new Map<
   [380, { nombre: "Andévalo", idArcgis: 355 }],
 ]);
 
-// OJO Guadanuño, Hornachuelos, Derivación Retortillo, Dañador, Encinarejo, El Infierno, El Renegado, Balsa Las Adelfas
-// OJO Contraemb. Bermejales, La Torre del Águila
+// Ojo Embalse de La Florida-Pilotuerto, Valdemurio, El Furacón, Priañes, Cordiñanes, La Lastra, Palombera, Arriarán, Leurtza Inferior, Leurtza Superior
+
+// id => 272 Está en la cuenca cantábrico oriental, pero está en la provincia de Almería. He investigado y está en Navarra.
+
+export const mapperFromCuencasCantabricoToArcgis = new Map<
+  number,
+  InfoDestinoArcgis
+>([
+  [1406, { nombre: "Salime", idArcgis: 270 }],
+  [1408, { nombre: "Doiras", idArcgis: 121 }],
+  [1409, { nombre: "Arbón", idArcgis: 26 }],
+  [1356, { nombre: "La Barca", idArcgis: 40 }],
+  [1333, { nombre: "Tanes", idArcgis: 305 }],
+  [1334, { nombre: "Rioseco", idArcgis: 385 }],
+  [1345, { nombre: "Alfilorios", idArcgis: 17 }],
+  [1253, { nombre: "La Cohilla", idArcgis: 103 }],
+  [1231, { nombre: "Alsa - Mediajo", idArcgis: 310 }],
+  [1177, { nombre: "Ordunte", idArcgis: 217 }],
+  [1078, { nombre: "Ibiur", idArcgis: 377 }],
+  [1108, { nombre: "Añarbe", idArcgis: 34 }],
+  [1847, { nombre: "San Antón", idArcgis: 272 }],
+]);
+
+// OJO Pasteral, Gaià, Siurana, Foix
+
+export const mapperFromCuencasCatalanaToArcgis = new Map<
+  number,
+  InfoDestinoArcgis
+>([
+  [171169001, { nombre: "Susqueda", idArcgis: 301 }],
+  [170600001, { nombre: "Boadella", idArcgis: 53 }],
+  [430537001, { nombre: "Riudecanyes", idArcgis: 259 }],
+  [83036001, { nombre: "Sau", idArcgis: 290 }],
+  [81419003, { nombre: "La Llosa del Cavall", idArcgis: 178 }],
+  [82687001, { nombre: "La Baells", idArcgis: 36 }],
+  [250753004, { nombre: "Sant Pons", idArcgis: 280 }],
+
+]);
+
+// OJO Aguilar de Campoo, Cernadilla, Puente Porto, Ricobayo, Rábanos, Saucelle, Valparaíso, Las Vencías, Villagonzalo, Villalcampo, Nª Sª de Agavanzal, Aldeadávila, Almendra, Burgomillodo, Casares de Arbas, Aguilar, Serones, San José
+
+export const mapperFromCuencasDueroToArcgis = new Map<
+  number,
+  InfoDestinoArcgis
+>([
+  [1, { nombre: "Villameca", idArcgis: 344 }],
+  [2, { nombre: "Barrios de Luna", idArcgis: 42 }],
+  [3, { nombre: "Porma", idArcgis: 232 }],
+  [4, { nombre: "Riaño", idArcgis: 254 }],
+  [7, { nombre: "Camporredondo", idArcgis: 74 }],
+  [8, { nombre: "Compuerto", idArcgis: 105 }],
+  [11, { nombre: "Cervera-Ruesga", idArcgis: 98 }], // OJO puede ser Cervera
+  [12, { nombre: "La Requejada", idArcgis: 250 }],
+  [16, { nombre: "Arlanzón", idArcgis: 30 }],
+  [17, { nombre: "Úzquiza", idArcgis: 324 }],
+  [20, { nombre: "Cuerda del Pozo", idArcgis: 116 }],
+  [22, { nombre: "Linares del Arroyo", idArcgis: 185 }],
+  [23, { nombre: "El Pontón Alto", idArcgis: 375 }],
+  [26, { nombre: "Castro de las Cogotas", idArcgis: 86 }],
+  [28, { nombre: "Santa Teresa", idArcgis: 286 }],
+  [30, { nombre: "Irueña", idArcgis: 402 }],
+  [31, { nombre: "Águeda", idArcgis: 5 }],
+  [87, { nombre: "Castro", idArcgis: 26 }],
+])
+
+// OJO Guadanuño, Hornachuelos, Derivación Retortillo, Dañador, Encinarejo, El Infierno, El Renegado, Balsa Las Adelfas Contraemb. Bermejales, La Torre del Águila
 
 export const mapperFromCuencasGuadalquivirToArcgis = new Map<
   number,
@@ -107,4 +171,3 @@ export const mapperFromCuencasGuadalquivirToArcgis = new Map<
   [48, { nombre: "Iznájar", idArcgis: 171 }],
   [54, { nombre: "José Torán", idArcgis: 174 }],
   [55, { nombre: "La Puebla de Cazalla", idArcgis: 241 }],
-])

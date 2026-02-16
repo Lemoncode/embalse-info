@@ -1,0 +1,125 @@
+name: Deploy Azure Functions
+
+on:
+  push:
+    branches: ["main"]
+
+concurrency:
+  group: functions-prod
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repository source code
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Setup Node.js runtime
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      # Install all monorepo dependencies (npm workspaces)
+      - name: Install dependencies
+        run: npm ci
+
+      # Build all workspace packages first (db, db-model, arcgis, etc.)
+      # This ensures all internal dependencies generate their dist and type declarations
+      - name: Build all internal packages
+        run: npm run build
+
+      # Build ONLY the functions workspace (TypeScript -> dist/)
+      # This runs clean + type-check + build
+      - name: Build functions workspace
+        run: npm run -w functions ci
+
+      # Prepare a clean deployment folder that Azure expects.
+      # Azure Functions requires host.json at the root.
+      # We also copy compiled dist output and the internal db package.
+      - name: Prepare deploy folder
+        run: |
+          rm -rf deploy
+          mkdir -p deploy/packages deploy/integrations
+
+          # Copy required runtime files
+          cp functions/host.json deploy/host.json
+          cp -R functions/dist deploy/dist
+
+          # Copy all workspace packages needed at runtime
+          cp -R packages/db deploy/packages/db
+          cp -R packages/db-model deploy/packages/db-model
+          cp -R integrations/arcgis deploy/integrations/arcgis
+          cp -R integrations/scraping-cuenca-mediterranea deploy/integrations/scraping-cuenca-mediterranea
+
+          # Strip devDependencies and rewrite workspace refs to file: paths
+          node -e "
+            const fs = require('fs');
+
+            function patchPkg(p, depOverrides) {
+              const pkg = JSON.parse(fs.readFileSync(p, 'utf8'));
+              delete pkg.devDependencies;
+              if (depOverrides) {
+                pkg.dependencies = { ...pkg.dependencies, ...depOverrides };
+              }
+              fs.writeFileSync(p, JSON.stringify(pkg, null, 2));
+            }
+
+            // db: point workspace deps to file: paths
+            patchPkg('deploy/packages/db/package.json', {
+              'arcgis': 'file:../../integrations/arcgis',
+              'db-model': 'file:../db-model',
+              'scraping-cuenca-mediterranea': 'file:../../integrations/scraping-cuenca-mediterranea'
+            });
+
+            // arcgis: point db-model to file: path
+            patchPkg('deploy/integrations/arcgis/package.json', {
+              'db-model': 'file:../../packages/db-model'
+            });
+
+            // scraping-cuenca-mediterranea: point db-model to file: path
+            patchPkg('deploy/integrations/scraping-cuenca-mediterranea/package.json', {
+              'db-model': 'file:../../packages/db-model'
+            });
+
+            // db-model: just strip devDeps
+            patchPkg('deploy/packages/db-model/package.json');
+          "
+
+          # Generate a deploy-specific package.json.
+          node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('functions/package.json','utf8'));
+            pkg.name = 'functions-deploy';
+            pkg.main = 'dist/index.js';
+            delete pkg.devDependencies;
+            delete pkg.scripts;
+            pkg.dependencies = pkg.dependencies || {};
+            pkg.dependencies['@embalse-info/db'] = 'file:./packages/db';
+            fs.writeFileSync('deploy/package.json', JSON.stringify(pkg, null, 2));
+          "
+
+          # Install only production dependencies inside deploy/
+          # This creates deploy/node_modules ready for Azure runtime
+          cd deploy
+          npm install --omit=dev --ignore-scripts
+
+          # Replace symlinks with real copies so the deploy zip is self-contained
+          find node_modules -type l | while read link; do
+            target=$(readlink -f "$link")
+            rm "$link"
+            cp -R "$target" "$link"
+          done
+
+      # Deploy the prepared folder to Azure Functions
+      - name: Deploy to Azure Functions
+        uses: Azure/functions-action@v1.5.3
+        with:
+          app-name: fn-info-embalse-prod
+          package: deploy
+          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
+          sku: flexconsumption
