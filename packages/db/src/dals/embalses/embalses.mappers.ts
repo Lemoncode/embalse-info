@@ -60,8 +60,6 @@ export const mapperFromCuencasCantabricoToArcgis = new Map<
 
 // OJO Pasteral, Gaià, Siurana, Foix
 
-// id => 89 Está en Lleida pero pertenece a la cuenca del Ebro.
-
 export const mapperFromCuencasCatalanaToArcgis = new Map<
   number,
   InfoDestinoArcgis
