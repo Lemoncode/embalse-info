@@ -14,7 +14,7 @@
   "scripts": {
     "postinstall": "node setup.js",
     "build": "run-p clean type-check build:db",
-    "build:db": "tsc",
+    "build:db": "tsc -p tsconfig.json",
     "clean": "rimraf dist",
     "prestart:db": "docker compose down --remove-orphans",
     "start:db": "docker compose up -d",
@@ -22,13 +22,16 @@
     "type-check": "tsc --noEmit --preserveWatchOutput"
   },
   "dependencies": {
-    "mongodb": "^6.19.0"
+    "arcgis": "*",
+    "db-model": "*",
+    "mongodb": "^6.19.0",
+    "scraping-cuenca-mediterranea": "*"
   },
   "devDependencies": {
     "@types/prompts": "^2.4.9",
-    "arcgis": "*",
     "prompts": "^2.4.2",
     "scraping-cuenca-mediterranea": "*",
+    "scraping-cuenca-cantabrico": "*",
     "scraping-cuenca-catalana": "*"
   }
 }

@@ -15,8 +15,10 @@ const globalForMongo = globalThis as typeof globalThis & {
 //crea el cliente solo si no existe ya (singleton)
 async function  getClient(): Promise<MongoClient> {
     if (!globalForMongo._mongoClient) {
+        console.log("[mongodb] Connecting to MongoDB...", connectionString?.replace(/\/\/.*@/, "//***@"));
         globalForMongo._mongoClient = new MongoClient(connectionString);
         await globalForMongo._mongoClient.connect();
+        console.log("[mongodb] Connected successfully");
     }
 
     return globalForMongo._mongoClient;

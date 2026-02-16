@@ -3,22 +3,45 @@ import { dbServer, embalsesRepository } from "@embalse-info/db";
 
 export async function arcgisFunction(
   myTimer: Timer,
-  context: InvocationContext
+  context: InvocationContext,
 ): Promise<void> {
-  await dbServer.connect(process.env.MONGODB_CONNECTION_STRING as string);
-  context.log("ArcGIS function executed at:", new Date().toISOString());
+  context.log("arcgis-function: START", new Date().toISOString());
 
-  const response = await embalsesRepository.actualizarEmbalses();
-
-  if (response) {
-    context.log(`Se han actualizado los embalses`);
-  } else {
-    context.log("No se han podido actualizar los embalses");
+  const connectionString = process.env.MONGODB_CONNECTION_STRING;
+  if (!connectionString) {
+    context.error(
+      "arcgis-function: MONGODB_CONNECTION_STRING is NOT SET – aborting",
+    );
+    throw new Error("MONGODB_CONNECTION_STRING is not set");
   }
-  await dbServer.disconnect();
+
+  try {
+    context.log("arcgis-function: connecting to database...");
+    await dbServer.connect(connectionString);
+    context.log("arcgis-function: connected to database OK");
+
+    const response = await embalsesRepository.actualizarEmbalses();
+
+    if (response) {
+      context.log("arcgis-function: Se han actualizado los embalses");
+    } else {
+      context.log(
+        "arcgis-function: No se han podido actualizar los embalses",
+      );
+    }
+  } catch (error) {
+    context.error("arcgis-function: ERROR", error);
+    throw error;
+  } finally {
+    context.log("arcgis-function: disconnecting from database...");
+    await dbServer.disconnect();
+    context.log("arcgis-function: END");
+  }
 }
 
 app.timer("arcgis-function", {
+  // Run once immediately when the Function App instance starts (deploy/restart/scale-out)
+  runOnStartup: true,
   retry: {
     strategy: "fixedDelay",
     delayInterval: {
@@ -26,6 +49,6 @@ app.timer("arcgis-function", {
     },
     maxRetryCount: 4,
   },
-  schedule: "0 * * * * *",
+  schedule: process.env.ARCGIS_SCHEDULE ?? "0 0 3 * * Mon,Thu", // Twice per week
   handler: arcgisFunction,
 });

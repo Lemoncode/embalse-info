@@ -312,7 +312,7 @@ export const embalseProvincias = new Map<string, string>([
   ["salime", "Asturias"],
   ["sallente", "Lleida"],
   ["salor", "Cáceres"],
-  ["san-anton", "Almería"],
+  ["san-anton", "Navarra"],
   ["san-bartolome", "Huelva"],
   ["san-clemente", "Huelva"],
   ["san-jose", "Almería"],
