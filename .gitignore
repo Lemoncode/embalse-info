@@ -8,3 +8,4 @@ __queuestorage__/
 __tablestorage__/
 mongo-data
 .env
+deploy
