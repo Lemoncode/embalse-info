@@ -35,6 +35,45 @@ export const mapperFromCuencasMediterraneaToArcgis = new Map<
   [380, { nombre: "Andévalo", idArcgis: 355 }],
 ]);
 
+// Ojo Embalse de La Florida-Pilotuerto, Valdemurio, El Furacón, Priañes, Cordiñanes, La Lastra, Palombera, Arriarán, Leurtza Inferior, Leurtza Superior
+
+// id => 272 Está en la cuenca cantábrico oriental, pero está en la provincia de Almería. He investigado y está en Navarra.
+
+export const mapperFromCuencasCantabricoToArcgis = new Map<
+  number,
+  InfoDestinoArcgis
+>([
+  [1406, { nombre: "Salime", idArcgis: 270 }],
+  [1408, { nombre: "Doiras", idArcgis: 121 }],
+  [1409, { nombre: "Arbón", idArcgis: 26 }],
+  [1356, { nombre: "La Barca", idArcgis: 40 }],
+  [1333, { nombre: "Tanes", idArcgis: 305 }],
+  [1334, { nombre: "Rioseco", idArcgis: 385 }],
+  [1345, { nombre: "Alfilorios", idArcgis: 17 }],
+  [1253, { nombre: "La Cohilla", idArcgis: 103 }],
+  [1231, { nombre: "Alsa - Mediajo", idArcgis: 310 }],
+  [1177, { nombre: "Ordunte", idArcgis: 217 }],
+  [1078, { nombre: "Ibiur", idArcgis: 377 }],
+  [1108, { nombre: "Añarbe", idArcgis: 34 }],
+  [1847, { nombre: "San Antón", idArcgis: 272 }],
+]);
+
+// OJO Pasteral, Gaià, Siurana, Foix
+
+export const mapperFromCuencasCatalanaToArcgis = new Map<
+  number,
+  InfoDestinoArcgis
+>([
+  [171169001, { nombre: "Susqueda", idArcgis: 301 }],
+  [170600001, { nombre: "Boadella", idArcgis: 53 }],
+  [430537001, { nombre: "Riudecanyes", idArcgis: 259 }],
+  [83036001, { nombre: "Sau", idArcgis: 290 }],
+  [81419003, { nombre: "La Llosa del Cavall", idArcgis: 178 }],
+  [82687001, { nombre: "La Baells", idArcgis: 36 }],
+  [250753004, { nombre: "Sant Pons", idArcgis: 280 }],
+
+]);
+
 // OJO Aguilar de Campoo, Cernadilla, Puente Porto, Ricobayo, Rábanos, Saucelle, Valparaíso, Las Vencías, Villagonzalo, Villalcampo, Nª Sª de Agavanzal, Aldeadávila, Almendra, Burgomillodo, Casares de Arbas, Aguilar
 
 // id => 293 En la base de datos está en la cuenca del Duero, pero la provincia es Almería. Según estoy investigando está en la provincia del País Vasco (Ebro).

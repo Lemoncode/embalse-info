@@ -1,6 +1,6 @@
-import { EmbalseCatalanApi } from './api/cuenca.api-model';
+import { EmbalseCatalanApi } from './api/cuenca.api-model.js';
 import { EmbalseUpdateSAIHEntity } from 'db-model';
-import { formatApiDate, formatVolumeToFixedTwo } from './business';
+import { formatApiDate, formatVolumeToFixedTwo } from './business.js';
 
 export function mapApiToEmbalses(
   apiData: Record<string, EmbalseCatalanApi>
