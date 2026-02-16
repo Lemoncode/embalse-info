@@ -36,19 +36,10 @@ docker run -d --name azurite -p 10000:10000 -p 10001:10001 -p 10002:10002 mcr.mi
 
 ### Añadir las variables de entorno
 
-Dentro de la carpeta `functions`, crear un archivo `local.settings.json` con las siguientes variables de entorno:
+Dentro de la carpeta `functions`, vamos crear un archivo `local.settings.json` a partir del de plantilla, ejecuta este comando desde el terminal (bash), desde el raiz del repo.
 
-_/functions/local.settings.json_
-
-```json
-{
-  "IsEncrypted": false,
-  "Values": {
-    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-    "FUNCTIONS_WORKER_RUNTIME": "node",
-    "MONGODB_CONNECTION_STRING": "mongodb://localhost:27017/embalse-info"
-  }
-}
+```bash
+cp functions/local.settings.template.json functions/local.settings.json
 ```
 
 ### Arrancar las funciones de Azure

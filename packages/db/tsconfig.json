@@ -9,6 +9,7 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "declaration": true,
+    "declarationMap": false,
     "strict": false
   },
   "include": ["src/**/*"],

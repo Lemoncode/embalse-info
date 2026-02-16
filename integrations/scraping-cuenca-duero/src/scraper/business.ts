@@ -1,4 +1,4 @@
-import { EmbalseDuero } from "../api/cuenca.model";
+import { EmbalseDuero } from "../api/cuenca.model.js";
 import { load } from "cheerio";
 
 // Función auxiliar para parsear string a number o null
