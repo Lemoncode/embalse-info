@@ -171,3 +171,4 @@ export const mapperFromCuencasGuadalquivirToArcgis = new Map<
   [48, { nombre: "Iznájar", idArcgis: 171 }],
   [54, { nombre: "José Torán", idArcgis: 174 }],
   [55, { nombre: "La Puebla de Cazalla", idArcgis: 241 }],
+])
