@@ -74,11 +74,7 @@ export const mapperFromCuencasCatalanaToArcgis = new Map<
 
 ]);
 
-// OJO Aguilar de Campoo, Cernadilla, Puente Porto, Ricobayo, Rábanos, Saucelle, Valparaíso, Las Vencías, Villagonzalo, Villalcampo, Nª Sª de Agavanzal, Aldeadávila, Almendra, Burgomillodo, Casares de Arbas, Aguilar
-
-// id => 293 En la base de datos está en la cuenca del Duero, pero la provincia es Almería. Según estoy investigando está en la provincia del País Vasco (Ebro).
-// id => 87 En la base de datos está en la cuenca del Duero, pero la provincia es Lugo. Según estoy investigando está en la provincia de Zamora.
-// id => 276 En la base de datos está en la cuenca del Duero, la provincia es Almería. Según estoy investigando está en la provincia de Valladolid.
+// OJO Aguilar de Campoo, Cernadilla, Puente Porto, Ricobayo, Rábanos, Saucelle, Valparaíso, Las Vencías, Villagonzalo, Villalcampo, Nª Sª de Agavanzal, Aldeadávila, Almendra, Burgomillodo, Casares de Arbas, Aguilar, Serones, San José
 
 export const mapperFromCuencasDueroToArcgis = new Map<
   number,
@@ -101,4 +97,5 @@ export const mapperFromCuencasDueroToArcgis = new Map<
   [28, { nombre: "Santa Teresa", idArcgis: 286 }],
   [30, { nombre: "Irueña", idArcgis: 402 }],
   [31, { nombre: "Águeda", idArcgis: 5 }],
+  [87, { nombre: "Castro", idArcgis: 26 }],
 ])
