@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "MONGODB_CONNECTION_STRING": "mongodb://localhost:27017/embalse-info",
+    "APPLICATIONINSIGHTS_CONNECTION_STRING": "",
+    "SCRAPING_SCHEDULE": "0 * * * * *",
+    "ARCGIS_SCHEDULE": "40 * * * * *"
+  }
+}
