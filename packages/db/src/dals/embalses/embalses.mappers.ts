@@ -57,3 +57,19 @@ export const mapperFromCuencasCantabricoToArcgis = new Map<
   [1108, { nombre: "Añarbe", idArcgis: 34 }],
   [1847, { nombre: "San Antón", idArcgis: 272 }],
 ]);
+
+// OJO Pasteral, Gaià, Siurana, Foix
+
+export const mapperFromCuencasCatalanaToArcgis = new Map<
+  number,
+  InfoDestinoArcgis
+>([
+  [171169001, { nombre: "Susqueda", idArcgis: 301 }],
+  [170600001, { nombre: "Boadella", idArcgis: 53 }],
+  [430537001, { nombre: "Riudecanyes", idArcgis: 259 }],
+  [83036001, { nombre: "Sau", idArcgis: 290 }],
+  [81419003, { nombre: "La Llosa del Cavall", idArcgis: 178 }],
+  [82687001, { nombre: "La Baells", idArcgis: 36 }],
+  [250753004, { nombre: "Sant Pons", idArcgis: 280 }],
+
+]);

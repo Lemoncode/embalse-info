@@ -25,6 +25,8 @@ export async function scrapingsFunction(
 
     const responseCuencaCantabrico = await embalsesRepository.actualizarCuencaCantabrico();
 
+    const responseCuencaCatalana = await embalsesRepository.actualizarCuencaCatalana();
+
     if (responseCuencaMediterranea) {
       context.log(
         "scrapings-function: Se han actualizado los embalses de la cuenca Mediterránea",
@@ -40,6 +42,14 @@ export async function scrapingsFunction(
     } else {
       context.log(
         "No se han podido actualizar los embalses de la cuenca Cantábrica"
+      );
+    }
+
+    if (responseCuencaCatalana) {
+      context.log(`Se han actualizado los embalses de la cuenca Catalana`);
+    } else {
+      context.log(
+        "No se han podido actualizar los embalses de la cuenca Catalana"
       );
     }
   } catch (error) {
