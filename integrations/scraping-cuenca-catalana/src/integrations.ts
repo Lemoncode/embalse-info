@@ -1,5 +1,5 @@
 import { EmbalseUpdateSAIHEntity } from 'db-model';
-import { getCuencaCatalana } from './api/cuenca.api.js';
+import { getCuencaCatalana } from './api/index.js';
 
 const URL =
   'https://aplicacions.aca.gencat.cat/aetr/vishid/v2/data/public/reservoir/capacity';
