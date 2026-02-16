@@ -73,3 +73,29 @@ export const mapperFromCuencasCatalanaToArcgis = new Map<
   [250753004, { nombre: "Sant Pons", idArcgis: 280 }],
 
 ]);
+
+// OJO Aguilar de Campoo, Cernadilla, Puente Porto, Ricobayo, Rábanos, Saucelle, Valparaíso, Las Vencías, Villagonzalo, Villalcampo, Nª Sª de Agavanzal, Aldeadávila, Almendra, Burgomillodo, Casares de Arbas, Aguilar, Serones, San José
+
+export const mapperFromCuencasDueroToArcgis = new Map<
+  number,
+  InfoDestinoArcgis
+>([
+  [1, { nombre: "Villameca", idArcgis: 344 }],
+  [2, { nombre: "Barrios de Luna", idArcgis: 42 }],
+  [3, { nombre: "Porma", idArcgis: 232 }],
+  [4, { nombre: "Riaño", idArcgis: 254 }],
+  [7, { nombre: "Camporredondo", idArcgis: 74 }],
+  [8, { nombre: "Compuerto", idArcgis: 105 }],
+  [11, { nombre: "Cervera-Ruesga", idArcgis: 98 }], // OJO puede ser Cervera
+  [12, { nombre: "La Requejada", idArcgis: 250 }],
+  [16, { nombre: "Arlanzón", idArcgis: 30 }],
+  [17, { nombre: "Úzquiza", idArcgis: 324 }],
+  [20, { nombre: "Cuerda del Pozo", idArcgis: 116 }],
+  [22, { nombre: "Linares del Arroyo", idArcgis: 185 }],
+  [23, { nombre: "El Pontón Alto", idArcgis: 375 }],
+  [26, { nombre: "Castro de las Cogotas", idArcgis: 86 }],
+  [28, { nombre: "Santa Teresa", idArcgis: 286 }],
+  [30, { nombre: "Irueña", idArcgis: 402 }],
+  [31, { nombre: "Águeda", idArcgis: 5 }],
+  [87, { nombre: "Castro", idArcgis: 26 }],
+])

@@ -32,6 +32,7 @@
     "prompts": "^2.4.2",
     "scraping-cuenca-mediterranea": "*",
     "scraping-cuenca-cantabrico": "*",
-    "scraping-cuenca-catalana": "*"
+    "scraping-cuenca-catalana": "*",
+    "scraping-cuenca-duero": "*"
   }
 }
