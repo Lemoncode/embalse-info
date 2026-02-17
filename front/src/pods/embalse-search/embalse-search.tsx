@@ -53,15 +53,15 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
 
   return (
     <div className="relative flex flex-1 flex-col overflow-hidden p-8">
-      <div className="absolute inset-0 bg-[url('/images/embalse-generico.jpg')] bg-cover bg-center p-8 opacity-40"></div>
+      <div className="absolute inset-0 bg-[url('/images/embalse-generico.jpg')] bg-cover bg-center p-8 opacity-40" aria-hidden="true"></div>
       <div className="flex grow flex-col items-center justify-center">
-        <div className="bg-base-100 absolute flex max-w-10/12 flex-col gap-8 rounded-xl p-8 shadow-lg">
+        <section className="bg-base-100 absolute flex max-w-10/12 flex-col gap-8 rounded-xl p-8 shadow-lg" aria-labelledby="search-title">
           <div className="text-center">
-            <h2 className="font-bold">Embalses</h2>
+            <h2 id="search-title" className="font-bold">Embalses</h2>
           </div>
 
           <div className="flex flex-col gap-4">
-            <div className="relative">
+            <div className="relative" role="search">
               <label
                 htmlFor="embalse-search"
                 className="input input-bordered flex w-full items-center gap-2"

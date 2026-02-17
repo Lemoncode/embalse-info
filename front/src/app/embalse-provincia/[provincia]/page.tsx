@@ -47,7 +47,7 @@ export default async function EmbalseProvinciaListadoPage({ params }: Props) {
       <img
         className="mt-4 w-full rounded-xl sm:w-1/2 lg:w-1/3"
         src="/images/embalse-generico.jpg"
-        alt="Mapa de embalses"
+        alt={`Mapa de ubicación de embalses de ${nombreProvincia}`}
       />
     </Card>
   );
