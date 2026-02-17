@@ -1,4 +1,4 @@
-import { getEstadoCuencaDuero } from './integration';
+import { getEstadoCuencaDuero } from './integration.js';
 
 (async () => {
   const data = await getEstadoCuencaDuero();

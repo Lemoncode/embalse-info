@@ -3,7 +3,10 @@ import { MongoClient, type Db } from "mongodb";
 let client: MongoClient;
 
 const connect = async (connectionURL: string) => {
-  client = new MongoClient(connectionURL);
+  client = new MongoClient(connectionURL, {
+    serverSelectionTimeoutMS: 5000,
+    connectTimeoutMS: 5000,
+  });
   await client.connect();
   dbServer.db = client.db();
 };
