@@ -31,6 +31,8 @@ export async function scrapingsFunction(
 
     const responseCuencaGuadalquivir = await embalsesRepository.actualizarCuencaGuadalquivir();
 
+    const responseCuencaJucar = await embalsesRepository.actualizarCuencaJucar();
+
     if (responseCuencaMediterranea) {
       context.log(
         "scrapings-function: Se han actualizado los embalses de la cuenca Mediterránea",
@@ -71,6 +73,14 @@ export async function scrapingsFunction(
         "No se han podido actualizar los embalses de la cuenca Guadalquivir")
     }
 
+    if (responseCuencaJucar) {
+      context.log(`Se han actualizado los embalses de la cuenca Jucar`);
+    } else {
+      context.log(
+        "No se han podido actualizar los embalses de la cuenca Jucar"
+      );
+    }
+
   } catch (error) {
     context.error("scrapings-function: ERROR", error);
     throw error;
@@ -79,9 +89,6 @@ export async function scrapingsFunction(
     await dbServer.disconnect();
     context.log("scrapings-function: END");
   }
-
-
-
   await dbServer.disconnect();
 }
 

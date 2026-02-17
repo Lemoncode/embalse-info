@@ -1,7 +1,7 @@
 import vm from 'vm';
 import { CheerioAPI } from 'cheerio';
-import { EmbalsesJucar } from '@/api';
-import { mapEmbalsesToEntities } from '@/scraper';
+import { EmbalsesJucar } from '../api/index.js';
+import { mapEmbalsesToEntities } from '../scraper/index.js';
 
 function extractSubCuencasArrayText($: CheerioAPI): string {
   let subCuencasArrayText = '';

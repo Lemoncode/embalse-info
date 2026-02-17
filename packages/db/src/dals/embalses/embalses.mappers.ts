@@ -172,3 +172,31 @@ export const mapperFromCuencasGuadalquivirToArcgis = new Map<
   [54, { nombre: "José Torán", idArcgis: 174 }],
   [55, { nombre: "La Puebla de Cazalla", idArcgis: 241 }],
 ])
+
+// Ojo VALBONA, TORANES, MORA, BALAGUERAS, L'ALCORA, ONDA, Cortes II, El Naranjero,
+
+export const mapperFromCuencasJucarToArcgis = new Map<
+  number,
+  InfoDestinoArcgis
+>([
+  [243, { nombre: "Ulldecona", idArcgis: 320 }],
+  [266, { nombre: "Arenós", idArcgis: 28 }],
+  [247, { nombre: "Sichar", idArcgis: 294 }],
+  [248, { nombre: "María Cristina", idArcgis: 197 }],
+  [221, { nombre: "Regajo", idArcgis: 249 }],
+  [381, { nombre: "Algar", idArcgis: 374 }],
+  [270, { nombre: "Arquillo de San Blas", idArcgis: 31 }],
+  [293, { nombre: "Benagéber", idArcgis: 49 }],
+  [294, { nombre: "Loriguilla", idArcgis: 188 }],
+  [295, { nombre: "Buseo", idArcgis: 66 }],
+  [280, { nombre: "La Toba", idArcgis: 182 }],
+  [541, { nombre: "Alarcón", idArcgis: 9 }],
+  [287, { nombre: "Contreras", idArcgis: 109 }],
+  [359, { nombre: "Escalona", idArcgis: 130 }],
+  [300, { nombre: "Tous - La Ribera", idArcgis: 315 }],
+  [328, { nombre: "Bellús", idArcgis: 47 }],
+  [303, { nombre: "Forata", idArcgis: 139 }],
+  [346, { nombre: "Beniarrés", idArcgis: 50 }],
+  [332, { nombre: "Guadalest", idArcgis: 153 }],
+  [331, { nombre: "Amadorio", idArcgis: 23 }],
+]);
