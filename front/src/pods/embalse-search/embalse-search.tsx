@@ -3,11 +3,12 @@
 import { useState } from "react";
 import { useCombobox } from "downshift";
 import { useRouter } from "next/navigation";
-import { SearchIcon } from "./components/search-icon";
 import { NoResult } from "./components/no-result";
 import { Embalse } from "./api";
 import { EmbalseSearchModel } from "./embalse-search.vm";
 import { mapEmbalseToSearch } from "./embalse-search.mapper";
+import { FilteredList } from "./components/filtered-list";
+import { Input } from "./components/input";
 
 interface Props {
   embalses: Embalse[];
@@ -75,41 +76,14 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
 
           <div className="flex flex-col gap-4">
             <div className="relative" role="search">
-              <label
-                htmlFor="embalse-search"
-                className="input input-bordered flex w-full items-center gap-2"
-              >
-                <input
-                  {...getInputProps({
-                    placeholder: "La tolba",
-                    className: "grow",
-                    id: "embalse-search",
-                    "aria-label": "Buscar embalse por nombre o provincia",
-                  })}
-                />
-                <SearchIcon />
-              </label>
-              <ul
-                {...getMenuProps()}
-                className={`menu bg-base-100 absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-lg shadow-lg ${
-                  isOpen && filteredEmbalses.length > 0 ? "" : "hidden"
-                }`}
-              >
-                {isOpen &&
-                  filteredEmbalses.map((item, index) => (
-                    <li
-                      key={item.slug}
-                      {...getItemProps({ item, index })}
-                      className={`cursor-pointer px-4 py-2 ${
-                        highlightedIndex === index
-                          ? "bg-primary text-white"
-                          : ""
-                      }`}
-                    >
-                      {item.name}
-                    </li>
-                  ))}
-              </ul>
+              <Input getInputProps={getInputProps} />
+              <FilteredList
+                isOpen={isOpen}
+                filteredEmbalses={filteredEmbalses}
+                getMenuProps={getMenuProps}
+                getItemProps={getItemProps}
+                highlightedIndex={highlightedIndex}
+              />
               {showNoResults && <NoResult inputValue={inputValue} />}
             </div>
             <div>
