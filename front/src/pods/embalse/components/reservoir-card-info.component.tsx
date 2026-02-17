@@ -7,7 +7,10 @@ interface Props {
 export const ReservoirCardInfo: React.FC<Props> = (props) => {
   const { reservoirInfo } = props;
   return (
-    <section className="flex w-full flex-col items-start gap-4" aria-labelledby="discover-title">
+    <section
+      className="flex w-full flex-col items-start gap-4"
+      aria-labelledby="discover-title"
+    >
       <h2 id="discover-title">Descubre el embalse</h2>
       <p>{reservoirInfo?.Description}</p>
       <img
