@@ -20,7 +20,7 @@ export const getFilteredEmbalses = (
     return [];
   }
 
-  const lower = inputValue.toLowerCase();
+  const lower = normalizeSearchString(inputValue);
   const normalizedInputValue = normalizeSearchString(inputValue);
 
   return embalses
