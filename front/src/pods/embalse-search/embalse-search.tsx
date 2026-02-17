@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useCombobox } from "downshift";
 import { useRouter } from "next/navigation";
 import { SearchIcon } from "./components/search-icon";
+import { NoResult } from "./components/no-result";
 import { Embalse } from "./api";
 import { EmbalseSearchModel } from "./embalse-search.vm";
 import { mapEmbalseToSearch } from "./embalse-search.mapper";
@@ -18,6 +19,7 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
   const [filteredEmbalses, setFilteredEmbalses] = useState<
     EmbalseSearchModel[]
   >([]);
+  const [inputValue, setInputValue] = useState<string>("");
 
   const getFilteredEmbalses = (inputValue: string): EmbalseSearchModel[] => {
     const lower = inputValue.toLowerCase();
@@ -41,6 +43,7 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
     items: filteredEmbalses,
     itemToString: (item) => (item ? item.name : ""),
     onInputValueChange: ({ inputValue: newValue }) => {
+      setInputValue(newValue || "");
       setFilteredEmbalses(newValue ? getFilteredEmbalses(newValue) : []);
     },
     onSelectedItemChange: ({ selectedItem }) => {
@@ -50,6 +53,8 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
       }
     },
   });
+
+  const showNoResults = inputValue.length > 0 && filteredEmbalses.length === 0;
 
   return (
     <div className="relative flex flex-1 flex-col overflow-hidden p-8">
@@ -105,6 +110,7 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
                     </li>
                   ))}
               </ul>
+              {showNoResults && <NoResult inputValue={inputValue} />}
             </div>
             <div>
               <p className="text-sm">
