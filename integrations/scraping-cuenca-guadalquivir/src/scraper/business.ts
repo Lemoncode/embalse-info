@@ -1,4 +1,4 @@
-import { EmbalsesGuadalquivir } from "@/api";
+import { EmbalsesGuadalquivir } from "../api/index.js";
 import { Locator, Page } from "playwright";
 
 /**

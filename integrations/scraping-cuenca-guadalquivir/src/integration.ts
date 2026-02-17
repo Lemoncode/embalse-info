@@ -1,11 +1,13 @@
-import { getCuencaPageContent, Zone, ZoneInfo, ZONES } from "./api";
+import { getCuencaPageContent, Zone, ZoneInfo, ZONES } from "./api/index.js";
 import {
   extractCurrentDate,
   mapToEmbalsesByZone,
   mapToEmbalseUpdateSAIH,
   reservoirInfoFromTable,
-} from "./scraper";
+} from "./scraper/index.js";
 import { Browser, Page } from "playwright";
+
+const url = "https://www.chguadalquivir.es/saih/";
 
 async function processZoneData(page: Page, zone: Zone): Promise<ZoneInfo> {
   const rawReservoirs = await reservoirInfoFromTable(page);
@@ -14,9 +16,7 @@ async function processZoneData(page: Page, zone: Zone): Promise<ZoneInfo> {
   return mapToEmbalsesByZone(zone.codigo, zone.nombre, saihReservoirs);
 }
 
-export const scrapeCuencaGuadalquivir = async (
-  url: string
-): Promise<ZoneInfo[]> => {
+export const scrapeCuencaGuadalquivir = async (): Promise<ZoneInfo[]> => {
   const reservoirsCollection: ZoneInfo[] = [];
 
   const zonesPromises = ZONES.map(async (zone) => {
