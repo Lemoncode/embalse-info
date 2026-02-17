@@ -53,7 +53,7 @@ export const GaugeArcs = ({ percentage }: GaugeArcsProps) => {
       width={gaugeDimensions.width}
       height={gaugeDimensions.height}
       role="img"
-      aria-label={`Indicador de nivel del embalse: ${Math.round(percentage * 100)}% de capacidad`}
+      aria-label={`Indicador de nivel del embalse: ${percentage}% de capacidad`}
     />
   );
 };
