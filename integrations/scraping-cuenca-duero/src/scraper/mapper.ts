@@ -1,4 +1,4 @@
-import { EmbalseDuero } from '../api/cuenca.model';
+import { EmbalseDuero } from '../api/cuenca.model.js';
 import { EmbalseUpdateSAIHEntity } from "db-model";
 
 /**

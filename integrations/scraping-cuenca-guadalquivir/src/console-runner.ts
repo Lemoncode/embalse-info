@@ -1,8 +1,6 @@
-import { scrapeCuencaGuadalquivir } from "./integration";
-
-const url = "https://www.chguadalquivir.es/saih/";
+import { scrapeCuencaGuadalquivir } from "./integration.js";
 
 console.log("Estado de la Cuenca del Guadalquivir");
-const result = await scrapeCuencaGuadalquivir(url);
+const result = await scrapeCuencaGuadalquivir();
 
 console.log(JSON.stringify(result, null, 2));
