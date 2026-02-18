@@ -36,16 +36,7 @@ export function mapEmbalseToReservoirData(embalse: Embalse): ReservoirData {
     datosEmbalse: {
       cuenca: embalse.cuenca?.nombre ?? "",
       provincia: embalse.provincia ?? "",
-      municipio: "",
-      rio: "",
-      embalsesAguasAbajo: 0,
-      tipoDePresa: "",
-      anioConstruccion: 0,
-      superficie: 0,
-      localizacion: "",
-    },
-    reservoirInfo: {
-      Description: "",
+      uso: embalse.uso ?? "",
     },
   };
 }

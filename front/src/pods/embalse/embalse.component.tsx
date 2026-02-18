@@ -23,8 +23,7 @@ export const Embalse: React.FC<Props> = (props) => {
           reservoirData={reservoirData}
         />
         <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4 shadow-lg">
-          <ReservoirCardInfo reservoirInfo={reservoirData.reservoirInfo}
-          />
+          <ReservoirCardInfo/>
         </div>
         <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4 shadow-lg">
           <ReservoirCardDetail datosEmbalse={reservoirData.datosEmbalse}
