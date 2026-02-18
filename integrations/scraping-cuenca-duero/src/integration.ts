@@ -1,7 +1,6 @@
 // integration.ts (Versión Final Correcta)
 import axios from 'axios';
-import { EmbalseDuero } from './api/cuenca.model';
-import { parseReservoirsFromHtml, getCurrentDate, mapToEmbalseUpdateSAIH } from './scraper';
+import { parseReservoirsFromHtml, getCurrentDate, mapToEmbalseUpdateSAIH } from './scraper/index.js';
 import { EmbalseUpdateSAIHEntity } from "db-model";
 
 // Define the URL we are going to scrape

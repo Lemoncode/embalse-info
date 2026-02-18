@@ -10,7 +10,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "run-p clean type-check build:db-model",
-    "build:db-model": "tsc",
+    "build:db-model": "tsc -p tsconfig.json",
     "clean": "rimraf dist",
     "type-check": "tsc --noEmit --preserveWatchOutput"
   }
