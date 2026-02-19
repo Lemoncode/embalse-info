@@ -23,6 +23,16 @@ export async function scrapingsFunction(
     const responseCuencaMediterranea =
       await embalsesRepository.actualizarCuencaMediterranea();
 
+    const responseCuencaCantabrico = await embalsesRepository.actualizarCuencaCantabrico();
+
+    const responseCuencaCatalana = await embalsesRepository.actualizarCuencaCatalana();
+
+    const responseCuencaDuero = await embalsesRepository.actualizarCuencaDuero();
+
+    const responseCuencaGuadalquivir = await embalsesRepository.actualizarCuencaGuadalquivir();
+
+    const responseCuencaJucar = await embalsesRepository.actualizarCuencaJucar();
+
     if (responseCuencaMediterranea) {
       context.log(
         "scrapings-function: Se han actualizado los embalses de la cuenca Mediterránea",
@@ -32,6 +42,45 @@ export async function scrapingsFunction(
         "scrapings-function: No se han podido actualizar los embalses de la cuenca Mediterránea",
       );
     }
+
+    if (responseCuencaCantabrico) {
+      context.log(`Se han actualizado los embalses de la cuenca Cantábrica`);
+    } else {
+      context.log(
+        "No se han podido actualizar los embalses de la cuenca Cantábrica"
+      );
+    }
+
+    if (responseCuencaCatalana) {
+      context.log(`Se han actualizado los embalses de la cuenca Catalana`);
+    } else {
+      context.log(
+        "No se han podido actualizar los embalses de la cuenca Catalana"
+      );
+    }
+
+    if (responseCuencaDuero) {
+      context.log(`Se han actualizado los embalses de la cuenca Duero`);
+    } else {
+      context.log(
+        "No se han podido actualizar los embalses de la cuenca Duero")
+    }
+
+    if (responseCuencaGuadalquivir) {
+      context.log(`Se han actualizado los embalses de la cuenca Guadalquivir`);
+    } else {
+      context.log(
+        "No se han podido actualizar los embalses de la cuenca Guadalquivir")
+    }
+
+    if (responseCuencaJucar) {
+      context.log(`Se han actualizado los embalses de la cuenca Jucar`);
+    } else {
+      context.log(
+        "No se han podido actualizar los embalses de la cuenca Jucar"
+      );
+    }
+
   } catch (error) {
     context.error("scrapings-function: ERROR", error);
     throw error;
@@ -40,6 +89,7 @@ export async function scrapingsFunction(
     await dbServer.disconnect();
     context.log("scrapings-function: END");
   }
+  await dbServer.disconnect();
 }
 
 app.timer("scrapings-function", {

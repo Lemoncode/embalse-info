@@ -2,7 +2,7 @@
 import { describe, it, expect, vi, type Mock } from "vitest";
 
 import axios from "axios";
-import { getEstadoCuencaDuero } from "./integration";
+import { getEstadoCuencaDuero } from "./integration.js";
 
 vi.mock("axios");
 
