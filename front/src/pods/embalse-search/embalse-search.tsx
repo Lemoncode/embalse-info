@@ -20,6 +20,7 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
   const [filteredEmbalses, setFilteredEmbalses] = useState<
     EmbalseSearchModel[]
   >([]);
+  const [isNavigating, setIsNavigating] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
 
   const getFilteredEmbalses = (inputValue: string): EmbalseSearchModel[] => {
@@ -49,13 +50,13 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
     },
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
-        //console.log("Embalse seleccionado: ", selectedItem);
+        setIsNavigating(true);
         router.push(`/embalse/${selectedItem.slug}`);
       }
     },
   });
 
-  const showNoResults = inputValue.length > 0 && filteredEmbalses.length === 0;
+  const showNoResults = inputValue.length > 0 && filteredEmbalses.length === 0 && !isNavigating;
 
   return (
     <div className="relative flex flex-1 flex-col overflow-hidden p-8">
