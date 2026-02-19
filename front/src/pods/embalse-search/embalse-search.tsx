@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { useCombobox } from "downshift";
 import { useRouter } from "next/navigation";
-import { SearchIcon } from "./components/search-icon";
+import { NoResult } from "./components/no-result";
 import { Embalse } from "./api";
 import { EmbalseSearchModel } from "./embalse-search.vm";
 import { mapEmbalseToSearch } from "./embalse-search.mapper";
+import { FilteredList } from "./components/filtered-list";
+import { Input } from "./components/input";
 
 interface Props {
   embalses: Embalse[];
@@ -18,6 +20,8 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
   const [filteredEmbalses, setFilteredEmbalses] = useState<
     EmbalseSearchModel[]
   >([]);
+  const [isNavigating, setIsNavigating] = useState<boolean>(false);
+  const [inputValue, setInputValue] = useState<string>("");
 
   const getFilteredEmbalses = (inputValue: string): EmbalseSearchModel[] => {
     const lower = inputValue.toLowerCase();
@@ -41,57 +45,47 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
     items: filteredEmbalses,
     itemToString: (item) => (item ? item.name : ""),
     onInputValueChange: ({ inputValue: newValue }) => {
+      setInputValue(newValue || "");
       setFilteredEmbalses(newValue ? getFilteredEmbalses(newValue) : []);
     },
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
-        //console.log("Embalse seleccionado: ", selectedItem);
+        setIsNavigating(true);
         router.push(`/embalse/${selectedItem.slug}`);
       }
     },
   });
 
+  const showNoResults = inputValue.length > 0 && filteredEmbalses.length === 0 && !isNavigating;
+
   return (
     <div className="relative flex flex-1 flex-col overflow-hidden p-8">
-      <div className="absolute inset-0 bg-[url('/images/embalse-generico.jpg')] bg-cover bg-center p-8 opacity-40"></div>
+      <div
+        className="absolute inset-0 bg-[url('/images/embalse-generico.jpg')] bg-cover bg-center p-8 opacity-40"
+        aria-hidden="true"
+      ></div>
       <div className="flex grow flex-col items-center justify-center">
-        <div className="bg-base-100 absolute flex max-w-10/12 flex-col gap-8 rounded-xl p-8 shadow-lg">
+        <section
+          className="bg-base-100 absolute flex max-w-10/12 flex-col gap-8 rounded-xl p-8 shadow-lg"
+          aria-labelledby="search-title"
+        >
           <div className="text-center">
-            <h2 className="font-bold">Embalses</h2>
+            <h2 id="search-title" className="font-bold">
+              Embalses
+            </h2>
           </div>
 
           <div className="flex flex-col gap-4">
-            <div className="relative">
-              <label className="input input-bordered flex w-full items-center gap-2">
-                <input
-                  {...getInputProps({
-                    placeholder: "La tolba",
-                    className: "grow",
-                  })}
-                />
-                <SearchIcon />
-              </label>
-              <ul
-                {...getMenuProps()}
-                className={`menu bg-base-100 absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-lg shadow-lg ${
-                  isOpen && filteredEmbalses.length > 0 ? "" : "hidden"
-                }`}
-              >
-                {isOpen &&
-                  filteredEmbalses.map((item, index) => (
-                    <li
-                      key={item.slug}
-                      {...getItemProps({ item, index })}
-                      className={`cursor-pointer px-4 py-2 ${
-                        highlightedIndex === index
-                          ? "bg-primary text-white"
-                          : ""
-                      }`}
-                    >
-                      {item.name}
-                    </li>
-                  ))}
-              </ul>
+            <div className="relative" role="search">
+              <Input getInputProps={getInputProps} />
+              <FilteredList
+                isOpen={isOpen}
+                filteredEmbalses={filteredEmbalses}
+                getMenuProps={getMenuProps}
+                getItemProps={getItemProps}
+                highlightedIndex={highlightedIndex}
+              />
+              {showNoResults && <NoResult inputValue={inputValue} />}
             </div>
             <div>
               <p className="text-sm">
@@ -100,7 +94,7 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
               </p>
             </div>
           </div>
-        </div>
+        </section>
       </div>
     </div>
   );
