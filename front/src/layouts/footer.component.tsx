@@ -5,7 +5,7 @@ export const FooterComponent: FC = () => {
   return (
     <footer className="bg-base-100">
       <div className="border-accent flex flex-col items-center gap-2 border-t-2 p-3">
-        <div className="flex flex-col items-center gap-2 pb-[10px]">
+        <div className="flex flex-col items-center gap-2 pb-2.5">
           <Link
             href="/embalse-provincia"
             className="link-accessible text-[15px] leading-none font-normal"

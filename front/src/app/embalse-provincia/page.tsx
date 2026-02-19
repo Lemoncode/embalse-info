@@ -1,6 +1,11 @@
 import Link from "next/link";
+import { Metadata } from "next";
 import { PROVINCIAS } from "@/core/constants";
 import { Card } from "@/common/components/card.component";
+
+export const metadata: Metadata = {
+  title: "Embalses por provincias",
+};
 
 export default function EmbalsesProvinciaPage() {
   return (
