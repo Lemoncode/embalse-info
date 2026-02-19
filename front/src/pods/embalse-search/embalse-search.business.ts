@@ -10,7 +10,7 @@ export const normalizeSearchString = (input: string): string => {
       .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "") // Elimina signos de puntuación
       .replace(/\s+/g, " ").trim() : ""; // Reemplaza múltiples espacios por uno
 };
-// encontre todos esos filtros por internet y los aplico si sobra alguno lo quitamos, también eje las descripciones
+// encontre todos esos filtros por internet y los aplico si sobra alguno lo quitamos, también dejé las descripciones
 
 export const getFilteredEmbalses = (
   inputValue: string,
