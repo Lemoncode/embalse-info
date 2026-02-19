@@ -2,15 +2,15 @@ import { mapEmbalseToSearch } from "./embalse-search.mapper";
 import { Embalse } from "./api";
 
 export const normalizeSearchString = (input: string): string => {
-  return input
-    .toString()
-    .normalize("NFD") // Separa los acentos de las letras
-    .replace(/[\u0300-\u036f]/g, "") // Elimina acentos
-    .toLowerCase()
-    .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "") // Elimina signos de puntuación
-    .replace(/\s+/g, " "); // Reemplaza múltiples espacios por uno
+  return input ?
+    input.toString()
+      .normalize("NFD") // Separa los acentos de las letras
+      .replace(/[\u0300-\u036f]/g, "") // Elimina acentos
+      .toLowerCase()
+      .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "") // Elimina signos de puntuación
+      .replace(/\s+/g, " ").trim() : ""; // Reemplaza múltiples espacios por uno
 };
-// encontre todos esos filtros por internet y los aplico si sobra alguno lo quitamos, tmabiend eje las dewescripciones
+// encontre todos esos filtros por internet y los aplico si sobra alguno lo quitamos, también eje las descripciones
 
 export const getFilteredEmbalses = (
   inputValue: string,
