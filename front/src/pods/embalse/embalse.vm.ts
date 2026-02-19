@@ -3,17 +3,7 @@ import type { Embalse } from "db-model";
 export interface DatosEmbalse {
   cuenca: string;
   provincia: string;
-  municipio: string;
-  rio: string;
-  embalsesAguasAbajo: number;
-  tipoDePresa: string;
-  anioConstruccion: number;
-  superficie: number;
-  localizacion: string;
-}
-
-export interface ReservoirInfo {
-  Description: string;
+  uso: string;
 }
 
 export interface ReservoirData {
@@ -22,7 +12,6 @@ export interface ReservoirData {
   totalCapacity: number;
   measurementDate: string;
   datosEmbalse: DatosEmbalse;
-  reservoirInfo: ReservoirInfo;
 }
 
 export const createEmptyEmbalse = (): Embalse => ({

@@ -1,20 +1,15 @@
-import { ReservoirInfo } from "../embalse.vm";
-
-interface Props {
-  reservoirInfo: ReservoirInfo;
-}
-
-export const ReservoirCardInfo: React.FC<Props> = (props) => {
-  const { reservoirInfo } = props;
+export const ReservoirCardInfo: React.FC = () => {
   return (
-    <div className="flex w-full flex-col items-start gap-4">
-      <h2>Descubre el embalse</h2>
-      <p>{reservoirInfo?.Description}</p>
+    <section
+      className="flex w-full flex-col items-start gap-4"
+      aria-labelledby="discover-title"
+    >
+      <h2 id="discover-title">Descubre el embalse</h2>
       <img
         className="mt-4 w-full rounded-xl md:aspect-434/171"
         src="/images/embalse-generico.jpg"
-        alt="Mapa de embalses"
+        alt="Vista general del embalse"
       />
-    </div>
+    </section>
   );
 };

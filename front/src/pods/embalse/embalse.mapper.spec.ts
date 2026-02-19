@@ -167,16 +167,7 @@ describe("mapEmbalseToReservoirData", () => {
       datosEmbalse: {
         cuenca: "Mediterránea",
         provincia: "Málaga",
-        municipio: "",
-        rio: "",
-        embalsesAguasAbajo: 0,
-        tipoDePresa: "",
-        anioConstruccion: 0,
-        superficie: 0,
-        localizacion: "",
-      },
-      reservoirInfo: {
-        Description: "",
+        uso: "",
       },
     });
   });

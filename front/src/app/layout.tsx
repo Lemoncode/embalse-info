@@ -9,7 +9,7 @@ interface Props {
 const RootLayout = (props: Props) => {
   const { children } = props;
   return (
-    <html lang="en" data-theme="info-embalse">
+    <html lang="es" data-theme="info-embalse">
       <body
         className="bg-base-200 text-base-content flex min-h-screen flex-col"
         suppressHydrationWarning
