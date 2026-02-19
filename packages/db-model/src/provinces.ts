@@ -1,103 +1,52 @@
-export const ALAVA = "Álava";
-export const ALBACETE = "Albacete";
-export const ALICANTE = "Alicante";
-export const ALMERIA = "Almería";
-export const A_CORUNA = "A Coruña";
-export const ASTURIAS = "Asturias";
-export const AVILA = "Ávila";
-export const BADAJOZ = "Badajoz";
-export const BALEARES = "Baleares";
-export const BARCELONA = "Barcelona";
-export const BURGOS = "Burgos";
-export const CACERES = "Cáceres";
-export const CADIZ = "Cádiz";
-export const CANTABRIA = "Cantabria";
-export const CASTELLON = "Castellón";
-export const CIUDAD_REAL = "Ciudad Real";
-export const CORDOBA = "Córdoba";
-export const CUENCA = "Cuenca";
-export const GIRONA = "Girona";
-export const GRANADA = "Granada";
-export const GUADALAJARA = "Guadalajara";
-export const GUIPUZCOA = "Guipúzcoa";
-export const HUELVA = "Huelva";
-export const HUESCA = "Huesca";
-export const JAEN = "Jaén";
-export const LA_RIOJA = "La Rioja";
-export const LAS_PALMAS = "Las Palmas";
-export const LEON = "León";
-export const LLEIDA = "Lleida";
-export const LUGO = "Lugo";
-export const MADRID = "Madrid";
-export const MALAGA = "Málaga";
-export const MURCIA = "Murcia";
-export const NAVARRA = "Navarra";
-export const OURENSE = "Ourense";
-export const PALENCIA = "Palencia";
-export const PONTEVEDRA = "Pontevedra";
-export const SALAMANCA = "Salamanca";
-export const SANTA_CRUZ_DE_TENERIFE = "Santa Cruz de Tenerife";
-export const SEGOVIA = "Segovia";
-export const SEVILLA = "Sevilla";
-export const SORIA = "Soria";
-export const TARRAGONA = "Tarragona";
-export const TERUEL = "Teruel";
-export const TOLEDO = "Toledo";
-export const VALENCIA = "Valencia";
-export const VALLADOLID = "Valladolid";
-export const VIZCAYA = "Vizcaya";
-export const ZAMORA = "Zamora";
-export const ZARAGOZA = "Zaragoza";
-
-export const PROVINCES = [
-  A_CORUNA,
-  ALAVA,
-  ALBACETE,
-  ALICANTE,
-  ALMERIA,
-  ASTURIAS,
-  AVILA,
-  BADAJOZ,
-  BALEARES,
-  BARCELONA,
-  BURGOS,
-  CACERES,
-  CADIZ,
-  CANTABRIA,
-  CASTELLON,
-  CIUDAD_REAL,
-  CORDOBA,
-  CUENCA,
-  GIRONA,
-  GRANADA,
-  GUADALAJARA,
-  GUIPUZCOA,
-  HUELVA,
-  HUESCA,
-  JAEN,
-  LA_RIOJA,
-  LAS_PALMAS,
-  LEON,
-  LLEIDA,
-  LUGO,
-  MADRID,
-  MALAGA,
-  MURCIA,
-  NAVARRA,
-  OURENSE,
-  PALENCIA,
-  PONTEVEDRA,
-  SALAMANCA,
-  SANTA_CRUZ_DE_TENERIFE,
-  SEGOVIA,
-  SEVILLA,
-  SORIA,
-  TARRAGONA,
-  TERUEL,
-  TOLEDO,
-  VALENCIA,
-  VALLADOLID,
-  VIZCAYA,
-  ZAMORA,
-  ZARAGOZA,
-] as const;
+export const provinces = {
+  ALAVA: { name: "Álava", slug: "alava" },
+  ALBACETE: { name: "Albacete", slug: "albacete" },
+  ALICANTE: { name: "Alicante", slug: "alicante" },
+  ALMERIA: { name: "Almería", slug: "almeria" },
+  A_CORUNA: { name: "A Coruña", slug: "a-coruna" },
+  ASTURIAS: { name: "Asturias", slug: "asturias" },
+  AVILA: { name: "Ávila", slug: "avila" },
+  BADAJOZ: { name: "Badajoz", slug: "badajoz" },
+  BALEARES: { name: "Baleares", slug: "baleares" },
+  BARCELONA: { name: "Barcelona", slug: "barcelona" },
+  BURGOS: { name: "Burgos", slug: "burgos" },
+  CACERES: { name: "Cáceres", slug: "caceres" },
+  CADIZ: { name: "Cádiz", slug: "cadiz" },
+  CANTABRIA: { name: "Cantabria", slug: "cantabria" },
+  CASTELLON: { name: "Castellón", slug: "castellon" },
+  CIUDAD_REAL: { name: "Ciudad Real", slug: "ciudad-real" },
+  CORDOBA: { name: "Córdoba", slug: "cordoba" },
+  CUENCA: { name: "Cuenca", slug: "cuenca" },
+  GIRONA: { name: "Girona", slug: "girona" },
+  GRANADA: { name: "Granada", slug: "granada" },
+  GUADALAJARA: { name: "Guadalajara", slug: "guadalajara" },
+  GUIPUZCOA: { name: "Guipúzcoa", slug: "guipuzcoa" },
+  HUELVA: { name: "Huelva", slug: "huelva" },
+  HUESCA: { name: "Huesca", slug: "huesca" },
+  JAEN: { name: "Jaén", slug: "jaen" },
+  LA_RIOJA: { name: "La Rioja", slug: "la-rioja" },
+  LAS_PALMAS: { name: "Las Palmas", slug: "las-palmas" },
+  LEON: { name: "León", slug: "leon" },
+  LLEIDA: { name: "Lleida", slug: "lleida" },
+  LUGO: { name: "Lugo", slug: "lugo" },
+  MADRID: { name: "Madrid", slug: "madrid" },
+  MALAGA: { name: "Málaga", slug: "malaga" },
+  MURCIA: { name: "Murcia", slug: "murcia" },
+  NAVARRA: { name: "Navarra", slug: "navarra" },
+  OURENSE: { name: "Ourense", slug: "ourense" },
+  PALENCIA: { name: "Palencia", slug: "palencia" },
+  PONTEVEDRA: { name: "Pontevedra", slug: "pontevedra" },
+  SALAMANCA: { name: "Salamanca", slug: "salamanca" },
+  SANTA_CRUZ_DE_TENERIFE: { name: "Santa Cruz de Tenerife", slug: "santa-cruz-de-tenerife" },
+  SEGOVIA: { name: "Segovia", slug: "segovia" },
+  SEVILLA: { name: "Sevilla", slug: "sevilla" },
+  SORIA: { name: "Soria", slug: "soria" },
+  TARRAGONA: { name: "Tarragona", slug: "tarragona" },
+  TERUEL: { name: "Teruel", slug: "teruel" },
+  TOLEDO: { name: "Toledo", slug: "toledo" },
+  VALENCIA: { name: "Valencia", slug: "valencia" },
+  VALLADOLID: { name: "Valladolid", slug: "valladolid" },
+  VIZCAYA: { name: "Vizcaya", slug: "vizcaya" },
+  ZAMORA: { name: "Zamora", slug: "zamora" },
+  ZARAGOZA: { name: "Zaragoza", slug: "zaragoza" },
+} as const;
