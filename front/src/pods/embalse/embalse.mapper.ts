@@ -12,7 +12,9 @@
  */
 
 import type { Embalse } from "db-model";
-import type { ReservoirData } from "./embalse.vm";
+import type { ReservoirData, ReservoirInfo } from "./embalse.vm";
+import * as apiModel from "./api";
+import { createEmptyEmbalseInfo } from "./embalse.vm";
 
 function formatDate(date: Date | string | null | undefined): string {
   if (!date) return "";
@@ -23,7 +25,8 @@ function formatDate(date: Date | string | null | undefined): string {
   const year = d.getFullYear();
   return `${day}/${month}/${year}`;
 }
-export function mapEmbalseToReservoirData(embalse: Embalse): ReservoirData {
+
+export function mapEmbalseToReservoirData(embalse: Embalse, embalseInfo:  ReservoirInfo ): ReservoirData {
   const currentVolume = embalse.aguaActualSAIH ?? embalse.aguaActualAemet ?? 0;
   const measurementDate = formatDate(
     embalse.fechaMedidaAguaActualSAIH ?? embalse.fechaMedidaAguaActualAemet,
@@ -44,8 +47,26 @@ export function mapEmbalseToReservoirData(embalse: Embalse): ReservoirData {
       superficie: 0,
       localizacion: "",
     },
-    reservoirInfo: {
-      Description: "",
-    },
+    // TODO: sacar esto a un mapper querdaría una cosas como, reservoirInfo: mapEmbalseInfoToReservoirInfo(embalseInfo)
+    reservoirInfo: mapReservoirInfoFromContentIslandToViewModel(embalseInfo),
   };
 }
+
+const mapReservoirInfoFromContentIslandToViewModel = (embalseInfo: apiModel.ReservoirInfo ): ReservoirInfo => (
+  Boolean(embalseInfo)
+   ?  {
+        id: embalseInfo.id,
+        lastUpdate: embalseInfo.lastUpdate,
+        name: embalseInfo.name,
+        mainPicture: embalseInfo.mainPicture,
+        author: embalseInfo.author ?? '',
+        authorUrl: embalseInfo.authorUrl ?? '',
+        description: embalseInfo.description ?? '',
+      } 
+       : createEmptyEmbalseInfo()
+  );
+
+
+
+
+

@@ -8,12 +8,12 @@ export const ReservoirCardInfo: React.FC<Props> = (props) => {
   const { reservoirInfo } = props;
   return (
     <div className="flex w-full flex-col items-start gap-4">
-      <h2>Descubre el embalse</h2>
-      <p>{reservoirInfo?.Description}</p>
+      <h2>Descubre el embalse {reservoirInfo?.name}</h2>
+      <p>{reservoirInfo?.description}</p>
       <img
-        className="mt-4 w-full rounded-xl sm:w-1/2 lg:w-1/3"
-        src="/images/embalse-generico.jpg"
-        alt="Mapa de embalses"
+        className="mt-4 w-full rounded-xl"
+        src={reservoirInfo?.mainPicture?.url}
+        alt={reservoirInfo?.mainPicture?.name || "Imagen del embalse"}
       />
     </div>
   );

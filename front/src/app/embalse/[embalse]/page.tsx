@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { EmbalsePod } from "@/pods/embalse";
+import { EmbalsePod, getReservoirInfoBySlugCached } from "@/pods/embalse";
 import { getEmbalseBySlug } from "@/pods/embalse/embalse.repository";
 import { mapEmbalseToReservoirData } from "@/pods/embalse/embalse.mapper";
 export const revalidate = 300; // ISR: regenerar cada 5 minutos
@@ -13,10 +13,13 @@ export default async function EmbalseDetallePage({ params }: Props) {
   */
   const { embalse } = await params;
   const embalseDoc = await getEmbalseBySlug(embalse);
-  if (!embalseDoc) {
+  const embalseInfo = await getReservoirInfoBySlugCached(embalse);
+  
+  if (!embalseDoc || !embalseInfo) {
     notFound();
   }
-  //mapeamos el documento a ReservoirData y lo pasamos al pod
-  const reservoirData = mapEmbalseToReservoirData(embalseDoc);
+  const reservoirData = mapEmbalseToReservoirData(embalseDoc, embalseInfo);
+  console.log("Reservoir Data:", reservoirData); // Verificar los datos antes de renderizar
+  //todo mapper reservoirIInfo
   return <EmbalsePod reservoirData={reservoirData} />;
 }
