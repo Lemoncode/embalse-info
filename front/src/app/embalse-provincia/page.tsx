@@ -1,4 +1,4 @@
-import { EmbalseProvinciaPod } from "@/pods/embalse-provincia";
+import { EmbalseProvinciaListPod } from "@/pods/embalse-provincia-list";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,5 +6,5 @@ export const metadata: Metadata = {
 };
 
 export default function EmbalsesProvinciaPage() {
-  return <EmbalseProvinciaPod />;
+  return <EmbalseProvinciaListPod />;
 }

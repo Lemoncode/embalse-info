@@ -3,7 +3,7 @@ import { Card } from "@/common/components/card.component";
 import { PROVINCIAS } from "@/core/constants";
 import Link from "next/link";
 
-export const EmbalseProvincia: React.FC = () => {
+export const EmbalseProvinciaList: React.FC = () => {
   return (
     <Card>
       <h2>Embalses por provincias</h2>
