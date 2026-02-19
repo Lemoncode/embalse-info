@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { NoResult } from "./components/no-result";
 import { Embalse } from "./api";
 import { EmbalseSearchModel } from "./embalse-search.vm";
-import { mapEmbalseToSearch } from "./embalse-search.mapper";
+import { getFilteredEmbalses as getFilteredEmbalsesBusiness } from "./embalse-search.business";
 import { FilteredList } from "./components/filtered-list";
 import { Input } from "./components/input";
 
@@ -24,17 +24,8 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
   const [inputValue, setInputValue] = useState<string>("");
 
   const getFilteredEmbalses = (inputValue: string): EmbalseSearchModel[] => {
-    const lower = inputValue.toLowerCase();
-
-    return embalses
-      .filter(
-        (e) =>
-          e.nombre.toLowerCase().includes(lower) ||
-          e.provincia.toLowerCase().includes(lower),
-      )
-      .map(mapEmbalseToSearch);
+    return getFilteredEmbalsesBusiness(inputValue, embalses);
   };
-
   const {
     isOpen,
     getMenuProps,
