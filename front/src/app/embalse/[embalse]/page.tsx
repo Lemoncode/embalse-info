@@ -14,12 +14,11 @@ export default async function EmbalseDetallePage({ params }: Props) {
   const { embalse } = await params;
   const embalseDoc = await getEmbalseBySlug(embalse);
   const embalseInfo = await getReservoirInfoBySlugCached(embalse);
-  
+
   if (!embalseDoc || !embalseInfo) {
     notFound();
   }
   const reservoirData = mapEmbalseToReservoirData(embalseDoc, embalseInfo);
-  console.log("Reservoir Data:", reservoirData); // Verificar los datos antes de renderizar
   //todo mapper reservoirIInfo
   return <EmbalsePod reservoirData={reservoirData} />;
 }
