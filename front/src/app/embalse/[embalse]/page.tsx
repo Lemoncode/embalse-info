@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { EmbalsePod } from "@/pods/embalse";
+import { EmbalsePod, getReservoirInfoBySlugCached } from "@/pods/embalse";
 import { getEmbalseBySlug } from "@/pods/embalse/embalse.repository";
 import { mapEmbalseToReservoirData } from "@/pods/embalse/embalse.mapper";
 
@@ -26,10 +26,11 @@ export default async function EmbalseDetallePage({ params }: Props) {
   */
   const { embalse } = await params;
   const embalseDoc = await getEmbalseBySlug(embalse);
+  const embalseInfo = await getReservoirInfoBySlugCached(embalse);
+
   if (!embalseDoc) {
     notFound();
   }
-  //mapeamos el documento a ReservoirData y lo pasamos al pod
-  const reservoirData = mapEmbalseToReservoirData(embalseDoc);
+  const reservoirData = mapEmbalseToReservoirData(embalseDoc, embalseInfo);
   return <EmbalsePod reservoirData={reservoirData} />;
 }
