@@ -1,5 +1,5 @@
-import 'server-only';
-import { createClient } from '@content-island/api-client';
+import "server-only";
+import { createClient } from "@content-island/api-client";
 
 /**
  * Ensures required environment variables exist.
@@ -17,5 +17,5 @@ function requireEnv(name: string): string {
  * This file is server-only to prevent token exposure.
  */
 export const contentIslandClient = createClient({
-  accessToken: requireEnv('CONTENT_ISLAND_ACCESS_TOKEN'),
+  accessToken: requireEnv("CONTENT_ISLAND_ACCESS_TOKEN"),
 });
