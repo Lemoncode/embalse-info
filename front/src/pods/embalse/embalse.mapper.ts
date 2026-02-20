@@ -15,7 +15,6 @@ import type { Embalse } from "db-model";
 import type { ReservoirData, ReservoirInfo } from "./embalse.vm";
 import * as apiModel from "./api";
 
-
 function formatDate(date: Date | string | null | undefined): string {
   if (!date) return "";
   const d = typeof date === "string" ? new Date(date) : date;
@@ -26,7 +25,10 @@ function formatDate(date: Date | string | null | undefined): string {
   return `${day}/${month}/${year}`;
 }
 
-export function mapEmbalseToReservoirData(embalse: Embalse, embalseInfo: apiModel.ReservoirInfo | null | undefined): ReservoirData {
+export function mapEmbalseToReservoirData(
+  embalse: Embalse,
+  embalseInfo: apiModel.ReservoirInfo | null | undefined,
+): ReservoirData {
   const currentVolume = embalse.aguaActualSAIH ?? embalse.aguaActualAemet ?? 0;
   const measurementDate = formatDate(
     embalse.fechaMedidaAguaActualSAIH ?? embalse.fechaMedidaAguaActualAemet,
@@ -39,30 +41,19 @@ export function mapEmbalseToReservoirData(embalse: Embalse, embalseInfo: apiMode
     datosEmbalse: {
       cuenca: embalse.cuenca?.nombre ?? "",
       provincia: embalse.provincia ?? "",
-      municipio: "",
-      rio: "",
-      embalsesAguasAbajo: 0,
-      tipoDePresa: "",
-      anioConstruccion: 0,
-      superficie: 0,
-      localizacion: "",
+      uso: embalse.uso ?? "",
     },
-    // TODO: sacar esto a un mapper querdaría una cosas como, reservoirInfo: mapEmbalseInfoToReservoirInfo(embalseInfo)
-    reservoirInfo: embalseInfo ? mapReservoirInfoFromContentIslandToViewModel(embalseInfo) : undefined,
   };
 }
 
-const mapReservoirInfoFromContentIslandToViewModel = (embalseInfo: apiModel.ReservoirInfo): ReservoirInfo => ({
+const mapReservoirInfoFromContentIslandToViewModel = (
+  embalseInfo: apiModel.ReservoirInfo,
+): ReservoirInfo => ({
   id: embalseInfo.id,
   lastUpdate: embalseInfo.lastUpdate,
   name: embalseInfo.name,
   mainPicture: embalseInfo.mainPicture,
-  author: embalseInfo.author ?? '',
-  authorUrl: embalseInfo.authorUrl ?? '',
-  description: embalseInfo.description ?? '',
+  author: embalseInfo.author ?? "",
+  authorUrl: embalseInfo.authorUrl ?? "",
+  description: embalseInfo.description ?? "",
 });
-
-
-
-
-

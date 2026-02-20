@@ -1,20 +1,14 @@
 import type { Embalse } from "db-model";
-import type { Media } from '@content-island/api-client';
+import type { Media } from "@content-island/api-client";
 
 export interface DatosEmbalse {
   cuenca: string;
   provincia: string;
-  municipio: string;
-  rio: string;
-  embalsesAguasAbajo: number;
-  tipoDePresa: string;
-  anioConstruccion: number;
-  superficie: number;
-  localizacion: string;
+  uso: string;
 }
 //toDO mirar los campos exactos que necesitamos de la api de content island y mapearlos a esta interfaz
 export interface ReservoirInfo {
-  id: string; 
+  id: string;
   lastUpdate: string; // Stores the date in ISO 8601 format. For example: 2021-09-10T19:30:00.000Z
   name: string;
   mainPicture: Media;
@@ -48,12 +42,12 @@ export const createEmptyEmbalse = (): Embalse => ({
   uso: "",
 });
 
-  export const createEmptyEmbalseInfo = (): ReservoirInfo => ({
-    id: "",
-    lastUpdate: null,
-    name: "",
-    mainPicture: null,
-    author: "",
-    authorUrl: "",
-    description: "",
-  });
+export const createEmptyEmbalseInfo = (): ReservoirInfo => ({
+  id: "",
+  lastUpdate: null,
+  name: "",
+  mainPicture: null,
+  author: "",
+  authorUrl: "",
+  description: "",
+});

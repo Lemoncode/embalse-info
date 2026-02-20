@@ -1,4 +1,6 @@
 import { ReservoirInfo } from "../embalse.vm";
+import React from "react";
+import Image from "next/image";
 
 interface Props {
   reservoirInfo: ReservoirInfo;
@@ -6,14 +8,20 @@ interface Props {
 
 export const ReservoirCardInfo: React.FC<Props> = (props) => {
   const { reservoirInfo } = props;
+
   return (
-    <div className="flex w-full flex-col items-start gap-4">
-      <h2>Descubre el embalse {reservoirInfo?.name}</h2>
+    <section
+      className="flex w-full flex-col items-start gap-4"
+      aria-labelledby="discover-title"
+    >
+      <h2 id="discover-title">Descubre el embalse {reservoirInfo?.name}</h2>
       <p>{reservoirInfo?.description}</p>
       <img
-        className="mt-4 w-full rounded-xl"
+        className="mt-4 w-full rounded-xl md:aspect-434/171"
         src={reservoirInfo?.mainPicture?.url}
         alt={reservoirInfo?.mainPicture?.name || "Imagen del embalse"}
+        width={200}
+        height={100}
       />
       {reservoirInfo?.author && (
         <p className="text-xs text-gray-500">
@@ -32,6 +40,6 @@ export const ReservoirCardInfo: React.FC<Props> = (props) => {
           )}
         </p>
       )}
-    </div>
+    </section>
   );
 };

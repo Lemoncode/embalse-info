@@ -1,11 +1,24 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { EmbalsePod, getReservoirInfoBySlugCached } from "@/pods/embalse";
 import { getEmbalseBySlug } from "@/pods/embalse/embalse.repository";
 import { mapEmbalseToReservoirData } from "@/pods/embalse/embalse.mapper";
+
 export const revalidate = 300; // ISR: regenerar cada 5 minutos
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { embalse } = await params;
+  const embalseSlug = await getEmbalseBySlug(embalse);
+
+  return {
+    title: embalseSlug.nombre,
+  };
+}
+
 interface Props {
   params: Promise<{ embalse: string }>;
 }
+
 export default async function EmbalseDetallePage({ params }: Props) {
   /**
    * Llamamos a getEmbalseBySlug con el slug de la URL.
