@@ -60,7 +60,7 @@ jobs:
         with:
           app-name: ${{ secrets.AZURE_FRONT_APP_NAME }}
           publish-profile: ${{ secrets.AZURE_FRONT_PUBLISH_PROFILE }}
-          images: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          images: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_SHA_TAG }}
           restart: true
 
       # Warm-up: force ISR regeneration so first real user gets data
