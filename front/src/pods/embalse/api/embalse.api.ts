@@ -15,7 +15,7 @@ export const getReservoirInfoBySlugCached = unstable_cache(
         "fields.slug": slug,
       });
     } catch (error) {
-      console.warn(`Error fetching reservoir info for slug: ${slug}`, error);
+      console.warn(`Warning reservoir info for slug not available: ${slug}`);
       return null;
     }
   },
