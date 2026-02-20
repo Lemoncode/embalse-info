@@ -26,7 +26,7 @@ function formatDate(date: Date | string | null | undefined): string {
   return `${day}/${month}/${year}`;
 }
 
-export function mapEmbalseToReservoirData(embalse: Embalse, embalseInfo:  ReservoirInfo ): ReservoirData {
+export function mapEmbalseToReservoirData(embalse: Embalse, embalseInfo:  apiModel.ReservoirInfo ): ReservoirData {
   const currentVolume = embalse.aguaActualSAIH ?? embalse.aguaActualAemet ?? 0;
   const measurementDate = formatDate(
     embalse.fechaMedidaAguaActualSAIH ?? embalse.fechaMedidaAguaActualAemet,
