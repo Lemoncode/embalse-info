@@ -15,6 +15,23 @@ export const ReservoirCardInfo: React.FC<Props> = (props) => {
         src={reservoirInfo?.mainPicture?.url}
         alt={reservoirInfo?.mainPicture?.name || "Imagen del embalse"}
       />
+      {reservoirInfo?.author && (
+        <p className="text-xs text-gray-500">
+          Foto:{" "}
+          {reservoirInfo.authorUrl ? (
+            <a
+              href={reservoirInfo.authorUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              {reservoirInfo.author}
+            </a>
+          ) : (
+            reservoirInfo.author
+          )}
+        </p>
+      )}
     </div>
   );
 };
