@@ -1,8 +1,7 @@
-import 'server-only';
-import { unstable_cache } from 'next/cache';
-import type { ReservoirInfo } from './embalse.api-model'; 
-import { contentIslandClient } from '@/lib';
-
+import "server-only";
+import { unstable_cache } from "next/cache";
+import type { ReservoirInfo } from "./embalse.api-model";
+import { contentIslandClient } from "@/lib";
 
 /**
  * Cached version of getReservoirInfoBySlug.
@@ -12,13 +11,14 @@ export const getReservoirInfoBySlugCached = unstable_cache(
   async (slug: string): Promise<ReservoirInfo | null> => {
     try {
       return await contentIslandClient.getContent<ReservoirInfo>({
-        language: 'es',
-        'fields.slug': slug,
+        language: "es",
+        "fields.slug": slug,
       });
-    } catch(error){
-      console.error(`Error fetching reservoir info for slug: ${slug}`, error);
+    } catch (error) {
+      console.warn(`Error fetching reservoir info for slug: ${slug}`, error);
+      return null;
     }
   },
-  ['reservoir-by-slug'],
-  { revalidate: 60 } // Check timing at least 1 hour
+  ["reservoir-by-slug"],
+  { revalidate: 60 }, // Check timing at least 1 hour
 );

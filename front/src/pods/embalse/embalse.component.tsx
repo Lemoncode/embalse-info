@@ -22,10 +22,11 @@ export const Embalse: React.FC<Props> = (props) => {
           name={reservoirData.nombre}
           reservoirData={reservoirData}
         />
-        <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4 shadow-lg">
-          <ReservoirCardInfo reservoirInfo={reservoirData.reservoirInfo}
-          />
-        </div>
+        {reservoirData.reservoirInfo?.id && (
+          <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4 shadow-lg">
+            <ReservoirCardInfo reservoirInfo={reservoirData.reservoirInfo} />
+          </div>
+        )}
         <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4 shadow-lg">
           <ReservoirCardDetail datosEmbalse={reservoirData.datosEmbalse}
           />

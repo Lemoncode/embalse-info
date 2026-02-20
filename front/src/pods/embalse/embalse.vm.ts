@@ -29,7 +29,7 @@ export interface ReservoirData {
   totalCapacity: number;
   measurementDate: string;
   datosEmbalse: DatosEmbalse;
-  reservoirInfo: ReservoirInfo;
+  reservoirInfo?: ReservoirInfo;
 }
 
 export const createEmptyEmbalse = (): Embalse => ({

@@ -15,10 +15,9 @@ export default async function EmbalseDetallePage({ params }: Props) {
   const embalseDoc = await getEmbalseBySlug(embalse);
   const embalseInfo = await getReservoirInfoBySlugCached(embalse);
 
-  if (!embalseDoc || !embalseInfo) {
+  if (!embalseDoc) {
     notFound();
   }
   const reservoirData = mapEmbalseToReservoirData(embalseDoc, embalseInfo);
-  //todo mapper reservoirIInfo
   return <EmbalsePod reservoirData={reservoirData} />;
 }
