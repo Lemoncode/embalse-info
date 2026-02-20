@@ -43,6 +43,9 @@ export function mapEmbalseToReservoirData(
       provincia: embalse.provincia ?? "",
       uso: embalse.uso ?? "",
     },
+    reservoirInfo: embalseInfo
+      ? mapReservoirInfoFromContentIslandToViewModel(embalseInfo)
+      : undefined,
   };
 }
 
