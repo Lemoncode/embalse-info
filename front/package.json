@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "postinstall": "node scripts/postinstall.js",
     "start": "next dev",
     "build": "next build",
     "start-prod": "node .next/standalone/server.js"
