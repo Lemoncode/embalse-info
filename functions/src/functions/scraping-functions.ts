@@ -29,7 +29,8 @@ export async function scrapingsFunction(
 
     const responseCuencaDuero = await embalsesRepository.actualizarCuencaDuero();
 
-    const responseCuencaGuadalquivir = await embalsesRepository.actualizarCuencaGuadalquivir();
+    // TODO: Guadalquivir disabled — requires playwright (not available in Azure Functions)
+    // const responseCuencaGuadalquivir = await embalsesRepository.actualizarCuencaGuadalquivir();
 
     const responseCuencaJucar = await embalsesRepository.actualizarCuencaJucar();
 
@@ -66,12 +67,12 @@ export async function scrapingsFunction(
         "No se han podido actualizar los embalses de la cuenca Duero")
     }
 
-    if (responseCuencaGuadalquivir) {
-      context.log(`Se han actualizado los embalses de la cuenca Guadalquivir`);
-    } else {
-      context.log(
-        "No se han podido actualizar los embalses de la cuenca Guadalquivir")
-    }
+    // if (responseCuencaGuadalquivir) {
+    //   context.log(`Se han actualizado los embalses de la cuenca Guadalquivir`);
+    // } else {
+    //   context.log(
+    //     "No se han podido actualizar los embalses de la cuenca Guadalquivir")
+    // }
 
     if (responseCuencaJucar) {
       context.log(`Se han actualizado los embalses de la cuenca Jucar`);
