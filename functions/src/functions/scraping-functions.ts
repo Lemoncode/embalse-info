@@ -86,11 +86,8 @@ export async function scrapingsFunction(
     context.error("scrapings-function: ERROR", error);
     throw error;
   } finally {
-    context.log("scrapings-function: disconnecting from database...");
-    await dbServer.disconnect();
     context.log("scrapings-function: END");
   }
-  await dbServer.disconnect();
 }
 
 app.timer("scrapings-function", {
