@@ -62,28 +62,3 @@ jobs:
           publish-profile: ${{ secrets.AZURE_FRONT_PUBLISH_PROFILE }}
           images: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_SHA_TAG }}
           restart: true
-
-      # Warm-up: force ISR regeneration so first real user gets data
-      - name: Warm-up (force ISR regeneration)
-        env:
-          SITE_URL: https://info-embalse-front-prod-ecguababcfdsepga.westeurope-01.azurewebsites.net
-          REVALIDATION_SECRET: ${{ secrets.REVALIDATION_SECRET }}
-        run: |
-          echo "Waiting for App Service to start..."
-          for i in $(seq 1 10); do
-            STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$SITE_URL/" || true)
-            echo "  Attempt $i: HTTP $STATUS"
-            if [ "$STATUS" = "200" ]; then break; fi
-            sleep 10
-          done
-          echo "Triggering on-demand revalidation..."
-          REVAL_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$SITE_URL/api/revalidate?secret=$REVALIDATION_SECRET")
-          echo "  Revalidation response: HTTP $REVAL_STATUS"
-          echo "First request (triggers background regeneration)..."
-          curl -s -o /dev/null "$SITE_URL/"
-          echo "Waiting for background regeneration to complete..."
-          sleep 5
-          echo "Second request (should get fresh data)..."
-          HOME_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$SITE_URL/")
-          echo "  Home response: HTTP $HOME_STATUS"
-          echo "Warm-up complete"
