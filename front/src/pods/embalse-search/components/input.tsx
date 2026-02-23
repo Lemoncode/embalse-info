@@ -16,7 +16,7 @@ export const Input: React.FC<Props> = (props) => {
     >
       <input
         {...getInputProps({
-          placeholder: "La tolba",
+          placeholder: "Viñuela",
           className: "grow",
           id: "embalse-search",
           "aria-label": "Buscar embalse por nombre o provincia",
