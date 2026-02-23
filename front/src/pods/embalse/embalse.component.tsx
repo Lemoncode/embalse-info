@@ -16,8 +16,8 @@ interface Props {
 export const Embalse: React.FC<Props> = (props) => {
   const { reservoirData } = props;
   return (
-    <div className="flex flex-col gap-8 self-center p-8 md:max-w-[900px] md:flex-row md:flex-wrap md:gap-6">
-      <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl shadow-lg md:order-1 md:w-[calc(50%-12px)]">
+    <div className="flex flex-col gap-6 self-center pt-6 pr-4 pb-6 pl-4 md:max-w-[900px] md:flex-row md:flex-wrap md:gap-8 md:p-8">
+      <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl shadow-lg md:order-1 md:w-[calc(50%-16px)]">
         <ReservoirCardGauge
           name={reservoirData.nombre}
           reservoirData={reservoirData}
@@ -27,7 +27,7 @@ export const Embalse: React.FC<Props> = (props) => {
       <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4 shadow-lg md:order-3 md:max-w-[900px]">
         <ReservoirCardInfo reservoirInfo={reservoirData.reservoirInfo} />
       </div>
-      <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4 shadow-lg md:order-2 md:w-[calc(50%-12px)]">
+      <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4 shadow-lg md:order-2 md:w-[calc(50%-16px)]">
         <ReservoirCardDetail datosEmbalse={reservoirData.datosEmbalse} />
       </div>
     </div>
