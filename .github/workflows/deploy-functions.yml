@@ -58,7 +58,7 @@ jobs:
           cp -R integrations/scraping-cuenca-cantabrico deploy/integrations/scraping-cuenca-cantabrico
           cp -R integrations/scraping-cuenca-catalana deploy/integrations/scraping-cuenca-catalana
           cp -R integrations/scraping-cuenca-duero deploy/integrations/scraping-cuenca-duero
-          cp -R integrations/scraping-cuenca-guadalquivir deploy/integrations/scraping-cuenca-guadalquivir
+
           cp -R integrations/scraping-cuenca-jucar deploy/integrations/scraping-cuenca-jucar
 
           # Strip devDependencies and rewrite workspace refs to file: paths
@@ -82,7 +82,7 @@ jobs:
               'scraping-cuenca-cantabrico': 'file:../../integrations/scraping-cuenca-cantabrico',
               'scraping-cuenca-catalana': 'file:../../integrations/scraping-cuenca-catalana',
               'scraping-cuenca-duero': 'file:../../integrations/scraping-cuenca-duero',
-              'scraping-cuenca-guadalquivir': 'file:../../integrations/scraping-cuenca-guadalquivir',
+
               'scraping-cuenca-jucar': 'file:../../integrations/scraping-cuenca-jucar'
             });
 
@@ -108,11 +108,6 @@ jobs:
 
             // scraping-cuenca-duero: point db-model to file: path
             patchPkg('deploy/integrations/scraping-cuenca-duero/package.json', {
-              'db-model': 'file:../../packages/db-model'
-            });
-
-            // scraping-cuenca-guadalquivir: point db-model to file: path
-            patchPkg('deploy/integrations/scraping-cuenca-guadalquivir/package.json', {
               'db-model': 'file:../../packages/db-model'
             });
 
