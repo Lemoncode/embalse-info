@@ -13,7 +13,8 @@ COPY packages/db-model/package.json ./packages/db-model/package.json
 
 # 2) Install all dependencies for the monorepo (npm workspaces)
 #    We need dev deps here because Next build typically requires them.
-RUN npm ci
+#    --ignore-scripts: skip postinstall (env vars come from the cloud provider)
+RUN npm ci --ignore-scripts
 
 # 3) Now copy the full source code
 COPY . .
