@@ -1,5 +1,5 @@
 import { EmbalseUpdateSAIHEntity } from 'db-model';
-import { EmbalsesSegura } from '@/api';
+import { EmbalsesSegura } from '../api/index.js';
 
 // Province lookup for each reservoir
 const reservoirProvince: Record<string, string> = {

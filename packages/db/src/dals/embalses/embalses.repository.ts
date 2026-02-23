@@ -1,12 +1,13 @@
 import { scrapeSeedEmbalses } from "arcgis";
 import { getEmbalsesContext } from "./embalses.context.js";
-import { mapperFromCuencasMediterraneaToArcgis, mapperFromCuencasCantabricoToArcgis, mapperFromCuencasCatalanaToArcgis, mapperFromCuencasDueroToArcgis, mapperFromCuencasGuadalquivirToArcgis, mapperFromCuencasJucarToArcgis } from "./embalses.mappers.js";
+import { mapperFromCuencasMediterraneaToArcgis, mapperFromCuencasCantabricoToArcgis, mapperFromCuencasCatalanaToArcgis, mapperFromCuencasDueroToArcgis, mapperFromCuencasGuadalquivirToArcgis, mapperFromCuencasJucarToArcgis, mapperFromCuencasSeguraToArcgis } from "./embalses.mappers.js";
 import { scrapeCuencaMediterranea } from "scraping-cuenca-mediterranea";
 import { scrapeCuencaCantabrica } from 'scraping-cuenca-cantabrico';
 import { integracionCuencaCatalana } from 'scraping-cuenca-catalana';
 import { getEstadoCuencaDuero } from 'scraping-cuenca-duero';
 import { scrapeCuencaGuadalquivir } from 'scraping-cuenca-guadalquivir';
 import { scrapeCuencaJucar } from 'scraping-cuenca-jucar';
+import { scrapeCuencaSegura } from 'scraping-cuenca-segura';
 import { parseDate } from "./embalses.helpers.js";
 
 export const embalsesRepository = {
@@ -303,6 +304,55 @@ export const embalsesRepository = {
 
     for (const embalse of embalsesJucar) {
       const infoDestino = mapperFromCuencasJucarToArcgis.get(embalse.id);
+
+      if (!infoDestino) {
+        sinMapper++;
+        console.warn(`Sin mapper para ID ${embalse.id} - ${embalse.nombre}`);
+        continue;
+      }
+
+      console.log(
+        `🔍 Mapeando: ID scraping ${embalse.id} -> _id BD ${infoDestino.idArcgis} (${infoDestino.nombre})`
+      );
+
+      const { matchedCount } = await getEmbalsesContext().updateOne(
+        { _id: infoDestino.idArcgis.toString() },
+        {
+          $set: {
+            aguaActualSAIH: embalse.aguaActualSAIH,
+            fechaMedidaAguaActualSAIH: parseDate(embalse.fechaMedidaSAIH),
+          },
+        }
+      );
+
+      if (matchedCount > 0) {
+        actualizados++;
+        console.log(
+          `Actualizado: ${infoDestino.nombre} (_id: ${infoDestino.idArcgis}) -> ${embalse.aguaActualSAIH} hm³`
+        );
+      } else {
+        noEncontrados++;
+        console.warn(
+          `No encontrado en BD: _id ${infoDestino.idArcgis} - ${infoDestino.nombre}`
+        );
+      }
+    }
+
+    return actualizados > 0;
+  },
+  actualizarCuencaSegura: async (): Promise<boolean> => {
+    const embalsesSegura = await scrapeCuencaSegura();
+
+    console.log(
+      `Se han scrapeado ${embalsesSegura.length} embalses de la Cuenca Segura`
+    );
+
+    let actualizados = 0;
+    let noEncontrados = 0;
+    let sinMapper = 0;
+
+    for (const embalse of embalsesSegura) {
+      const infoDestino = mapperFromCuencasSeguraToArcgis.get(embalse.id);
 
       if (!infoDestino) {
         sinMapper++;

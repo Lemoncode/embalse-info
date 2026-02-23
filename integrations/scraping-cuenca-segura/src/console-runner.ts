@@ -1,8 +1,7 @@
-import { scrapeCuencaSegura } from './integration';
-import { mapToEmbalseUpdateSAIH } from './scraper';
+import { scrapeCuencaSegura } from './integration.js';
+import { mapToEmbalseUpdateSAIH } from './scraper/index.js';
 
-const URL = 'https://chsegura.es/es/cuenca/redes-de-control/estadisticas-hidrologicas/estado-de-embalses/';
+
 console.log('Estado de la Cuenca Segura:');
-const scrapedCuencaSegura = await scrapeCuencaSegura(URL);
-const result = mapToEmbalseUpdateSAIH(scrapedCuencaSegura)
-console.log(result);
+const scrapedCuencaSegura = await scrapeCuencaSegura();
+console.log(scrapedCuencaSegura);
