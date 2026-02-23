@@ -45,7 +45,6 @@ ENV PORT=3000
 # - public assets in /public
 COPY --from=builder /app/front/.next/standalone ./
 COPY --from=builder /app/front/.next/static ./front/.next/static
-COPY --from=builder /app/front/.next/cache ./front/.next/cache
 COPY --from=builder /app/front/public ./front/public
 
 EXPOSE 3000
