@@ -77,7 +77,10 @@ jobs:
             sleep 10
           done
           echo "Triggering on-demand revalidation..."
-          curl -s "$SITE_URL/api/revalidate?secret=$REVALIDATION_SECRET"
+          REVAL_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$SITE_URL/api/revalidate?secret=$REVALIDATION_SECRET")
+          echo "  Revalidation response: HTTP $REVAL_STATUS"
           sleep 2
-          curl -s -o /dev/null "$SITE_URL/"
+          echo "Requesting home page to trigger regeneration..."
+          HOME_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$SITE_URL/")
+          echo "  Home response: HTTP $HOME_STATUS"
           echo "Warm-up complete"
