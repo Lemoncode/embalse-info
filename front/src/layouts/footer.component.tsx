@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FC } from "react";
+import { CookiesResetButton } from "../common/cookies";
 
 export const FooterComponent: FC = () => {
   return (
@@ -13,7 +14,7 @@ export const FooterComponent: FC = () => {
             Embalses por provincias
           </Link>
 
-          <div className="flex justify-between gap-2">
+          <div className="flex flex-wrap justify-center gap-x-3 gap-y-1">
             <Link
               href="/aviso-legal"
               className="link-accessible text-sm font-normal"
@@ -26,6 +27,7 @@ export const FooterComponent: FC = () => {
             >
               Política de cookies
             </Link>
+            <CookiesResetButton />
           </div>
         </div>
 
