@@ -55,6 +55,11 @@ jobs:
           cp -R packages/db-model deploy/packages/db-model
           cp -R integrations/arcgis deploy/integrations/arcgis
           cp -R integrations/scraping-cuenca-mediterranea deploy/integrations/scraping-cuenca-mediterranea
+          cp -R integrations/scraping-cuenca-cantabrico deploy/integrations/scraping-cuenca-cantabrico
+          cp -R integrations/scraping-cuenca-catalana deploy/integrations/scraping-cuenca-catalana
+          cp -R integrations/scraping-cuenca-duero deploy/integrations/scraping-cuenca-duero
+          cp -R integrations/scraping-cuenca-guadalquivir deploy/integrations/scraping-cuenca-guadalquivir
+          cp -R integrations/scraping-cuenca-jucar deploy/integrations/scraping-cuenca-jucar
 
           # Strip devDependencies and rewrite workspace refs to file: paths
           node -e "
@@ -73,7 +78,12 @@ jobs:
             patchPkg('deploy/packages/db/package.json', {
               'arcgis': 'file:../../integrations/arcgis',
               'db-model': 'file:../db-model',
-              'scraping-cuenca-mediterranea': 'file:../../integrations/scraping-cuenca-mediterranea'
+              'scraping-cuenca-mediterranea': 'file:../../integrations/scraping-cuenca-mediterranea',
+              'scraping-cuenca-cantabrico': 'file:../../integrations/scraping-cuenca-cantabrico',
+              'scraping-cuenca-catalana': 'file:../../integrations/scraping-cuenca-catalana',
+              'scraping-cuenca-duero': 'file:../../integrations/scraping-cuenca-duero',
+              'scraping-cuenca-guadalquivir': 'file:../../integrations/scraping-cuenca-guadalquivir',
+              'scraping-cuenca-jucar': 'file:../../integrations/scraping-cuenca-jucar'
             });
 
             // arcgis: point db-model to file: path
@@ -83,6 +93,31 @@ jobs:
 
             // scraping-cuenca-mediterranea: point db-model to file: path
             patchPkg('deploy/integrations/scraping-cuenca-mediterranea/package.json', {
+              'db-model': 'file:../../packages/db-model'
+            });
+
+            // scraping-cuenca-cantabrico: point db-model to file: path
+            patchPkg('deploy/integrations/scraping-cuenca-cantabrico/package.json', {
+              'db-model': 'file:../../packages/db-model'
+            });
+
+            // scraping-cuenca-catalana: point db-model to file: path
+            patchPkg('deploy/integrations/scraping-cuenca-catalana/package.json', {
+              'db-model': 'file:../../packages/db-model'
+            });
+
+            // scraping-cuenca-duero: point db-model to file: path
+            patchPkg('deploy/integrations/scraping-cuenca-duero/package.json', {
+              'db-model': 'file:../../packages/db-model'
+            });
+
+            // scraping-cuenca-guadalquivir: point db-model to file: path
+            patchPkg('deploy/integrations/scraping-cuenca-guadalquivir/package.json', {
+              'db-model': 'file:../../packages/db-model'
+            });
+
+            // scraping-cuenca-jucar: point db-model to file: path
+            patchPkg('deploy/integrations/scraping-cuenca-jucar/package.json', {
               'db-model': 'file:../../packages/db-model'
             });
 
