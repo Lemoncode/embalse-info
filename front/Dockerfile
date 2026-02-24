@@ -22,8 +22,11 @@ COPY . .
 #    hijacking yarn calls that Next.js SWC patching makes internally.
 #    Then rebuild native modules (e.g. @tailwindcss/oxide) that were
 #    skipped by --ignore-scripts above.
+#    Finally, install the musl binary for tailwindcss/oxide
+#    (the lock file only has darwin-arm64, not linux-x64-musl).
 RUN node -e "const p='package.json',j=JSON.parse(require('fs').readFileSync(p));delete j.packageManager;require('fs').writeFileSync(p,JSON.stringify(j,null,2))" \
-    && npm rebuild
+    && npm rebuild \
+    && cd front && npm install @tailwindcss/oxide-linux-x64-musl --no-save
 
 # 5) Build the internal dependency used by the front (db-model)
 RUN npm run -w db-model build --if-present
