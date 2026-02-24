@@ -1,17 +1,20 @@
 import { PROVINCIAS } from "@/core/constants";
 import { EmbalseProvinciaPod } from "@/pods/embalse-provincia";
+import { mapEmbalseListFromApiToLookup } from "@/pods/embalse-provincia/embalse-provincia.mapper";
+import { getEmbalsesByProvince } from "@/pods/embalse-provincia/embalse-provincia.repository";
 import { Metadata } from "next";
 
 interface Props {
   params: Promise<{ provincia: string }>;
 }
 
+const getNombreProvincia = (id: string): string =>
+  PROVINCIAS.find((p) => p.id === id)?.name ?? "Provincia";
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { provincia } = await params;
 
-  const nombreProvincia = PROVINCIAS.find(
-    (province) => province.id === provincia,
-  )?.name;
+  const nombreProvincia = getNombreProvincia(provincia);
 
   return {
     title: `Embalses de ${nombreProvincia}`,
@@ -21,24 +24,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function EmbalseProvinciaListadoPage({ params }: Props) {
   const { provincia } = await params;
 
-  const nombreProvincia = PROVINCIAS.find(
-    (province) => province.id === provincia,
-  )?.name;
+  const nombreProvincia = getNombreProvincia(provincia);
+  const embalsesByProvinceFromApi =
+    await getEmbalsesByProvince(nombreProvincia);
 
-  // TODO: Reemplazar con datos reales obtenidos de la API
-  const reservoirs = [
-    { id: "ullibarri-gamboa", name: "Ullibarri-Gamboa" },
-    { id: "zadorra", name: "Zadorra" },
-    { id: "urrúnaga", name: "Urrunaga" },
-    { id: "maroño", name: "Maroño" },
-    { id: "albina", name: "Albina" },
-    { id: "santa-engracia", name: "Santa Engracia" },
-  ];
+  const embalsesByProvinceLookup = mapEmbalseListFromApiToLookup(
+    embalsesByProvinceFromApi,
+  );
 
   return (
     <EmbalseProvinciaPod
       nombreProvincia={nombreProvincia}
-      embalses={reservoirs}
+      embalses={embalsesByProvinceLookup}
     />
   );
 }

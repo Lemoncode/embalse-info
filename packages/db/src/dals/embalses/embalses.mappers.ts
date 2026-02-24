@@ -200,3 +200,17 @@ export const mapperFromCuencasJucarToArcgis = new Map<
   [332, { nombre: "Guadalest", idArcgis: 153 }],
   [331, { nombre: "Amadorio", idArcgis: 23 }],
 ]);
+
+// Ojo Crevillente, Fuensanta, La Cierva, Puentes, Santomera, Taibilla, Valdeinfierno, Algeciras,
+// Alfonso XIII, Anchuricas, Argos
+
+export const mapperFromCuencasSeguraToArcgis = new Map<
+  number,
+  InfoDestinoArcgis
+>([
+  [1, { nombre: "Fuensanta", idArcgis: 143 }],
+  [2, { nombre: "Talave", idArcgis: 304 }],
+  [3, { nombre: "Cenajo", idArcgis: 94 }],
+  [4, { nombre: "Camarillas", idArcgis: 72 }],
+  [5, { nombre: "La Pedrera", idArcgis: 180 }],
+]);

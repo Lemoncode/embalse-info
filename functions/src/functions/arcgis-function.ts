@@ -33,8 +33,6 @@ export async function arcgisFunction(
     context.error("arcgis-function: ERROR", error);
     throw error;
   } finally {
-    context.log("arcgis-function: disconnecting from database...");
-    await dbServer.disconnect();
     context.log("arcgis-function: END");
   }
 }

@@ -29,9 +29,12 @@ export async function scrapingsFunction(
 
     const responseCuencaDuero = await embalsesRepository.actualizarCuencaDuero();
 
-    const responseCuencaGuadalquivir = await embalsesRepository.actualizarCuencaGuadalquivir();
+    // TODO: Guadalquivir disabled — requires playwright (not available in Azure Functions)
+    // const responseCuencaGuadalquivir = await embalsesRepository.actualizarCuencaGuadalquivir();
 
     const responseCuencaJucar = await embalsesRepository.actualizarCuencaJucar();
+
+    const responseCuencaSegura = await embalsesRepository.actualizarCuencaSegura();
 
     if (responseCuencaMediterranea) {
       context.log(
@@ -66,12 +69,12 @@ export async function scrapingsFunction(
         "No se han podido actualizar los embalses de la cuenca Duero")
     }
 
-    if (responseCuencaGuadalquivir) {
-      context.log(`Se han actualizado los embalses de la cuenca Guadalquivir`);
-    } else {
-      context.log(
-        "No se han podido actualizar los embalses de la cuenca Guadalquivir")
-    }
+    // if (responseCuencaGuadalquivir) {
+    //   context.log(`Se han actualizado los embalses de la cuenca Guadalquivir`);
+    // } else {
+    //   context.log(
+    //     "No se han podido actualizar los embalses de la cuenca Guadalquivir")
+    // }
 
     if (responseCuencaJucar) {
       context.log(`Se han actualizado los embalses de la cuenca Jucar`);
@@ -81,15 +84,20 @@ export async function scrapingsFunction(
       );
     }
 
+    if (responseCuencaSegura) {
+      context.log(`Se han actualizado los embalses de la cuenca Segura`);
+    } else {
+      context.log(
+        "No se han podido actualizar los embalses de la cuenca Segura"
+      );
+    }
+
   } catch (error) {
     context.error("scrapings-function: ERROR", error);
     throw error;
   } finally {
-    context.log("scrapings-function: disconnecting from database...");
-    await dbServer.disconnect();
     context.log("scrapings-function: END");
   }
-  await dbServer.disconnect();
 }
 
 app.timer("scrapings-function", {

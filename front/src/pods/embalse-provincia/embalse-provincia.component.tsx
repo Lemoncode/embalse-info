@@ -12,7 +12,11 @@ export const EmbalseProvincia: React.FC<Props> = (props) => {
   const { nombreProvincia, embalses } = props;
   return (
     <Card>
-      <h2>Embalses de {nombreProvincia}</h2>
+      {embalses.length === 0 ? (
+        <h2>No se encontraron embalses para {nombreProvincia}</h2>
+      ) : (
+        <h2>Embalses de {nombreProvincia}</h2>
+      )}
 
       {embalses.map(({ id, name }) => (
         <Link key={id} href={`/embalse/${id}`} className="link-accessible">
