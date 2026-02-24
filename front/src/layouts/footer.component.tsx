@@ -7,12 +7,20 @@ export const FooterComponent: FC = () => {
     <footer className="bg-base-100">
       <div className="border-accent flex flex-col items-center gap-2 border-t-2 p-3">
         <div className="flex flex-col items-center gap-2 pb-2.5">
-          <Link
-            href="/embalse-provincia"
-            className="link-accessible text-[15px] leading-none font-normal"
-          >
-            Embalses por provincias
-          </Link>
+          <div className="flex flex-wrap justify-center gap-x-3 gap-y-1">
+            <Link
+              href="/embalse-provincia"
+              className="link-accessible text-[15px] leading-none font-normal"
+            >
+              Embalses por provincias
+            </Link>
+            <Link
+              href="/equipo"
+              className="link-accessible text-[15px] leading-none font-normal"
+            >
+              Equipo
+            </Link>
+          </div>
 
           <div className="flex flex-wrap justify-center gap-x-3 gap-y-1">
             <Link
