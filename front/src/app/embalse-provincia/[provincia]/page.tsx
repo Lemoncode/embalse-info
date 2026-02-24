@@ -8,7 +8,7 @@ interface Props {
   params: Promise<{ provincia: string }>;
 }
 
-const getNombreProvincia = (id: string): string => 
+const getNombreProvincia = (id: string): string =>
   PROVINCIAS.find((p) => p.id === id)?.name ?? "Provincia";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -25,11 +25,12 @@ export default async function EmbalseProvinciaListadoPage({ params }: Props) {
   const { provincia } = await params;
 
   const nombreProvincia = getNombreProvincia(provincia);
+  const embalsesByProvinceFromApi =
+    await getEmbalsesByProvince(nombreProvincia);
 
-  const embalsesByProvinceFromApi = await getEmbalsesByProvince(provincia);
-
-  const embalsesByProvinceLookup = mapEmbalseListFromApiToLookup(embalsesByProvinceFromApi);
-  console.log('embalsesLookup:', embalsesByProvinceLookup);
+  const embalsesByProvinceLookup = mapEmbalseListFromApiToLookup(
+    embalsesByProvinceFromApi,
+  );
 
   return (
     <EmbalseProvinciaPod
