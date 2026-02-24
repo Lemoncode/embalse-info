@@ -12,19 +12,20 @@ COPY front/package.json ./front/package.json
 COPY packages/db-model/package.json ./packages/db-model/package.json
 
 # 2) Install all dependencies for the monorepo (npm workspaces)
-#    We need dev deps here because Next build typically requires them.
-RUN npm ci
+#    --ignore-scripts: postinstall scripts can't run yet (source not copied)
+RUN npm ci --ignore-scripts
 
 # 3) Now copy the full source code
 COPY . .
 
 # 4) Remove packageManager field to prevent Corepack (Node 22) from
 #    hijacking yarn calls that Next.js SWC patching makes internally.
-#    Must run AFTER "COPY . ." which overwrites the earlier package.json.
-RUN node -e "const p='package.json',j=JSON.parse(require('fs').readFileSync(p));delete j.packageManager;require('fs').writeFileSync(p,JSON.stringify(j,null,2))"
+#    Then rebuild native modules (e.g. @tailwindcss/oxide) that were
+#    skipped by --ignore-scripts above.
+RUN node -e "const p='package.json',j=JSON.parse(require('fs').readFileSync(p));delete j.packageManager;require('fs').writeFileSync(p,JSON.stringify(j,null,2))" \
+    && npm rebuild
 
 # 5) Build the internal dependency used by the front (db-model)
-#    If your workspace name differs, adjust "-w db-model"
 RUN npm run -w db-model build --if-present
 
 # 6) Build Next.js (standalone output will be generated)
