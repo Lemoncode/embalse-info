@@ -28,10 +28,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Build all workspace packages first (db, db-model, arcgis, etc.)
-      # This ensures all internal dependencies generate their dist and type declarations
-      - name: Build all internal packages
-        run: npm run build
+      # Build only the packages needed by Azure Functions (avoids building front/Next.js
+      # which fails under Corepack/Node 22 due to SWC + packageManager conflict)
+      - name: Build internal packages for functions
+        run: |
+          npm run -w db-model build
+          npm run -w arcgis build --if-present
+          npm run -w scraping-cuenca-mediterranea build --if-present
+          npm run -w scraping-cuenca-cantabrico build --if-present
+          npm run -w scraping-cuenca-catalana build --if-present
+          npm run -w scraping-cuenca-duero build --if-present
+          npm run -w scraping-cuenca-jucar build --if-present
+          npm run -w scraping-cuenca-segura build --if-present
+          npm run -w @embalse-info/db build --if-present
 
       # Build ONLY the functions workspace (TypeScript -> dist/)
       # This runs clean + type-check + build
@@ -60,6 +69,7 @@ jobs:
           cp -R integrations/scraping-cuenca-duero deploy/integrations/scraping-cuenca-duero
 
           cp -R integrations/scraping-cuenca-jucar deploy/integrations/scraping-cuenca-jucar
+          cp -R integrations/scraping-cuenca-segura deploy/integrations/scraping-cuenca-segura
 
           # Strip devDependencies and rewrite workspace refs to file: paths
           node -e "
@@ -83,7 +93,8 @@ jobs:
               'scraping-cuenca-catalana': 'file:../../integrations/scraping-cuenca-catalana',
               'scraping-cuenca-duero': 'file:../../integrations/scraping-cuenca-duero',
 
-              'scraping-cuenca-jucar': 'file:../../integrations/scraping-cuenca-jucar'
+              'scraping-cuenca-jucar': 'file:../../integrations/scraping-cuenca-jucar',
+              'scraping-cuenca-segura': 'file:../../integrations/scraping-cuenca-segura'
             });
 
             // arcgis: point db-model to file: path
@@ -113,6 +124,11 @@ jobs:
 
             // scraping-cuenca-jucar: point db-model to file: path
             patchPkg('deploy/integrations/scraping-cuenca-jucar/package.json', {
+              'db-model': 'file:../../packages/db-model'
+            });
+
+            // scraping-cuenca-segura: point db-model to file: path
+            patchPkg('deploy/integrations/scraping-cuenca-segura/package.json', {
               'db-model': 'file:../../packages/db-model'
             });
 
