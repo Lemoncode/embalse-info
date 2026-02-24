@@ -25,16 +25,15 @@
     "arcgis": "*",
     "db-model": "*",
     "mongodb": "^6.19.0",
+    "scraping-cuenca-cantabrico": "*",
+    "scraping-cuenca-catalana": "*",
+    "scraping-cuenca-duero": "*",
+
+    "scraping-cuenca-jucar": "*",
     "scraping-cuenca-mediterranea": "*"
   },
   "devDependencies": {
     "@types/prompts": "^2.4.9",
-    "prompts": "^2.4.2",
-    "scraping-cuenca-mediterranea": "*",
-    "scraping-cuenca-cantabrico": "*",
-    "scraping-cuenca-catalana": "*",
-    "scraping-cuenca-duero": "*",
-    "scraping-cuenca-guadalquivir": "*",
-    "scraping-cuenca-jucar": "*"
+    "prompts": "^2.4.2"
   }
 }

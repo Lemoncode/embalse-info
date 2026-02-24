@@ -1,12 +1,5 @@
 import { MongoClient, type Db } from "mongodb";
 
-//lee la URL de MongoDB de las variables de entorno
-const connectionString = process.env.MONGODB_CONNECTION_STRING;
-if (!connectionString) {
-    throw new Error(
-        "Please define the MONGODB_CONNECTION_STRING environment variable in .env.local"
-    );
-}
 //hack de TypeScript para tipar globalThis con nuestra propiedad custom _mongoClient
 const globalForMongo = globalThis as typeof globalThis & {
     _mongoClient?: MongoClient;
@@ -14,8 +7,15 @@ const globalForMongo = globalThis as typeof globalThis & {
 
 //crea el cliente solo si no existe ya (singleton)
 async function  getClient(): Promise<MongoClient> {
+    const connectionString = process.env.MONGODB_CONNECTION_STRING;
+    if (!connectionString) {
+        throw new Error(
+            "Please define the MONGODB_CONNECTION_STRING environment variable in .env.local"
+        );
+    }
+
     if (!globalForMongo._mongoClient) {
-        console.log("[mongodb] Connecting to MongoDB...", connectionString?.replace(/\/\/.*@/, "//***@"));
+        console.log("[mongodb] Connecting to MongoDB...", connectionString.replace(/\/\/.*@/, "//***@"));
         globalForMongo._mongoClient = new MongoClient(connectionString);
         await globalForMongo._mongoClient.connect();
         console.log("[mongodb] Connected successfully");

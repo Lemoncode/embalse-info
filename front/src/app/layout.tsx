@@ -1,6 +1,7 @@
 import React from "react";
 import "./globals.css";
 import { FooterComponent, HeaderComponent } from "../layouts";
+import { CookiesConsentProvider, CookiesBanner } from "../common/cookies";
 
 interface Props {
   children: React.ReactNode;
@@ -14,9 +15,12 @@ const RootLayout = (props: Props) => {
         className="bg-base-200 text-base-content flex min-h-screen flex-col"
         suppressHydrationWarning
       >
-        <HeaderComponent />
-        <main className="flex grow flex-col">{children}</main>
-        <FooterComponent />
+        <CookiesConsentProvider>
+          <HeaderComponent />
+          <main className="flex grow flex-col">{children}</main>
+          <FooterComponent />
+          <CookiesBanner />
+        </CookiesConsentProvider>
       </body>
     </html>
   );
