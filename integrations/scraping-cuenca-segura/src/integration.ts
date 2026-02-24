@@ -10,8 +10,7 @@ const URL = 'https://chsegura.es/es/cuenca/redes-de-control/estadisticas-hidrolo
  * Scrapes Segura reservoir data and returns it as an array.
  * @param url - The URL to scrape the data from
  */
-export async function scrapeCuencaSegura(
-): Promise<EmbalseUpdateSAIHEntity[]> {
+export async function scrapeCuencaSegura(): Promise<EmbalseUpdateSAIHEntity[]> {
 
 
   const html = await getCuencaPageHTMLContent(URL);
