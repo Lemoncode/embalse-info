@@ -28,9 +28,9 @@
     "scraping-cuenca-cantabrico": "*",
     "scraping-cuenca-catalana": "*",
     "scraping-cuenca-duero": "*",
-
     "scraping-cuenca-jucar": "*",
-    "scraping-cuenca-mediterranea": "*"
+    "scraping-cuenca-mediterranea": "*",
+    "scraping-cuenca-segura": "*"
   },
   "devDependencies": {
     "@types/prompts": "^2.4.9",
