@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { EquipoPod } from "@/pods/equipo";
 
 export const metadata: Metadata = {
   title: "Equipo - InfoEmbalses",
@@ -11,6 +12,7 @@ const EquipoPage = () => {
         <img src="/images/logo.svg" alt="InfoEmbalses logo" className="w-64" />
         <p className="text-xl font-semibold">InfoEmbalses Versión Beta</p>
         <h1 className="text-3xl font-bold">Equipo de desarrollo</h1>
+        <EquipoPod />
       </div>
     </div>
   );
