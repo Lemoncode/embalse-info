@@ -12,18 +12,26 @@ COPY front/package.json ./front/package.json
 COPY packages/db-model/package.json ./packages/db-model/package.json
 
 # 2) Install all dependencies for the monorepo (npm workspaces)
-#    We need dev deps here because Next build typically requires them.
-#    --ignore-scripts: skip postinstall (env vars come from the cloud provider)
+#    --ignore-scripts: postinstall scripts can't run yet (source not copied)
 RUN npm ci --ignore-scripts
 
 # 3) Now copy the full source code
 COPY . .
 
-# 4) Build the internal dependency used by the front (db-model)
-#    If your workspace name differs, adjust "-w db-model"
+# 4) Remove packageManager field to prevent Corepack (Node 22) from
+#    hijacking yarn calls that Next.js SWC patching makes internally.
+#    Then rebuild native modules (e.g. @tailwindcss/oxide) that were
+#    skipped by --ignore-scripts above.
+#    Finally, install the musl binary for tailwindcss/oxide
+#    (the lock file only has darwin-arm64, not linux-x64-musl).
+RUN node -e "const p='package.json',j=JSON.parse(require('fs').readFileSync(p));delete j.packageManager;require('fs').writeFileSync(p,JSON.stringify(j,null,2))" \
+    && npm rebuild \
+    && cd front && npm install @tailwindcss/oxide-linux-x64-musl --no-save
+
+# 5) Build the internal dependency used by the front (db-model)
 RUN npm run -w db-model build --if-present
 
-# 5) Build Next.js (standalone output will be generated)
+# 6) Build Next.js (standalone output will be generated)
 RUN npm run -w front build
 
 

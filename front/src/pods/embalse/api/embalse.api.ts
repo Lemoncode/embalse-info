@@ -10,15 +10,25 @@ import { contentIslandClient } from "@/lib";
 export const getReservoirInfoBySlugCached = unstable_cache(
   async (slug: string): Promise<ReservoirInfo | null> => {
     try {
-      return await contentIslandClient.getContent<ReservoirInfo>({
+      const result = await contentIslandClient.getContent<ReservoirInfo>({
         language: "es",
         "fields.slug": slug,
       });
+
+      if (!result) {
+        console.warn(`Empty reservoir info for slug: ${slug}`);
+        return null;
+      }
+
+      return result;
     } catch (error) {
-      console.warn(`Warning reservoir info for slug not available: ${slug}`);
+      console.warn(
+        `Warning reservoir info for slug not available: ${slug}`,
+        error
+      );
       return null;
     }
   },
   ["reservoir-by-slug"],
-  { revalidate: 60 }, // Check timing at least 1 hour
+  { revalidate: 60 }
 );
