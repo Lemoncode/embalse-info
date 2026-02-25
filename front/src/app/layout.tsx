@@ -1,7 +1,11 @@
 import React from "react";
 import "./globals.css";
 import { FooterComponent, HeaderComponent } from "../layouts";
-import { CookiesConsentProvider, CookiesBanner } from "../common/cookies";
+import {
+  CookiesConsentProvider,
+  CookiesBanner,
+  GoogleAnalytics,
+} from "../common/cookies";
 
 interface Props {
   children: React.ReactNode;
@@ -20,6 +24,7 @@ const RootLayout = (props: Props) => {
           <main className="flex grow flex-col">{children}</main>
           <FooterComponent />
           <CookiesBanner />
+          <GoogleAnalytics />
         </CookiesConsentProvider>
       </body>
     </html>
