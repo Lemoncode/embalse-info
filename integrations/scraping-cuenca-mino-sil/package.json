@@ -7,7 +7,11 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "start": "tsx --watch src/console-runner.ts"
+    "start": "tsx --watch src/console-runner.ts",
+    "build": "run-p clean type-check build:scraping-cuenca-mino-sil",
+    "build:scraping-cuenca-mino-sil": "tsc",
+    "clean": "rimraf dist",
+    "type-check": "tsc --noEmit --preserveWatchOutput"
   },
   "dependencies": {
     "axios": "^1.7.0",
