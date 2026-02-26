@@ -9,6 +9,5 @@ export async function scrapeCuencaMinioSil(): Promise<EmbalseUpdateSAIHEntity[]>
   const $: cheerio.CheerioAPI = cheerio.load(html);
   const rawEmbalses = extractProvinceTables($);
 
-  console.log("Embalses extraídos:", rawEmbalses);
   return mapToEmbalseUpdateSAIH(rawEmbalses);
 }

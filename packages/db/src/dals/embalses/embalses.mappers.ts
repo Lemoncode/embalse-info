@@ -214,3 +214,39 @@ export const mapperFromCuencasSeguraToArcgis = new Map<
   [4, { nombre: "Camarillas", idArcgis: 72 }],
   [5, { nombre: "La Pedrera", idArcgis: 180 }],
 ]);
+
+// Ojo AZUFRE, MONTEARENAS, GUISTOLAS
+
+export const mapperFromCuencasMinoSilToArcgis = new Map<
+  number,
+  InfoDestinoArcgis
+>([
+  [3, { nombre: "LAS ROZA", idArcgis: 262 }],
+  [5, { nombre: "MATALAVILLA", idArcgis: 198 }],
+  [7, { nombre: "BÁRCENA", idArcgis: 67 }],
+  [1, { nombre: "BELESAR", idArcgis: 45 }],
+  [2, { nombre: "OS PEARES", idArcgis: 221 }],
+  [13, { nombre: "SAN MARTIÑO", idArcgis: 278 }],
+  [23, { nombre: "MONTEFURADO", idArcgis: 205 }],
+  [27, { nombre: "SANTO ESTEVO", idArcgis: 275 }],
+  [28, { nombre: "VILASOUTO", idArcgis: 339 }],
+  [16, { nombre: "AS PORTAS", idArcgis: 234 }],
+  [18, { nombre: "BAO", idArcgis: 37 }],
+  [19, { nombre: "PRADA", idArcgis: 238 }],
+  [30, { nombre: "VELLE", idArcgis: 335 }],
+  [31, { nombre: "CASTRELO", idArcgis: 85 }],
+  [32, { nombre: "ALBARELLOS", idArcgis: 10 }],
+  [33, { nombre: "FRIEIRA", idArcgis: 142 }],
+  [35, { nombre: "AS CONCHAS", idArcgis: 107 }],
+  [36, { nombre: "SALAS", idArcgis: 269 }],
+  [39, { nombre: "LA CAMPAÑANA", idArcgis: 73 }],
+  [40, { nombre: "PEÑARRUBIA", idArcgis: 226 }],
+  [66, { nombre: "SEQUEIROS", idArcgis: 292 }],
+  [70, { nombre: "SAN PEDRO", idArcgis: 279 }],
+  [74, { nombre: "SAN SEBASTIÁN", idArcgis: 281 }],
+  [76, { nombre: "PÍAS", idArcgis: 246 }],
+  [77, { nombre: "CENZA", idArcgis: 95 }],
+  [82, { nombre: "SANTA EULALIA", idArcgis: 285 }],
+  [89, { nombre: "CHANDREXA", idArcgis: 99 }],
+  [97, { nombre: "EDRADA", idArcgis: 124 }],
+])

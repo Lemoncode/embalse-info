@@ -16,7 +16,7 @@ export function extractProvinceTables(
   $: cheerio.CheerioAPI
 ): EmbalsesMinoSil[] {
 
-  const embalses: EmbalsesMinoSil[] = [];
+  let embalses: EmbalsesMinoSil[] = [];
 
   $("table.tabla tr").each((_index, row) => {
     const cells = $(row).find("td");
@@ -29,13 +29,15 @@ export function extractProvinceTables(
     const fecha = $(cells[8]).text().trim();
     const volumenActual = $(cells[6]).text().trim();
 
-    embalses.push({
+    const embalse: EmbalsesMinoSil = {
       id: Number(id),
       embalse: nombre.split(" - ")[1].trim(),
       capacidadTotalHm3: parseEuropeanNumber(capacidadTotal),
       volumenActualHm3: parseEuropeanNumber(volumenActual),
       fecha: mapStringToApiDate(fecha)
-    });
+    };
+
+    embalses = [...embalses, embalse];
   });
 
   return embalses;
