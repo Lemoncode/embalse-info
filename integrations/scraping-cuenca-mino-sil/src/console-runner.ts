@@ -1,4 +1,5 @@
-import { scrapeCuencaMediterranea } from "./integration";
+import { scrapeCuencaMinioSil } from "./integration.js";
 
 console.log("Estado de la Cuenca Miño Sil:");
-await scrapeCuencaMediterranea();
+const result = await scrapeCuencaMinioSil();
+console.log(result);
