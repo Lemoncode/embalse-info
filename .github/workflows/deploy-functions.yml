@@ -40,6 +40,7 @@ jobs:
           npm run -w scraping-cuenca-duero build --if-present
           npm run -w scraping-cuenca-jucar build --if-present
           npm run -w scraping-cuenca-segura build --if-present
+          npm run -w scraping-cuenca-mino-sil build --if-present
           npm run -w @embalse-info/db build --if-present
 
       # Build ONLY the functions workspace (TypeScript -> dist/)
@@ -70,6 +71,7 @@ jobs:
 
           cp -R integrations/scraping-cuenca-jucar deploy/integrations/scraping-cuenca-jucar
           cp -R integrations/scraping-cuenca-segura deploy/integrations/scraping-cuenca-segura
+          cp -R integrations/scraping-cuenca-mino-sil deploy/integrations/scraping-cuenca-mino-sil
 
           # Strip devDependencies and rewrite workspace refs to file: paths
           node -e "
@@ -94,7 +96,8 @@ jobs:
               'scraping-cuenca-duero': 'file:../../integrations/scraping-cuenca-duero',
 
               'scraping-cuenca-jucar': 'file:../../integrations/scraping-cuenca-jucar',
-              'scraping-cuenca-segura': 'file:../../integrations/scraping-cuenca-segura'
+              'scraping-cuenca-segura': 'file:../../integrations/scraping-cuenca-segura',
+              'scraping-cuenca-mino-sil': 'file:../../integrations/scraping-cuenca-mino-sil'
             });
 
             // arcgis: point db-model to file: path
@@ -129,6 +132,11 @@ jobs:
 
             // scraping-cuenca-segura: point db-model to file: path
             patchPkg('deploy/integrations/scraping-cuenca-segura/package.json', {
+              'db-model': 'file:../../packages/db-model'
+            });
+
+            // scraping-cuenca-mino-sil: point db-model to file: path
+            patchPkg('deploy/integrations/scraping-cuenca-mino-sil/package.json', {
               'db-model': 'file:../../packages/db-model'
             });
 
