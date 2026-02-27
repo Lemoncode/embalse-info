@@ -30,7 +30,8 @@
     "scraping-cuenca-duero": "*",
     "scraping-cuenca-jucar": "*",
     "scraping-cuenca-mediterranea": "*",
-    "scraping-cuenca-segura": "*"
+    "scraping-cuenca-segura": "*",
+    "scraping-cuenca-mino-sil": "*"
   },
   "devDependencies": {
     "@types/prompts": "^2.4.9",
