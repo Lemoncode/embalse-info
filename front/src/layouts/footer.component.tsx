@@ -15,6 +15,12 @@ export const FooterComponent: FC = () => {
               Embalses por provincias
             </Link>
             <Link
+              href="/embalse-cuenca"
+              className="link-accessible text-[15px] leading-none font-normal"
+            >
+              Embalses por cuencas
+            </Link>
+            <Link
               href="/equipo"
               className="link-accessible text-[15px] leading-none font-normal"
             >
