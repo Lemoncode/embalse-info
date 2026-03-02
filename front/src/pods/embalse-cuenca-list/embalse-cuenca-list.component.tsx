@@ -1,12 +1,12 @@
 import { Card } from "@/common/components/card.component";
-import { mapRiverBasinListFromApiToView } from "./embalse-cuenca.mapper";
+import { mapListaCuencasDesdeApiParaVista } from "./embalse-cuenca.mapper";
 import { getRiverBasins } from "./embalse-cuenca-list.repository";
 import Link from "next/link";
 import { generateSlug } from "db-model";
 
 export const EmbalsesCuencaList: React.FC = async () => {
   const cuencasAPI = await getRiverBasins();
-  const cuencasList = mapRiverBasinListFromApiToView(cuencasAPI);
+  const cuencasList = mapListaCuencasDesdeApiParaVista(cuencasAPI);
 
   return (
     <Card className="mx-auto w-full pt-6 pr-4 pb-6 pl-4 md:max-w-225 md:p-8">

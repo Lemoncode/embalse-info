@@ -1,7 +1,8 @@
 import { EmbalsesCuencaPod, getEmbalsesPorCuenca } from "@/pods/embalse-cuenca";
 import { cuencas } from "@/core/constants/cuencas.constants";
 import { Metadata } from "next";
-import { mapRiverBasinListFromApiToView } from "@/pods/embalse-cuenca-list/embalse-cuenca.mapper";
+import { mapListaCuencasDesdeApiParaVista } from "@/pods/embalse-cuenca-list/embalse-cuenca.mapper";
+import { notFound } from "next/navigation";
 
 interface Props {
   params: Promise<{ cuenca: string }>;
@@ -15,6 +16,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { cuenca } = await params;
   const datosCuenca = getCuencaBySlug(cuenca.toString());
 
+  if (!datosCuenca) {
+    return {};
+  }
+
   return {
     title: `Embalses de ${datosCuenca.nombre}`,
   };
@@ -25,22 +30,21 @@ export default async function EmbalseCuencaListadoPage({
 }: Props): Promise<React.JSX.Element> {
   const { cuenca } = await params;
   const datosCuenca = getCuencaBySlug(cuenca.toString());
-  const embalsesByRiverBasinFromApi = await getEmbalsesPorCuenca(
+  if (!datosCuenca) {
+    notFound();
+  }
+  const embalsesPorCuencaDesdeApi = await getEmbalsesPorCuenca(
     datosCuenca.nombre,
   );
-  const embalsesByRiverBasinLookup = mapRiverBasinListFromApiToView(
-    embalsesByRiverBasinFromApi,
+  const embalsesPorCuenca = mapListaCuencasDesdeApiParaVista(
+    embalsesPorCuencaDesdeApi,
   );
-
-  if (!cuenca) {
-    return <div>Cuenca no encontrada</div>;
-  }
 
   return (
     <EmbalsesCuencaPod
       nombreCuenca={datosCuenca.nombre}
       slug={datosCuenca.slug}
-      embalses={embalsesByRiverBasinLookup}
+      embalses={embalsesPorCuenca}
     />
   );
 }

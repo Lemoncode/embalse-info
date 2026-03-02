@@ -1,6 +1,6 @@
 import { CuencasModel, CuencasModelApi } from "@/common/models/cuencas.model";
 
-export const mapRiverBasinListFromApiToView = (
+export const mapListaCuencasDesdeApiParaVista = (
   cuencas: CuencasModelApi[],
 ): CuencasModel[] =>
   Array.isArray(cuencas)
