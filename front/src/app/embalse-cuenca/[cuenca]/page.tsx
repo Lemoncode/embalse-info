@@ -1,7 +1,9 @@
 import { EmbalsesCuencaPod, getEmbalsesPorCuenca } from "@/pods/embalse-cuenca";
 import { cuencas } from "@/core/constants";
-import { Metadata } from "next";
 import { mapLookupListFromApiToViewModel } from "@/common/mappers";
+import { Metadata } from "next";
+
+export const revalidate = 300; // ISR: regenerar cada 5 minutos
 
 interface Props {
   params: Promise<{ cuenca: string }>;

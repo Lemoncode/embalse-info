@@ -2,6 +2,8 @@ import "server-only";
 import { unstable_cache } from "next/cache";
 import type { ReservoirInfo } from "./embalse.api-model";
 import { contentIslandClient } from "@/lib";
+import { getEmbalseBySlug } from "../embalse.repository";
+import type { Embalse } from "db-model";
 
 /**
  * Cached version of getReservoirInfoBySlug.
@@ -24,11 +26,23 @@ export const getReservoirInfoBySlugCached = unstable_cache(
     } catch (error) {
       console.warn(
         `Warning reservoir info for slug not available: ${slug}`,
-        error
+        error,
       );
       return null;
     }
   },
   ["reservoir-by-slug"],
-  { revalidate: 60 }
+  { revalidate: 60 },
+);
+
+/**
+ * Cached version of getEmbalseBySlug.
+ * Revalidates every 60 seconds.
+ */
+export const getEmbalseBySlugCached = unstable_cache(
+  async (slug: string): Promise<Embalse | null> => {
+    return getEmbalseBySlug(slug);
+  },
+  ["embalse-by-slug"],
+  { revalidate: 60 },
 );
