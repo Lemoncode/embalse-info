@@ -6,25 +6,29 @@ import { unstable_cache } from "next/cache";
 
 const getCachedRiverBasins = unstable_cache(
   async (): Promise<LookupApi[]> => {
-    try {
-      const db = await getDb();
-      return await db
-        .collection<LookupApi>("cuencas")
-        .find({}, { projection: { _id: 1, nombre: 1 } })
-        .toArray();
-    } catch (error) {
-      console.warn(
-        "getEmbalsesByRiverBasin: MongoDB not available (build time?), returning empty array.",
-        "Error:",
-        error instanceof Error ? error.message : error,
-      );
-      return [];
+    const db = await getDb();
+    const result = await db
+      .collection<LookupApi>("cuencas")
+      .find({}, { projection: { _id: 1, nombre: 1 } })
+      .toArray();
+    if (result.length === 0) {
+      throw new Error("Empty cuencas - skip cache");
     }
+    return result;
   },
   ["cuencas-collection"],
   { revalidate: 300 },
 );
 
 export async function getRiverBasins(): Promise<LookupApi[]> {
-  return getCachedRiverBasins();
+  try {
+    return await getCachedRiverBasins();
+  } catch (error) {
+    console.warn(
+      "getRiverBasins: MongoDB not available or empty, returning empty array.",
+      "Error:",
+      error instanceof Error ? error.message : error,
+    );
+    return [];
+  }
 }
