@@ -16,5 +16,6 @@ export async function getRiverBasins(): Promise<LookupApi[]> {
       "Error:",
       error instanceof Error ? error.message : error,
     );
+    return [];
   }
 }

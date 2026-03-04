@@ -6,6 +6,8 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Embalses por cuencas",
 };
+
+export const revalidate = 300; // ISR: regenerar cada 5 minutos
 export default async function EmbalsesCuencasPage() {
   const cuencasAPI = await getRiverBasins();
   const cuencaList = mapLookupListFromApiToViewModel(cuencasAPI);
