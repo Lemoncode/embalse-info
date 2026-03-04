@@ -7,7 +7,7 @@ import {
 } from "@/pods/embalse";
 import { mapEmbalseToReservoirData } from "@/pods/embalse/embalse.mapper";
 
-export const revalidate = 60; // ISR: regenerar cada 60 segundos
+export const revalidate = 300; // ISR: regenerar cada 5 minutos
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { embalse } = await params;
