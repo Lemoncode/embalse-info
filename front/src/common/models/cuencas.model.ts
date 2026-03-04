@@ -1,20 +1,10 @@
-import { Lookup } from "./lookup.model";
-
-export interface CuencasModel {
-  id: string;
-  name: string;
-}
-
-export interface CuencasModelApi {
-  _id: string;
-  nombre: string;
-}
+import { LookupApi } from "./lookup.model";
 
 export interface EmbalsesCuencaListApi {
   embalse_id: string;
   nombre: string;
   slug: string;
-  cuenca: CuencasModelApi;
+  cuenca: LookupApi;
 }
 
 export interface EmbalsesCuencaList {

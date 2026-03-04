@@ -1,17 +1,16 @@
 "use client";
 import { Card } from "@/common/components/card.component";
-import { CuencasModel } from "@/common/models";
+import { Lookup } from "@/common/models";
 import { generateSlug } from "db-model";
 import Link from "next/link";
 
 export interface Props {
   nombreCuenca: string;
-  slug: string;
-  embalses: CuencasModel[];
+  embalses: Lookup[];
 }
 
 export const EmbalseCuencaComponent: React.FC<Props> = (props) => {
-  const { nombreCuenca, slug, embalses } = props;
+  const { nombreCuenca, embalses } = props;
   return (
     <Card className="mx-auto w-full pt-6 pr-4 pb-6 pl-4 md:max-w-225 md:p-8">
       <div className="bg-base-100 rounded-2xl p-6">
