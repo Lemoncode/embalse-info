@@ -22,7 +22,6 @@ export async function getEmbalsesByProvince(
       )
       .toArray();
 
-    console.log(docs);
     return docs.map((doc) => ({
       _id: doc.slug ?? String(doc._id),
       name: doc.nombre ?? "",
