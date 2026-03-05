@@ -5,6 +5,7 @@ export interface DatosEmbalse {
   cuenca: string;
   provincia: string;
   uso: string;
+  mapUrl: string;
 }
 
 export interface ReservoirInfo {
@@ -15,6 +16,7 @@ export interface ReservoirInfo {
   author?: string;
   authorUrl?: string;
   description: string;
+  mapUrl?: string;
 }
 
 export interface ReservoirData {
