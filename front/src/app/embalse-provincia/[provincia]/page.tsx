@@ -1,8 +1,12 @@
 import { PROVINCIAS } from "@/core/constants";
-import { EmbalseProvinciaPod } from "@/pods/embalse-provincia";
+import {
+  EmbalseProvinciaPod,
+  getEmbalsesByProvince,
+} from "@/pods/embalse-provincia";
 import { mapEmbalseListFromApiToLookup } from "@/pods/embalse-provincia/embalse-provincia.mapper";
-import { getEmbalsesByProvince } from "@/pods/embalse-provincia/embalse-provincia.repository";
 import { Metadata } from "next";
+
+export const revalidate = 300; // ISR: regenerar cada 5 minutos
 
 interface Props {
   params: Promise<{ provincia: string }>;

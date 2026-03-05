@@ -19,5 +19,6 @@ export const getEmbalsesPorCuenca = async (
       "Error:",
       error instanceof Error ? error.message : error,
     );
+    return [];
   }
 };

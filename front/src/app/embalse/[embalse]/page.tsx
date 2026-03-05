@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { EmbalsePod, getReservoirInfoBySlugCached } from "@/pods/embalse";
-import { getEmbalseBySlug } from "@/pods/embalse/embalse.repository";
+import {
+  EmbalsePod,
+  getReservoirInfoBySlugCached,
+  getEmbalseBySlugCached,
+} from "@/pods/embalse";
 import { mapEmbalseToReservoirData } from "@/pods/embalse/embalse.mapper";
 
 export const revalidate = 300; // ISR: regenerar cada 5 minutos
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { embalse } = await params;
-  const embalseSlug = await getEmbalseBySlug(embalse);
+  const embalseSlug = await getEmbalseBySlugCached(embalse);
 
   return {
     title: embalseSlug.nombre,
@@ -25,7 +28,7 @@ export default async function EmbalseDetallePage({ params }: Props) {
     Si no se encuentra el embalse, llamamos a notFound() que muestra la pagina 404 de Next.js 
   */
   const { embalse } = await params;
-  const embalseDoc = await getEmbalseBySlug(embalse);
+  const embalseDoc = await getEmbalseBySlugCached(embalse);
   const embalseInfo = await getReservoirInfoBySlugCached(embalse);
 
   if (!embalseDoc) {
