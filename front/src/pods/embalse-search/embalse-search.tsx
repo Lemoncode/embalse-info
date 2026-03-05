@@ -9,6 +9,7 @@ import { EmbalseSearchModel } from "./embalse-search.vm";
 import { getFilteredEmbalses as getFilteredEmbalsesBusiness } from "./embalse-search.business";
 import { FilteredList } from "./components/filtered-list";
 import { Input } from "./components/input";
+import { RecentSearches, useRecentSearches } from "./components";
 
 interface Props {
   embalses: Embalse[];
@@ -22,6 +23,7 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
   >([]);
   const [isNavigating, setIsNavigating] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
+  const { setNewSearch, recentSearches } = useRecentSearches();
 
   const getFilteredEmbalses = (inputValue: string): EmbalseSearchModel[] => {
     return getFilteredEmbalsesBusiness(inputValue, embalses);
@@ -42,12 +44,14 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
         setIsNavigating(true);
+        setNewSearch(selectedItem);
         router.push(`/embalse/${selectedItem.slug}`);
       }
     },
   });
 
-  const showNoResults = inputValue.length > 0 && filteredEmbalses.length === 0 && !isNavigating;
+  const showNoResults =
+    inputValue.length > 0 && filteredEmbalses.length === 0 && !isNavigating;
 
   return (
     <div className="relative flex flex-1 flex-col overflow-hidden p-8">
@@ -57,7 +61,7 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
       ></div>
       <div className="flex grow flex-col items-center justify-center">
         <section
-          className="bg-base-100 absolute flex max-w-10/12 flex-col gap-8 rounded-xl p-8 shadow-lg"
+          className="bg-base-100 absolute flex max-w-10/12 flex-col gap-3 rounded-xl p-8 shadow-lg"
           aria-labelledby="search-title"
         >
           <div className="text-center">
@@ -65,7 +69,11 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
               Embalses
             </h2>
           </div>
-
+          <div>
+            <p className="text-sm">
+              Encuentra toda la información disponible de los embalses de España
+            </p>
+          </div>
           <div className="flex flex-col gap-4">
             <div className="relative" role="search">
               <Input getInputProps={getInputProps} />
@@ -78,13 +86,12 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
               />
               {showNoResults && <NoResult inputValue={inputValue} />}
             </div>
-            <div>
-              <p className="text-sm">
-                Encuentra toda la información disponible de los embalses de
-                España
-              </p>
-            </div>
           </div>
+          {recentSearches.length > 0 && (
+            <div className="mt-5">
+              <RecentSearches searches={recentSearches} />
+            </div>
+          )}
         </section>
       </div>
     </div>
