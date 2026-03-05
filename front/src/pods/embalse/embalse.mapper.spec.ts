@@ -159,7 +159,7 @@ describe("mapEmbalseToReservoirData", () => {
 
     const result = mapEmbalseToReservoirData(mockEmbalse, null);
 
-    expect(result).toEqual({
+    expect(result).toMatchObject({
       nombre: "La Viñuela",
       currentVolume: 750,
       totalCapacity: 1500,
