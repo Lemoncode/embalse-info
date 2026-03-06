@@ -159,13 +159,14 @@ describe("mapEmbalseToReservoirData", () => {
 
     const result = mapEmbalseToReservoirData(mockEmbalse, null);
 
-    expect(result).toMatchObject({
+    expect(result).toEqual({
       nombre: "La Viñuela",
       currentVolume: 750,
       totalCapacity: 1500,
       measurementDate: "15/06/2024",
       datosEmbalse: {
         cuenca: "Mediterránea",
+        mapUrl: "",
         provincia: "Málaga",
         uso: "",
       },
