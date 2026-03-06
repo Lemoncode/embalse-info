@@ -166,6 +166,7 @@ describe("mapEmbalseToReservoirData", () => {
       measurementDate: "15/06/2024",
       datosEmbalse: {
         cuenca: "Mediterránea",
+        mapUrl: "",
         provincia: "Málaga",
         uso: "",
       },
