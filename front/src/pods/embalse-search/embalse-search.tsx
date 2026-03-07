@@ -9,6 +9,11 @@ import { EmbalseSearchModel } from "./embalse-search.vm";
 import { getFilteredEmbalses as getFilteredEmbalsesBusiness } from "./embalse-search.business";
 import { FilteredList } from "./components/filtered-list";
 import { Input } from "./components/input";
+import { useGeolocation } from "@/common/hook/useGeolocation";
+
+
+
+
 
 interface Props {
   embalses: Embalse[];
@@ -22,10 +27,20 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
   >([]);
   const [isNavigating, setIsNavigating] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
+  const { location, status, requestLocation, clearLocation } = useGeolocation();
 
-  const getFilteredEmbalses = (inputValue: string): EmbalseSearchModel[] => {
-    return getFilteredEmbalsesBusiness(inputValue, embalses);
+  const handleLocationClick = () => {
+    if (location) {
+      clearLocation();
+    } else {
+      requestLocation();
+    }
   };
+
+
+  function getFilteredEmbalses(inputValue: string): EmbalseSearchModel[] {
+    return getFilteredEmbalsesBusiness(inputValue, embalses);
+  }
   const {
     isOpen,
     getMenuProps,
@@ -83,10 +98,20 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
                 Encuentra toda la información disponible de los embalses de
                 España
               </p>
+      <button 
+        onClick={handleLocationClick}       
+        className="btn btn-ghost btn-sm"
+      >
+        { "📍 Mi ubicación"}
+      </button>
+      {location && (
+        <p>📍 {location.latitude.toFixed(4)}, {location.longitude.toFixed(4)}</p>
+      )}
             </div>
           </div>
         </section>
       </div>
+
     </div>
   );
 };
