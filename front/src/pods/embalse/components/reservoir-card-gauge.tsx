@@ -11,7 +11,7 @@ export const ReservoirCardGauge: React.FC<Props> = (props) => {
   const percentage = totalCapacity > 0 ? currentVolume / totalCapacity :
     0;
   return (
-    <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4 shadow-lg">
+    <section className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4 shadow-lg">
       <h2 className="text-center">{name}</h2>
       <GaugeChart percentage={percentage > 100 ? 100 : percentage} measurementDate=
         {measurementDate} />
@@ -19,6 +19,6 @@ export const ReservoirCardGauge: React.FC<Props> = (props) => {
         currentVolume={currentVolume}
         totalCapacity={totalCapacity}
       />
-    </div>
+    </section>
   );
 };
