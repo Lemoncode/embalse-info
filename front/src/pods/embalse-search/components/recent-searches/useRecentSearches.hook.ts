@@ -1,42 +1,37 @@
 import { useState, useEffect } from "react";
 import { EmbalseSearchModel } from "../../embalse-search.vm";
+import {
+  addNewSearchEntry,
+  getStoredSearches,
+} from "./recentSearches.bussiness";
 
 export const useRecentSearches = () => {
-  const [newSearch, setNewSearch] = useState<EmbalseSearchModel>(null);
   const [recentSearches, setRecentSearches] = useState<EmbalseSearchModel[]>(
     [],
   );
 
   useEffect(() => {
-    const storedSearches = localStorage.getItem("recent-searches");
-    if (storedSearches) {
-      const parsedStoredSearches = JSON.parse(storedSearches);
-      setRecentSearches(parsedStoredSearches);
-    }
+    setRecentSearches(getStoredSearches());
   }, []);
 
-  useEffect(() => {
-    if (newSearch) {
-      setRecentSearches((prevSearches) => {
-        const filteredRecentSearches = prevSearches.filter(
-          (search) => search.slug !== newSearch.slug,
-        );
-        return [newSearch, ...filteredRecentSearches].slice(0, 5);
-      });
-    }
-  }, [newSearch]);
-
-  useEffect(() => {
-    if (recentSearches.length > 0) {
-      const stringfiedRecentSearches = JSON.stringify(recentSearches);
-      localStorage.setItem("recent-searches", stringfiedRecentSearches);
-    }
-  }, [recentSearches]);
+  const addNewEmbalseToLatestSearchCollection = (
+    newSearch: EmbalseSearchModel,
+  ) => {
+    setRecentSearches((prevSearches) => {
+      const updatedRecentSearchColletion = addNewSearchEntry(
+        newSearch,
+        prevSearches,
+      );
+      localStorage.setItem(
+        "recent-searches",
+        JSON.stringify(updatedRecentSearchColletion),
+      );
+      return updatedRecentSearchColletion;
+    });
+  };
 
   return {
-    newSearch,
-    setNewSearch,
     recentSearches,
-    setRecentSearches,
+    addNewEmbalseToLatestSearchCollection,
   };
 };

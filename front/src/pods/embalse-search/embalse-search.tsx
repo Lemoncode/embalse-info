@@ -23,7 +23,7 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
   >([]);
   const [isNavigating, setIsNavigating] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
-  const { setNewSearch, recentSearches } = useRecentSearches();
+  const { addNewEmbalseToLatestSearchCollection, recentSearches } = useRecentSearches();
 
   const getFilteredEmbalses = (inputValue: string): EmbalseSearchModel[] => {
     return getFilteredEmbalsesBusiness(inputValue, embalses);
@@ -44,7 +44,7 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
     onSelectedItemChange: ({ selectedItem }) => {
       if (selectedItem) {
         setIsNavigating(true);
-        setNewSearch(selectedItem);
+        addNewEmbalseToLatestSearchCollection(selectedItem);
         router.push(`/embalse/${selectedItem.slug}`);
       }
     },
