@@ -1,18 +1,24 @@
 import { MongoClient, type Db } from "mongodb";
 
-let client: MongoClient;
+let client: MongoClient | null = null;
 
 const connect = async (connectionURL: string) => {
-  client = new MongoClient(connectionURL, {
-    serverSelectionTimeoutMS: 5000,
-    connectTimeoutMS: 5000,
-  });
-  await client.connect();
+  if (!client) {
+    client = new MongoClient(connectionURL, {
+      serverSelectionTimeoutMS: 5000,
+      connectTimeoutMS: 5000,
+    });
+    await client.connect();
+  }
   dbServer.db = client.db();
 };
 
 const disconnect = async () => {
-  await client.close();
+  if (client) {
+    await client.close();
+    client = null;
+    dbServer.db = undefined;
+  }
 };
 
 interface DBServer {

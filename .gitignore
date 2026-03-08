@@ -9,3 +9,4 @@ __tablestorage__/
 mongo-data
 .env
 deploy
+front/.env.local

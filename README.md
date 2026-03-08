@@ -1,5 +1,19 @@
 # embalse-info
 
+## Configuración del Front
+
+Al ejecutar `npm install` dentro de la carpeta `front`, se creará automáticamente el fichero `.env.local` a partir de `.env.local.example` (si no existe ya).
+
+Una vez creado, debes configurar el token de Content Island:
+
+1. Abre el fichero `front/.env.local`.
+2. Pregunta al equipo de desarrollo cuál es el valor del token de Content Island.
+3. Sustituye el valor `VALUE` en la entrada `CONTENT_ISLAND_ACCESS_TOKEN` por el token proporcionado.
+
+```
+CONTENT_ISLAND_ACCESS_TOKEN=<token proporcionado por el equipo>
+```
+
 ## Pasos para actualizar la semilla de las cuencas
 
 ```bash

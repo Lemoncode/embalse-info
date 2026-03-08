@@ -22,7 +22,7 @@ describe("mapEmbalseToReservoirData", () => {
     } as Embalse;
 
     // Act
-    const result = mapEmbalseToReservoirData(mockEmbalse);
+    const result = mapEmbalseToReservoirData(mockEmbalse, null);
 
     // Assert
     expect(result.currentVolume).toBe(800);
@@ -38,7 +38,7 @@ describe("mapEmbalseToReservoirData", () => {
       fechaMedidaAguaActualAemet: new Date("2024-01-10"),
     } as Embalse;
 
-    const result = mapEmbalseToReservoirData(mockEmbalse);
+    const result = mapEmbalseToReservoirData(mockEmbalse, null);
 
     expect(result.currentVolume).toBe(600);
     expect(result.measurementDate).toBe("10/01/2024");
@@ -53,7 +53,7 @@ describe("mapEmbalseToReservoirData", () => {
       fechaMedidaAguaActualAemet: null,
     } as Embalse;
 
-    const result = mapEmbalseToReservoirData(mockEmbalse);
+    const result = mapEmbalseToReservoirData(mockEmbalse, null);
 
     expect(result.currentVolume).toBe(0);
     expect(result.measurementDate).toBe("");
@@ -66,7 +66,7 @@ describe("mapEmbalseToReservoirData", () => {
       fechaMedidaAguaActualSAIH: new Date("2024-12-25"),
     } as Embalse;
 
-    const result = mapEmbalseToReservoirData(mockEmbalse);
+    const result = mapEmbalseToReservoirData(mockEmbalse, null);
 
     expect(result.measurementDate).toBe("25/12/2024");
   });
@@ -78,7 +78,7 @@ describe("mapEmbalseToReservoirData", () => {
       fechaMedidaAguaActualSAIH: new Date("2024-12-25T10:30:00Z"),
     } as Embalse;
 
-    const result = mapEmbalseToReservoirData(mockEmbalse);
+    const result = mapEmbalseToReservoirData(mockEmbalse, null);
 
     expect(result.measurementDate).toBe("25/12/2024");
   });
@@ -90,7 +90,7 @@ describe("mapEmbalseToReservoirData", () => {
       fechaMedidaAguaActualSAIH: "invalid-date",
     } as unknown as Embalse;
 
-    const result = mapEmbalseToReservoirData(mockEmbalse);
+    const result = mapEmbalseToReservoirData(mockEmbalse, null);
 
     expect(result.measurementDate).toBe("");
   });
@@ -108,7 +108,7 @@ describe("mapEmbalseToReservoirData", () => {
         fechaMedidaAguaActualSAIH: fecha,
       } as Embalse;
 
-      const result = mapEmbalseToReservoirData(mockEmbalse);
+      const result = mapEmbalseToReservoirData(mockEmbalse, null);
       expect(result.measurementDate).toBe(``);
     });
   });
@@ -119,7 +119,7 @@ describe("mapEmbalseToReservoirData", () => {
       cuenca: { nombre: "Tajo" },
     } as Embalse;
 
-    const result = mapEmbalseToReservoirData(mockEmbalse);
+    const result = mapEmbalseToReservoirData(mockEmbalse, null);
 
     expect(result.datosEmbalse.cuenca).toBe("Tajo");
   });
@@ -130,7 +130,7 @@ describe("mapEmbalseToReservoirData", () => {
       cuenca: null,
     } as Embalse;
 
-    const result = mapEmbalseToReservoirData(mockEmbalse);
+    const result = mapEmbalseToReservoirData(mockEmbalse, null);
 
     expect(result.datosEmbalse.cuenca).toBe("");
   });
@@ -141,7 +141,7 @@ describe("mapEmbalseToReservoirData", () => {
     } as Embalse;
     delete (mockEmbalse as any).cuenca;
 
-    const result = mapEmbalseToReservoirData(mockEmbalse);
+    const result = mapEmbalseToReservoirData(mockEmbalse, null);
 
     expect(result.datosEmbalse.cuenca).toBe("");
   });
@@ -157,7 +157,7 @@ describe("mapEmbalseToReservoirData", () => {
       cuenca: { nombre: "Mediterránea" },
     } as Embalse;
 
-    const result = mapEmbalseToReservoirData(mockEmbalse);
+    const result = mapEmbalseToReservoirData(mockEmbalse, null);
 
     expect(result).toEqual({
       nombre: "La Viñuela",
@@ -178,7 +178,7 @@ describe("mapEmbalseToReservoirData", () => {
       provincia: null,
     } as Embalse;
 
-    const result = mapEmbalseToReservoirData(mockEmbalse);
+    const result = mapEmbalseToReservoirData(mockEmbalse, null);
 
     expect(result.datosEmbalse.provincia).toBe("");
   });

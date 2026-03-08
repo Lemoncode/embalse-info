@@ -2,7 +2,11 @@
 
 import * as d3 from "d3";
 import { useEffect, useRef } from "react";
-import { calculateFilledAngle, drawAnimatedArc, drawArc } from "./gauge-arcs.business";
+import {
+  calculateFilledAngle,
+  drawAnimatedArc,
+  drawArc,
+} from "./gauge-arcs.business";
 import { arcConfig, gaugeDimensions } from "./model";
 
 interface GaugeArcsProps {
@@ -31,7 +35,7 @@ export const GaugeArcs = ({ percentage }: GaugeArcsProps) => {
     drawArc({
       arcGroup,
       endAngle: arcConfig.endAngle,
-      fillColor: "var(--color-total-water)",      
+      fillColor: "var(--color-total-water)",
     });
 
     // 2. Filled arc (primary color, based on percentage prop)
@@ -48,6 +52,8 @@ export const GaugeArcs = ({ percentage }: GaugeArcsProps) => {
       ref={svgRef}
       width={gaugeDimensions.width}
       height={gaugeDimensions.height}
+      role="img"
+      aria-label={`Indicador de nivel del embalse: ${percentage}% de capacidad`}
     />
   );
 };

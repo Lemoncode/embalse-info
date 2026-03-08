@@ -1,12 +1,16 @@
 import { scrapeSeedEmbalses } from "arcgis";
 import { getEmbalsesContext } from "./embalses.context.js";
-import { mapperFromCuencasMediterraneaToArcgis, mapperFromCuencasCantabricoToArcgis, mapperFromCuencasCatalanaToArcgis, mapperFromCuencasDueroToArcgis, mapperFromCuencasGuadalquivirToArcgis, mapperFromCuencasJucarToArcgis } from "./embalses.mappers.js";
+import { mapperFromCuencasMediterraneaToArcgis, mapperFromCuencasCantabricoToArcgis, mapperFromCuencasCatalanaToArcgis, mapperFromCuencasDueroToArcgis, mapperFromCuencasJucarToArcgis, mapperFromCuencasSeguraToArcgis, mapperFromCuencasMinoSilToArcgis } from "./embalses.mappers.js";
 import { scrapeCuencaMediterranea } from "scraping-cuenca-mediterranea";
 import { scrapeCuencaCantabrica } from 'scraping-cuenca-cantabrico';
 import { integracionCuencaCatalana } from 'scraping-cuenca-catalana';
 import { getEstadoCuencaDuero } from 'scraping-cuenca-duero';
-import { scrapeCuencaGuadalquivir } from 'scraping-cuenca-guadalquivir';
+// TODO: scraping-cuenca-guadalquivir uses playwright (browser automation) which is not
+// available in Azure Functions. Needs rewrite to use axios/cheerio or similar.
+// import { scrapeCuencaGuadalquivir } from 'scraping-cuenca-guadalquivir';
 import { scrapeCuencaJucar } from 'scraping-cuenca-jucar';
+import { scrapeCuencaSegura } from 'scraping-cuenca-segura';
+import { scrapeCuencaMinioSil } from 'scraping-cuenca-mino-sil';
 import { parseDate } from "./embalses.helpers.js";
 
 export const embalsesRepository = {
@@ -235,60 +239,11 @@ export const embalsesRepository = {
 
     return actualizados > 0;
   },
+  // TODO: Guadalquivir disabled — requires playwright (not available in Azure Functions)
+  // Needs rewrite to use axios/cheerio or similar.
   actualizarCuencaGuadalquivir: async (): Promise<boolean> => {
-    const embalsesGuadalquivir = await scrapeCuencaGuadalquivir();
-
-    console.log(
-      `Se han scrapeado ${embalsesGuadalquivir.length} embalses de la Cuenca Mediterránea`
-    );
-
-    let actualizados = 0;
-    let noEncontrados = 0;
-    let sinMapper = 0;
-
-    for (const embalseGuadalquivirPorZonas of embalsesGuadalquivir) {
-      for (const embalse of embalseGuadalquivirPorZonas.embalses) {
-        const infoDestino = mapperFromCuencasGuadalquivirToArcgis.get(embalse.id);
-
-        if (!infoDestino) {
-          sinMapper++;
-          console.warn(`Sin mapper para ID ${embalse.id} - ${embalse.nombre}`);
-          continue;
-        }
-
-        console.log(
-          `🔍 Mapeando: ID scraping ${embalse.id} -> _id BD ${infoDestino.idArcgis} (${infoDestino.nombre})`
-        );
-
-        const { matchedCount } = await getEmbalsesContext().updateOne(
-          { _id: infoDestino.idArcgis.toString() },
-          {
-            $set: {
-              aguaActualSAIH: embalse.aguaActualSAIH,
-              fechaMedidaAguaActualSAIH: parseDate(embalse.fechaMedidaSAIH),
-            },
-          }
-        );
-
-        if (matchedCount > 0) {
-          actualizados++;
-          console.log(
-            `Actualizado: ${infoDestino.nombre} (_id: ${infoDestino.idArcgis}) -> ${embalse.aguaActualSAIH} hm³`
-          );
-        } else {
-          noEncontrados++;
-          console.warn(
-            `No encontrado en BD: _id ${infoDestino.idArcgis} - ${infoDestino.nombre}`
-          );
-        }
-      }
-    }
-
-    console.log(
-      `Resumen Cuenca Duero: ${actualizados} actualizados, ${noEncontrados} no encontrados, ${sinMapper} sin mapper`
-    );
-
-    return actualizados > 0;
+    console.log('actualizarCuencaGuadalquivir: SKIPPED — requires playwright (not available in Azure Functions)');
+    return false;
   },
   actualizarCuencaJucar: async (): Promise<boolean> => {
     const embalsesJucar = await scrapeCuencaJucar();
@@ -303,6 +258,104 @@ export const embalsesRepository = {
 
     for (const embalse of embalsesJucar) {
       const infoDestino = mapperFromCuencasJucarToArcgis.get(embalse.id);
+
+      if (!infoDestino) {
+        sinMapper++;
+        console.warn(`Sin mapper para ID ${embalse.id} - ${embalse.nombre}`);
+        continue;
+      }
+
+      console.log(
+        `🔍 Mapeando: ID scraping ${embalse.id} -> _id BD ${infoDestino.idArcgis} (${infoDestino.nombre})`
+      );
+
+      const { matchedCount } = await getEmbalsesContext().updateOne(
+        { _id: infoDestino.idArcgis.toString() },
+        {
+          $set: {
+            aguaActualSAIH: embalse.aguaActualSAIH,
+            fechaMedidaAguaActualSAIH: parseDate(embalse.fechaMedidaSAIH),
+          },
+        }
+      );
+
+      if (matchedCount > 0) {
+        actualizados++;
+        console.log(
+          `Actualizado: ${infoDestino.nombre} (_id: ${infoDestino.idArcgis}) -> ${embalse.aguaActualSAIH} hm³`
+        );
+      } else {
+        noEncontrados++;
+        console.warn(
+          `No encontrado en BD: _id ${infoDestino.idArcgis} - ${infoDestino.nombre}`
+        );
+      }
+    }
+
+    return actualizados > 0;
+  },
+  actualizarCuencaSegura: async (): Promise<boolean> => {
+    const embalsesSegura = await scrapeCuencaSegura();
+
+    console.log(
+      `Se han scrapeado ${embalsesSegura.length} embalses de la Cuenca Segura`
+    );
+
+    let actualizados = 0;
+    let noEncontrados = 0;
+    let sinMapper = 0;
+
+    for (const embalse of embalsesSegura) {
+      const infoDestino = mapperFromCuencasSeguraToArcgis.get(embalse.id);
+
+      if (!infoDestino) {
+        sinMapper++;
+        console.warn(`Sin mapper para ID ${embalse.id} - ${embalse.nombre}`);
+        continue;
+      }
+
+      console.log(
+        `🔍 Mapeando: ID scraping ${embalse.id} -> _id BD ${infoDestino.idArcgis} (${infoDestino.nombre})`
+      );
+
+      const { matchedCount } = await getEmbalsesContext().updateOne(
+        { _id: infoDestino.idArcgis.toString() },
+        {
+          $set: {
+            aguaActualSAIH: embalse.aguaActualSAIH,
+            fechaMedidaAguaActualSAIH: parseDate(embalse.fechaMedidaSAIH),
+          },
+        }
+      );
+
+      if (matchedCount > 0) {
+        actualizados++;
+        console.log(
+          `Actualizado: ${infoDestino.nombre} (_id: ${infoDestino.idArcgis}) -> ${embalse.aguaActualSAIH} hm³`
+        );
+      } else {
+        noEncontrados++;
+        console.warn(
+          `No encontrado en BD: _id ${infoDestino.idArcgis} - ${infoDestino.nombre}`
+        );
+      }
+    }
+
+    return actualizados > 0;
+  },
+  actualizarCuencaMinoSil: async (): Promise<boolean> => {
+    const embalsesMinoSil = await scrapeCuencaMinioSil();
+
+    console.log(
+      `Se han scrapeado ${embalsesMinoSil.length} embalses de la Cuenca Mino Sil`
+    );
+
+    let actualizados = 0;
+    let noEncontrados = 0;
+    let sinMapper = 0;
+
+    for (const embalse of embalsesMinoSil) {
+      const infoDestino = mapperFromCuencasMinoSilToArcgis.get(embalse.id);
 
       if (!infoDestino) {
         sinMapper++;

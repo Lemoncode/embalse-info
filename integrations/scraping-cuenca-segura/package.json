@@ -1,15 +1,27 @@
 {
-  "name": "scraping-cuenca-segura",
+"name": "scraping-cuenca-segura",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./dist/index.js"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "start": "tsx --watch src/console-runner.ts"
+    "start": "tsx --watch ./src/console-runner.ts",
+    "build": "run-p clean type-check build:scraping-cuenca-segura",
+    "build:scraping-cuenca-segura": "tsc",
+    "clean": "rimraf dist",
+    "type-check": "tsc --noEmit --preserveWatchOutput"
   },
   "dependencies": {
+    "axios": "^1.11.0",
+    "cheerio": "^1.1.2",
     "db-model": "^1.0.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
   }
 }

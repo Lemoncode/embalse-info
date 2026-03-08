@@ -1,4 +1,5 @@
 export const parseDate = (dateStr: string): Date => {
   const [day, month, year] = dateStr.split("/").map(Number);
-  return new Date(year, month - 1, day);
+  // Crea la fecha en UTC para evitar desfase por zona horaria
+  return new Date(Date.UTC(year, month - 1, day));
 };

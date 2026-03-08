@@ -1,24 +1,13 @@
-import type { Embalse } from "db-model";
+import * as cheerio from "cheerio";
+import { EmbalseUpdateSAIHEntity } from "db-model";
+import { getCuencaPageHTMLContent } from "./api/index.js";
+import { extractProvinceTables } from "./scraper/index.js";
+import { mapToEmbalseUpdateSAIH } from './scraper/index.js';
 
-export const getEstadoCuencaMinoSil = async (): Promise<Embalse[]> => {
-  return [
-    {
-      id: "1",
-      nombre: "Embalse de Belesar",
-      provincia: "Lugo",
-      capacidad: 3000000000,
-      nivelActual: 2500000000,
-      fechaUltimoNivel: new Date("2023-10-01"),
-      porcentajeLlenado: 83.3,
-    },
-    {
-      id: "2",
-      nombre: "Embalse de Velle",
-      provincia: "Ourense",
-      capacidad: 500000000,
-      nivelActual: 400000000,
-      fechaUltimoNivel: new Date("2023-10-01"),
-      porcentajeLlenado: 80.0,
-    },
-  ];
-};
+export async function scrapeCuencaMinioSil(): Promise<EmbalseUpdateSAIHEntity[]> {
+  const html = await getCuencaPageHTMLContent();
+  const $: cheerio.CheerioAPI = cheerio.load(html);
+  const rawEmbalses = extractProvinceTables($);
+
+  return mapToEmbalseUpdateSAIH(rawEmbalses);
+}

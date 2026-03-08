@@ -1,22 +1,39 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { EmbalsePod } from "@/pods/embalse";
-import { getEmbalseBySlug } from "@/pods/embalse/embalse.repository";
+import {
+  EmbalsePod,
+  getReservoirInfoBySlugCached,
+  getEmbalseBySlugCached,
+} from "@/pods/embalse";
 import { mapEmbalseToReservoirData } from "@/pods/embalse/embalse.mapper";
+
 export const revalidate = 300; // ISR: regenerar cada 5 minutos
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { embalse } = await params;
+  const embalseSlug = await getEmbalseBySlugCached(embalse);
+
+  return {
+    title: embalseSlug.nombre,
+  };
+}
+
 interface Props {
   params: Promise<{ embalse: string }>;
 }
+
 export default async function EmbalseDetallePage({ params }: Props) {
   /**
    * Llamamos a getEmbalseBySlug con el slug de la URL.
     Si no se encuentra el embalse, llamamos a notFound() que muestra la pagina 404 de Next.js 
   */
   const { embalse } = await params;
-  const embalseDoc = await getEmbalseBySlug(embalse);
+  const embalseDoc = await getEmbalseBySlugCached(embalse);
+  const embalseInfo = await getReservoirInfoBySlugCached(embalse);
+
   if (!embalseDoc) {
     notFound();
   }
-  //mapeamos el documento a ReservoirData y lo pasamos al pod
-  const reservoirData = mapEmbalseToReservoirData(embalseDoc);
+  const reservoirData = mapEmbalseToReservoirData(embalseDoc, embalseInfo);
   return <EmbalsePod reservoirData={reservoirData} />;
 }

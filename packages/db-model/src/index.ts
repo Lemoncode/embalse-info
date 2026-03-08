@@ -2,3 +2,4 @@
 
 export * from "./model.js";
 export * from "./slug.js";
+export * from "./provinces.js";

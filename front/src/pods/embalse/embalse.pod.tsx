@@ -1,6 +1,7 @@
 import React from "react";
 import { Embalse } from "./embalse.component";
-import { ReservoirData } from "./embalse.vm";
+import { ReservoirData, ReservoirInfo } from "./embalse.vm";
+
 interface Props {
   reservoirData: ReservoirData;
 }

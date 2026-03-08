@@ -4,22 +4,24 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "postinstall": "node scripts/postinstall.js",
     "start": "next dev",
     "build": "next build",
     "start-prod": "node .next/standalone/server.js"
   },
   "dependencies": {
+    "@content-island/api-client": "^0.16.0",
     "@fontsource/nunito-sans": "^5.2.7",
     "@tailwindcss/postcss": "^4.1.17",
     "d3": "^7.9.0",
+    "db-model": "file:../packages/db-model",
     "downshift": "^9.2.0",
+    "mongodb": "^6.12.0",
     "next": "^16.1.6",
     "postcss": "^8.5.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "tailwindcss": "^4.1.17",
-    "mongodb": "^6.12.0",
-    "db-model": "file:../packages/db-model"
+    "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
     "@types/react": "^19.1.8",
