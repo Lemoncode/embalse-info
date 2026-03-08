@@ -13,7 +13,7 @@ export const ReservoirCardGauge: React.FC<Props> = (props) => {
   return (
     <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4 shadow-lg">
       <h2 className="text-center">{name}</h2>
-      <GaugeChart percentage={percentage} measurementDate=
+      <GaugeChart percentage={percentage > 100 ? 100 : percentage} measurementDate=
         {measurementDate} />
       <GaugeLegend
         currentVolume={currentVolume}
