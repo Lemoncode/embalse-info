@@ -29,6 +29,19 @@ export const Embalse: React.FC<Props> = (props) => {
           <ReservoirCardInfo reservoirInfo={reservoirData.reservoirInfo} />
         </div>
       )}
+
+      {reservoirData.datosEmbalse.mapUrl && (
+        <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4 shadow-lg md:order-4 md:max-w-[900px]">
+          <iframe
+            title={`Mapa del embalse ${reservoirData.nombre}`}
+            src={reservoirData.datosEmbalse.mapUrl}
+            width="100%"
+            height="300"
+            className="rounded-lg border-0"
+          ></iframe>
+        </div>
+      )}
+
       <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4 shadow-lg md:order-2 md:w-[calc(50%-16px)]">
         <ReservoirCardDetail datosEmbalse={reservoirData.datosEmbalse} />
       </div>

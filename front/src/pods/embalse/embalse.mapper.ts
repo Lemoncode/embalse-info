@@ -42,6 +42,7 @@ export function mapEmbalseToReservoirData(
       cuenca: embalse.cuenca?.nombre ?? "",
       provincia: embalse.provincia ?? "",
       uso: embalse.uso ?? "",
+      mapUrl: embalseInfo?.mapUrl ?? "",
     },
     reservoirInfo: embalseInfo
       ? mapReservoirInfoFromContentIslandToViewModel(embalseInfo)
