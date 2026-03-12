@@ -6,6 +6,11 @@ import {
   getEmbalseBySlugCached,
 } from "@/pods/embalse";
 import { mapEmbalseToReservoirData } from "@/pods/embalse/embalse.mapper";
+import {
+  EmbalseHistorialPod,
+  getPromedioHistoricoPorMeses,
+  ReservoirHistoryModel,
+} from "@/pods/embalse-historial";
 
 export const revalidate = 300; // ISR: regenerar cada 5 minutos
 
@@ -34,6 +39,22 @@ export default async function EmbalseDetallePage({ params }: Props) {
   if (!embalseDoc) {
     notFound();
   }
+
   const reservoirData = mapEmbalseToReservoirData(embalseDoc, embalseInfo);
-  return <EmbalsePod reservoirData={reservoirData} />;
+
+  /**
+   * Obtiene historial de agua embalsada del último año por meses según nombre de embalse recibido.
+   */
+
+  const reservoirHistoryLastYear: ReservoirHistoryModel =
+    await getPromedioHistoricoPorMeses(embalseDoc.nombre);
+
+  return (
+    <>
+      <EmbalsePod reservoirData={reservoirData} />
+      <EmbalseHistorialPod
+        reservoirHistoryLastYear={reservoirHistoryLastYear}
+      />
+    </>
+  );
 }
