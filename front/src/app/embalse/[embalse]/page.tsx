@@ -51,10 +51,11 @@ export default async function EmbalseDetallePage({ params }: Props) {
 
   return (
     <>
-      <EmbalsePod reservoirData={reservoirData} />
       <EmbalseHistorialPod
         reservoirHistoryLastYear={reservoirHistoryLastYear}
+        maxCapacity={embalseDoc.capacidad}
       />
+      <EmbalsePod reservoirData={reservoirData} />
     </>
   );
 }
