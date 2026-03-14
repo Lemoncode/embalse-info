@@ -1,27 +1,52 @@
-// @vitest-environment jsdom
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { EmbalseSearchModel } from "../../embalse-search.vm";
-import { addNewSearchEntry, getStoredSearches } from "./recentSearches.bussiness";
+import {
+  addNewSearchEntry,
+  getStoredSearches,
+} from "./recentSearches.bussiness";
+
+// MOCK LOCALSTORAGE
+
+let store: Record<string, string> = {};
+
+const localStorageMock = {
+  getItem: (key: string) => store[key] || null,
+  setItem: (key: string, value: string) => {
+    store[key] = value.toString();
+  },
+  clear: () => {
+    store = {};
+  },
+  removeItem: (key: string) => {
+    delete store[key];
+  },
+};
+
+Object.defineProperty(globalThis, "localStorage", {
+  value: localStorageMock,
+  writable: true,
+});
 
 describe("recentSearches business logic", () => {
-  it("Debe añadir una entrada a una lista vacía", () => {
-    // --- STEP 1: ARRANGE ---
+  it("should add an entry to an empty list", () => {
+    // ARRANGE
     const embalseList: EmbalseSearchModel[] = [];
     const newSearch: EmbalseSearchModel = {
       slug: "cenajo",
       name: "Cenajo (Albacete)",
     };
 
-    // --- STEP 2: ACT ---
+    // ACT
     const result = addNewSearchEntry(newSearch, embalseList);
 
-    // --- STEP 3: ASSERT ---
+    // ASSERT
     expect(result).toHaveLength(1);
     expect(result[0].slug).toBe("cenajo");
   });
 
-  it("Si hay un elemento repetido debe moverlo al principio sin duplicarlo", () => {
-    // --- STEP 1: ARRANGE ---
+  it("should move a repeated element to the beginning without duplicating it", () => {
+
+    // ARRANGE
     const embalseList: EmbalseSearchModel[] = [
       { slug: "gonzalez-lacasa", name: "González Lacasa (La Rioja)" },
       { slug: "chanza", name: "Chanza (Huelva)" },
@@ -31,15 +56,18 @@ describe("recentSearches business logic", () => {
       slug: "cenajo",
       name: "Cenajo (Albacete)",
     };
-    // --- STEP 2: ACT ---
+
+    // ACT
     const result = addNewSearchEntry(newSearch, embalseList);
-    // --- STEP 3: ASSERT ---
+
+    // ASSERT
     expect(result).toHaveLength(3);
     expect(result[0]).toEqual(newSearch);
     expect(result[2].slug).toBe("chanza");
   });
 
-  it("Si el array tiene 5 elementos, debe añadir el nuevo al principio y eliminar el más antiguo", () => {
+  it("should add the new element to the beginning and remove the oldest one if the array has 5 elements", () => {
+
     // ARRANGE
     const embalseList: EmbalseSearchModel[] = [
       { slug: "gonzalez-lacasa", name: "González Lacasa (La Rioja)" },
@@ -63,7 +91,8 @@ describe("recentSearches business logic", () => {
     expect(result[4].slug).toBe("mequinenza");
   });
 
-  it("Debe añadir una entrada a una lista que ya tiene elementos pero no está llena", () => {
+  it("should add an entry to a list that already has elements but is not full", () => {
+
     // ARRANGE
     const embalseList: EmbalseSearchModel[] = [
       { slug: "gonzalez-lacasa", name: "González Lacasa (La Rioja)" },
@@ -72,8 +101,10 @@ describe("recentSearches business logic", () => {
       slug: "cenajo",
       name: "Cenajo (Albacete)",
     };
+
     // ACT
     const result = addNewSearchEntry(newSearch, embalseList);
+
     // ASSERT
     expect(result).toHaveLength(2);
     expect(result[0].slug).toBe("cenajo");
@@ -81,36 +112,55 @@ describe("recentSearches business logic", () => {
   });
 });
 
-describe("Test getStoredSearches", () => {
-    
-  it("debería retornar un array vacío si el localStorage está vacío", () => {
-    // ARRANGE
-    const spy = vi.spyOn(window.Storage.prototype, 'getItem');
-      spy.mockReturnValue(null)
+describe("getStoredSearches", () => {
+
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  it("should return an array with 5 indices", () => {
+
+    // ARRANGE:
+    localStorage.setItem(
+      "recent-searches",
+      JSON.stringify([
+        { slug: "loteta-la", name: "Loteta (La) (Zaragoza)" },
+        { slug: "gonzalez-lacasa", name: "González Lacasa (La Rioja)" },
+        { slug: "chanza", name: "Chanza (Huelva)" },
+        { slug: "cenajo", name: "Cenajo (Albacete)" },
+        { slug: "mequinenza", name: "Mequinenza (Zaragoza)" },
+      ]),
+    );
+
     // ACT
     const result = getStoredSearches();
+
+    // ASSERT
+    expect(result).toHaveLength(5);
+    expect(result[0].slug).toEqual("loteta-la");
+  });
+
+  it("should return an empty array if localStorage is empty", () => {
+    // ARRANGE:
+    localStorage.clear();
+
+    // ACT
+    const result = getStoredSearches();
+
     // ASSERT
     expect(result).toEqual([]);
-
-
   });
 
-    it("", () => {
-    // ARRANGE
+  it("should return an empty array when localStorage data is invalid", () => {
+    // ARRANGE:
+    localStorageMock.setItem("recent-searches", "invalid-data");
+    const spyConsole = vi.spyOn(console, "log").mockImplementation(() => {});
 
     // ACT
-  
+    const result = getStoredSearches();
+
     // ASSERT
-
+    expect(result).toEqual([]);
+    expect(spyConsole).toHaveBeenCalled();
   });
-
-    it("", () => {
-    // ARRANGE
-
-    // ACT
-  
-    // ASSERT
-
-  });
-
-})
+});
