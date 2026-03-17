@@ -7,7 +7,6 @@ import {
 } from "@/pods/embalse";
 import { mapEmbalseToReservoirData } from "@/pods/embalse/embalse.mapper";
 import {
-  EmbalseHistorialPod,
   getPromedioHistoricoPorMeses,
   ReservoirHistoryModel,
 } from "@/pods/embalse-historial";
@@ -45,17 +44,15 @@ export default async function EmbalseDetallePage({ params }: Props) {
   /**
    * Obtiene historial de agua embalsada del último año por meses según nombre de embalse recibido.
    */
-
   const reservoirHistoryLastYear: ReservoirHistoryModel =
     await getPromedioHistoricoPorMeses(embalseDoc.nombre);
 
   return (
     <>
-      <EmbalseHistorialPod
+      <EmbalsePod
+        reservoirData={reservoirData}
         reservoirHistoryLastYear={reservoirHistoryLastYear}
-        maxCapacity={embalseDoc.capacidad}
       />
-      <EmbalsePod reservoirData={reservoirData} />
     </>
   );
 }
