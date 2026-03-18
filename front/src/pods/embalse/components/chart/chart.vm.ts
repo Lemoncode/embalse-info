@@ -1,9 +1,11 @@
-import { ReservoirData } from "@/pods/embalse/embalse.vm";
-import { ReservoirHistoryModel } from "../embalse-historial.vm";
+import { ReservoirHistoryModel } from "@/pods/embalse/embalse.vm";
 
 export interface ChartModel {
   data: ReservoirHistoryModel;
+  currentLevel: number;
   maxCapacity: number;
+  averageLastYear: number;
+  averageHistory: number;
   title: string;
 }
 export interface MonthsAverage {

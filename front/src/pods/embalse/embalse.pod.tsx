@@ -1,10 +1,6 @@
 import React from "react";
 import { Embalse } from "./embalse.component";
-import { ReservoirData, ReservoirInfo } from "./embalse.vm";
-import {
-  EmbalseHistorialPod,
-  ReservoirHistoryModel,
-} from "../embalse-historial";
+import { ReservoirData, ReservoirHistoryModel } from "./embalse.vm";
 
 interface Props {
   reservoirData: ReservoirData;
@@ -14,10 +10,9 @@ export const EmbalsePod: React.FC<Props> = (props) => {
   const { reservoirData, reservoirHistoryLastYear } = props;
   return (
     <>
-      <Embalse reservoirData={reservoirData} />
-      <EmbalseHistorialPod
-        reservoirHistoryLastYear={reservoirHistoryLastYear}
-        maxCapacity={reservoirData.totalCapacity}
+      <Embalse
+        reservoirData={reservoirData}
+        statisticsLastYear={reservoirHistoryLastYear}
       />
     </>
   );

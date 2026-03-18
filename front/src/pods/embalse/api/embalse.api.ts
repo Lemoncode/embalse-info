@@ -2,8 +2,12 @@ import "server-only";
 import { unstable_cache } from "next/cache";
 import type { ReservoirInfo } from "./embalse.api-model";
 import { contentIslandClient } from "@/lib";
-import { getEmbalseBySlug } from "../embalse.repository";
+import {
+  getEmbalseBySlug,
+  getHistorialPromedioPorMeses,
+} from "../embalse.repository";
 import type { Embalse } from "db-model";
+import { ReservoirHistoryModel } from "./embalse.api-model";
 
 /**
  * Cached version of getReservoirInfoBySlug.
@@ -46,3 +50,38 @@ export const getEmbalseBySlugCached = unstable_cache(
   ["embalse-by-slug"],
   { revalidate: 60 },
 );
+
+/**
+ * Function for historical average.
+ *
+ * Cached version of getHistoricalAverageByMonths.
+ * Revalidates every 60 minutes.
+ **/
+const getHistoricalAverageByMonthsCached = unstable_cache(
+  async (name: string): Promise<ReservoirHistoryModel> => {
+    const statisticsReservoir = await getHistorialPromedioPorMeses(name);
+
+    if (!statisticsReservoir) {
+      throw new Error("Empty historico embalse - skip cache");
+    }
+
+    return statisticsReservoir;
+  },
+  ["embalses-historico-por-meses"],
+  { revalidate: 3600 },
+);
+
+export const getHistoricalAverageByMonths = async (
+  name: string,
+): Promise<ReservoirHistoryModel> => {
+  try {
+    return await getHistoricalAverageByMonthsCached(name);
+  } catch (error) {
+    console.warn(
+      "getHistoricalAverageByMonths: MongoDB not available or empty, returning empty array.",
+      "Error:",
+      error instanceof Error ? error.message : error,
+    );
+    return;
+  }
+};

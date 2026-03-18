@@ -4,12 +4,12 @@ import {
   EmbalsePod,
   getReservoirInfoBySlugCached,
   getEmbalseBySlugCached,
+  getHistoricalAverageByMonths,
 } from "@/pods/embalse";
-import { mapEmbalseToReservoirData } from "@/pods/embalse/embalse.mapper";
 import {
-  getPromedioHistoricoPorMeses,
-  ReservoirHistoryModel,
-} from "@/pods/embalse-historial";
+  mapHistoricalReservoirToViewModel,
+  mapEmbalseToReservoirData,
+} from "@/pods/embalse/embalse.mapper";
 
 export const revalidate = 300; // ISR: regenerar cada 5 minutos
 
@@ -44,14 +44,18 @@ export default async function EmbalseDetallePage({ params }: Props) {
   /**
    * Obtiene historial de agua embalsada del último año por meses según nombre de embalse recibido.
    */
-  const reservoirHistoryLastYear: ReservoirHistoryModel =
-    await getPromedioHistoricoPorMeses(embalseDoc.nombre);
+  const historicalAverageByMonths = await getHistoricalAverageByMonths(
+    embalseDoc.nombre,
+  );
+  const reservoirHistory = mapHistoricalReservoirToViewModel(
+    historicalAverageByMonths,
+  );
 
   return (
     <>
       <EmbalsePod
         reservoirData={reservoirData}
-        reservoirHistoryLastYear={reservoirHistoryLastYear}
+        reservoirHistoryLastYear={reservoirHistory}
       />
     </>
   );
