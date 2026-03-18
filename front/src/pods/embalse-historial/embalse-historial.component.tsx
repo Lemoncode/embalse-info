@@ -19,7 +19,7 @@ export const EmbalseHistorialComponent: React.FC<Props> = (props) => {
         key={statisticsLastYear.id}
         data={statisticsLastYear}
         maxCapacity={maxCapacity}
-        title="Promedio por meses de los últimos 10 años"
+        title="Promedio"
       />
     </section>
   );
