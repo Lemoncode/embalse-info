@@ -1,13 +1,17 @@
 import "server-only";
 import { unstable_cache } from "next/cache";
-import type { ReservoirInfo } from "./embalse.api-model";
+import type {
+  ReservoirInfo,
+  ReservoirLastYearModel,
+  HistoricalAverageReservoir,
+} from "./embalse.api-model";
 import { contentIslandClient } from "@/lib";
 import {
   getEmbalseBySlug,
-  getHistorialPromedioPorMeses,
+  getAverageLastYearByMonth,
+  getAverageHistoricalByMonth,
 } from "../embalse.repository";
 import type { Embalse } from "db-model";
-import { ReservoirHistoryModel } from "./embalse.api-model";
 
 /**
  * Cached version of getReservoirInfoBySlug.
@@ -57,31 +61,55 @@ export const getEmbalseBySlugCached = unstable_cache(
  * Cached version of getHistoricalAverageByMonths.
  * Revalidates every 60 minutes.
  **/
-const getHistoricalAverageByMonthsCached = unstable_cache(
-  async (name: string): Promise<ReservoirHistoryModel> => {
-    const statisticsReservoir = await getHistorialPromedioPorMeses(name);
+export const getAverageLastYearByMonthCached = unstable_cache(
+  async (name: string, month: number): Promise<ReservoirLastYearModel> => {
+    try {
+      const statisticsReservoir = await getAverageLastYearByMonth(name, month);
 
-    if (!statisticsReservoir) {
-      throw new Error("Empty historico embalse - skip cache");
+      if (!statisticsReservoir) {
+        throw new Error("Empty data last year by month - skip cache");
+      }
+
+      return statisticsReservoir;
+    } catch (error) {
+      console.warn(
+        "getAverageLastYearByMonthCached: MongoDB not available or empty, returning empty array.",
+        "Error:",
+        error instanceof Error ? error.message : error,
+      );
+      return;
     }
-
-    return statisticsReservoir;
   },
-  ["embalses-historico-por-meses"],
+  ["reservoir-last-year"],
   { revalidate: 3600 },
 );
 
-export const getHistoricalAverageByMonths = async (
-  name: string,
-): Promise<ReservoirHistoryModel> => {
-  try {
-    return await getHistoricalAverageByMonthsCached(name);
-  } catch (error) {
-    console.warn(
-      "getHistoricalAverageByMonths: MongoDB not available or empty, returning empty array.",
-      "Error:",
-      error instanceof Error ? error.message : error,
-    );
-    return;
-  }
-};
+export const getAverageHistoricalByMonthCached = unstable_cache(
+  async (
+    reservoirName: string,
+    month: number,
+    year: number,
+  ): Promise<HistoricalAverageReservoir> => {
+    try {
+      const historicalStatistics = await getAverageHistoricalByMonth(
+        reservoirName,
+        month,
+        year,
+      );
+
+      if (!historicalStatistics) {
+        throw new Error("Empty historical data by month and year");
+      }
+      return historicalStatistics;
+    } catch (error) {
+      console.warn(
+        "getAverageHistoricalByMonthCached: MongoDB not available or empty, returning empty array.",
+        "Error:",
+        error instanceof Error ? error.message : error,
+      );
+      return;
+    }
+  },
+  ["reservoir-last-ten-year"],
+  { revalidate: 3600 },
+);

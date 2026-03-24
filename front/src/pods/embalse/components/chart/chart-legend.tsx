@@ -1,43 +1,72 @@
 import React from "react";
-import { color } from "./constants";
+import { color, monthsNames } from "./constants";
 
 interface Props {
   currentLevel: number;
-  averageLastYear: number;
-  averageHistory: number;
+  monthOneYearAgo: number;
+  yearOneYearAgo: number;
+  averageOneYearAgo: number;
+  monthTenYearsAgo: number;
+  yearTenYearsAgo: number;
+  averageTenYearsAgo: number;
 }
 export const ChartLegend: React.FC<Props> = (props) => {
-  const { currentLevel, averageLastYear, averageHistory } = props;
+  const {
+    currentLevel,
+    monthOneYearAgo,
+    yearOneYearAgo,
+    averageOneYearAgo,
+    monthTenYearsAgo,
+    yearTenYearsAgo,
+    averageTenYearsAgo,
+  } = props;
 
   return (
-    <div className="card card-border gap-2 pt-3 pr-2 pb-3 pl-2">
-      <div className="flex flex-row justify-center gap-3">
+    <div className="card card-border max-w-90 gap-3 pt-3 pr-2 pb-3 pl-2 md:p-3">
+      <div className="grid grid-cols-5 items-center gap-4">
         <div
-          className="h-4 w-4"
+          className="h-4 w-4 justify-self-center rounded-t-sm"
           style={{
             backgroundColor: color.actualAverage,
           }}
         ></div>
-        <div>Agua embalsada: {currentLevel} Hm³</div>
-      </div>
-      <div className="flex flex-row gap-1">
-        <div
-          className={`pr-2 text-2xl font-black`}
-          style={{ color: color.averageLastYear }}
-        >
-          -----
+        <div className="col-span-4">
+          <span>Agua embalsada:</span>
+          <span className="pl-1 font-black">{currentLevel} Hm³</span>
         </div>
-        <span>Media año anterior: {averageLastYear.toFixed(2)} Hm³</span>
       </div>
-      <div className="flex flex-row gap-1">
-        <div
-          className="pr-2 text-2xl font-black"
-          style={{ color: color.averageLast10Years }}
-        >
-          -----
+      {averageOneYearAgo && (
+        <div className="grid grid-cols-5 items-center gap-1">
+          <div
+            className={`pr-2 text-3xl font-black`}
+            style={{ color: color.averageLastYear }}
+          >
+            ----
+          </div>
+          <div className="col-span-4">
+            <span>
+              Media en {monthsNames[monthOneYearAgo - 1]} de {yearOneYearAgo}:
+            </span>
+            <span className="pl-1 font-black">{averageOneYearAgo} Hm³</span>
+          </div>
         </div>
-        <span>Media histórica: {averageHistory} Hm³</span>
-      </div>
+      )}
+      {averageTenYearsAgo && (
+        <div className="grid grid-cols-5 items-center gap-1">
+          <div
+            className="justify-center pr-2 text-3xl font-black"
+            style={{ color: color.averageLast10Years }}
+          >
+            ·······
+          </div>
+          <div className="col-span-4">
+            <span>
+              Media en {monthsNames[monthTenYearsAgo - 1]} de {yearTenYearsAgo}:
+            </span>
+            <span className="pl-1 font-black">{averageTenYearsAgo} Hm³</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -3,13 +3,17 @@ import {
   ReservoirCardDetail,
   ReservoirCardGauge,
   ReservoirCardInfo,
-  ChartHistory,
+  HistoryChart,
 } from "./components";
-import { ReservoirData, ReservoirHistoryModel } from "./embalse.vm";
-import { getAverageByMonths } from "./provisionalHelper";
+import {
+  ReservoirData,
+  DataLastYearModel,
+  HistoricalAverageReservoir,
+} from "./embalse.vm";
 interface Props {
   reservoirData: ReservoirData;
-  statisticsLastYear: ReservoirHistoryModel;
+  dataOneYearAgo: DataLastYearModel;
+  dataTenYearsAgo: HistoricalAverageReservoir;
 }
 /**   
     La prop name de ReservoirCardGauge ahora recibe reservoirData.nombre (el nombre real del embalse desde la BD).
@@ -17,12 +21,8 @@ interface Props {
    */
 
 export const Embalse: React.FC<Props> = (props) => {
-  const { reservoirData, statisticsLastYear } = props;
-  const averageLastYear = getAverageByMonths(
-    statisticsLastYear.months.map((month) => month.average),
-    reservoirData.totalCapacity,
-  );
-  console.log("reservoirData.totalCapacity: ", reservoirData.totalCapacity);
+  const { reservoirData, dataOneYearAgo, dataTenYearsAgo } = props;
+
   return (
     <div className="flex flex-col gap-6 self-center pt-6 pr-4 pb-6 pl-4 md:max-w-[900px] md:flex-row md:flex-wrap md:gap-8 md:p-8">
       <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl shadow-lg md:order-1 md:w-[calc(50%-16px)]">
@@ -54,13 +54,13 @@ export const Embalse: React.FC<Props> = (props) => {
         <ReservoirCardDetail datosEmbalse={reservoirData.datosEmbalse} />
       </div>
       <div className="card bg-base-100 mx-auto w-full max-w-100 items-center gap-6 rounded-2xl p-4 shadow-lg md:order-5 md:max-w-225">
-        <ChartHistory
-          data={statisticsLastYear}
+        <HistoryChart
+          reservoirName={reservoirData.nombre}
           currentLevel={reservoirData.currentVolume}
           maxCapacity={reservoirData.totalCapacity}
-          averageLastYear={averageLastYear}
-          averageHistory={82.5} // TODO: Dato mockeado
-          title="Promedio"
+          dataOneYearAgo={dataOneYearAgo}
+          dataTenYearsAgo={dataTenYearsAgo}
+          titleChart="Promedio"
         />
       </div>
     </div>

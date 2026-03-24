@@ -17,3 +17,18 @@ export const color = {
   averageLastYear: "#6904BB",
   averageLast10Years: "#AA0000",
 };
+
+export const monthsNames = [
+  "Enero",
+  "Febrero",
+  "Marzo",
+  "Abril",
+  "Mayo",
+  "Junio",
+  "Julio",
+  "Agosto",
+  "Septiembre",
+  "Octubre",
+  "Noviembre",
+  "Diciembre",
+];

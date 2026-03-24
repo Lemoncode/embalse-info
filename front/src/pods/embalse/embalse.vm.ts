@@ -54,18 +54,15 @@ export const createEmptyEmbalseInfo = (): ReservoirInfo => ({
   description: "",
 });
 
-interface MonthHistoryData {
+export interface DataLastYearModel {
+  year?: number;
   month: number;
   average: number;
 }
-interface ReservoirHistoryMetadata {
-  lastUpdate: string;
-  startDate: string;
-  endDate: string;
-}
-export interface ReservoirHistoryModel {
-  id: string;
-  reservoir: string;
-  metadata: ReservoirHistoryMetadata;
-  months: MonthHistoryData[];
+
+export interface HistoricalAverageReservoir {
+  nameReservoir: string;
+  month: number;
+  year: number;
+  average: number;
 }

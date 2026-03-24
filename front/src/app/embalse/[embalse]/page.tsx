@@ -4,11 +4,13 @@ import {
   EmbalsePod,
   getReservoirInfoBySlugCached,
   getEmbalseBySlugCached,
-  getHistoricalAverageByMonths,
+  getAverageLastYearByMonthCached,
+  getAverageHistoricalByMonthCached,
 } from "@/pods/embalse";
 import {
-  mapHistoricalReservoirToViewModel,
+  mapReservoirLastYearToViewModel,
   mapEmbalseToReservoirData,
+  mapHistoricalReservoirToViewModel,
 } from "@/pods/embalse/embalse.mapper";
 
 export const revalidate = 300; // ISR: regenerar cada 5 minutos
@@ -34,28 +36,34 @@ export default async function EmbalseDetallePage({ params }: Props) {
   const { embalse } = await params;
   const embalseDoc = await getEmbalseBySlugCached(embalse);
   const embalseInfo = await getReservoirInfoBySlugCached(embalse);
+  const actualYear = new Date().getFullYear();
+  const actualMonth = new Date().getMonth(); // return month 0-11
 
   if (!embalseDoc) {
     notFound();
   }
-
   const reservoirData = mapEmbalseToReservoirData(embalseDoc, embalseInfo);
 
-  /**
-   * Obtiene historial de agua embalsada del último año por meses según nombre de embalse recibido.
-   */
-  const historicalAverageByMonths = await getHistoricalAverageByMonths(
+  const dataMappedOneYearAgo = await getAverageLastYearByMonthCached(
     embalseDoc.nombre,
-  );
-  const reservoirHistory = mapHistoricalReservoirToViewModel(
-    historicalAverageByMonths,
-  );
+    actualMonth + 1,
+  ).then(mapReservoirLastYearToViewModel);
+
+  // Add last year to dataOneYearAgo object
+  const dataOneYearAgo = { ...dataMappedOneYearAgo, year: actualYear - 1 };
+
+  const averageHistoricalData = await getAverageHistoricalByMonthCached(
+    embalseDoc.nombre,
+    actualMonth + 1,
+    actualYear - 10, // 10 years ago
+  ).then(mapHistoricalReservoirToViewModel);
 
   return (
     <>
       <EmbalsePod
         reservoirData={reservoirData}
-        reservoirHistoryLastYear={reservoirHistory}
+        dataOneYearAgo={dataOneYearAgo}
+        dataTenYearsAgo={averageHistoricalData}
       />
     </>
   );
