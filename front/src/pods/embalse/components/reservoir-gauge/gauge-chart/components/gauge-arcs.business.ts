@@ -19,8 +19,6 @@ const createArcGenerator = (endAngle: number) => {
     .cornerRadius(arcConfig.cornerRadius);
 };
 
-
-
 export const calculateFilledAngle = (percentage: number): number => {
   // Ensure percentage is within valid range [0, 1]
   const normalized = Math.max(0, Math.min(1, percentage));
@@ -30,7 +28,10 @@ export const calculateFilledAngle = (percentage: number): number => {
   return arcConfig.startAngle + normalized * totalAngle;
 };
 
-export const drawArc = ({ arcGroup, endAngle, fillColor }: DrawArcParams, animate: boolean = false) => {
+export const drawArc = (
+  { arcGroup, endAngle, fillColor }: DrawArcParams,
+  animate: boolean = false,
+) => {
   const arcGenerator = createArcGenerator(endAngle);
 
   if (animate) {
@@ -51,10 +52,12 @@ export const drawArc = ({ arcGroup, endAngle, fillColor }: DrawArcParams, animat
   }
 };
 
-
-export const drawAnimatedArc = ({ arcGroup, endAngle, fillColor }: DrawArcParams) => {
+export const drawAnimatedArc = ({
+  arcGroup,
+  endAngle,
+  fillColor,
+}: DrawArcParams) => {
   const arcGeneratorStart = createArcGenerator(arcConfig.startAngle);
-  
 
   arcGroup
     .append("path")
@@ -63,11 +66,11 @@ export const drawAnimatedArc = ({ arcGroup, endAngle, fillColor }: DrawArcParams
     .transition()
     .duration(2000)
     .ease(d3.easeCubicInOut)
-    .attrTween("d", function() {
+    .attrTween("d", function () {
       const interpolate = d3.interpolate(arcConfig.startAngle, endAngle);
-      return function(t) {
+      return function (t) {
         const arcGenerator = createArcGenerator(interpolate(t));
-        return arcGenerator(this) || "";
+        return arcGenerator(null) || "";
       };
     });
 };

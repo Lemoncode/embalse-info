@@ -24,8 +24,10 @@
   /* Title color */
   --color-title: #051c1f;
 
-  /* Graphic total water */
+  /* Colors of reservoir graphics */
   --color-total-water: #26d6ed;
+  --line-average-last-year: #6904bb;
+  --line-average-last-ten-years: #952e00;
 
   /* Accesible visited link color */
   --color-visited-link: #257782;

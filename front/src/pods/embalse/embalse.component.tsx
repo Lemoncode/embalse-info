@@ -31,15 +31,24 @@ export const Embalse: React.FC<Props> = (props) => {
           reservoirData={reservoirData}
         />
       </div>
-
+      <div className="card bg-base-100 mx-auto hidden w-full max-w-100 items-center gap-6 rounded-2xl shadow-lg md:order-2 md:block md:w-[calc(50%-16px)]">
+        <HistoryChart
+          reservoirName={reservoirData.nombre}
+          currentLevel={reservoirData.currentVolume}
+          maxCapacity={reservoirData.totalCapacity}
+          dataOneYearAgo={dataOneYearAgo}
+          dataTenYearsAgo={dataTenYearsAgo}
+          titleChart="Histórico"
+        />
+      </div>
       {reservoirData.reservoirInfo && (
-        <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4 shadow-lg md:order-3 md:max-w-[900px]">
+        <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4 shadow-lg md:order-4 md:max-w-[900px]">
           <ReservoirCardInfo reservoirInfo={reservoirData.reservoirInfo} />
         </div>
       )}
 
       {reservoirData.datosEmbalse.mapUrl && (
-        <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4 shadow-lg md:order-4 md:max-w-[900px]">
+        <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4 shadow-lg md:order-5 md:max-w-[900px]">
           <iframe
             title={`Mapa del embalse ${reservoirData.nombre}`}
             src={reservoirData.datosEmbalse.mapUrl}
@@ -50,18 +59,8 @@ export const Embalse: React.FC<Props> = (props) => {
         </div>
       )}
 
-      <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4 shadow-lg md:order-2 md:w-[calc(50%-16px)]">
+      <div className="card bg-base-100 mx-auto w-full max-w-[400px] items-center gap-6 rounded-2xl p-4 shadow-lg md:order-3 md:max-w-225">
         <ReservoirCardDetail datosEmbalse={reservoirData.datosEmbalse} />
-      </div>
-      <div className="card bg-base-100 mx-auto w-full max-w-100 items-center gap-6 rounded-2xl p-4 shadow-lg md:order-5 md:max-w-225">
-        <HistoryChart
-          reservoirName={reservoirData.nombre}
-          currentLevel={reservoirData.currentVolume}
-          maxCapacity={reservoirData.totalCapacity}
-          dataOneYearAgo={dataOneYearAgo}
-          dataTenYearsAgo={dataTenYearsAgo}
-          titleChart="Promedio"
-        />
       </div>
     </div>
   );
