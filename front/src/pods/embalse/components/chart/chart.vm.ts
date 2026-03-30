@@ -4,7 +4,7 @@ import {
 } from "@/pods/embalse/embalse.vm";
 
 export interface ChartModel {
-  titleChart: string;
+  titleChart?: string;
   reservoirName: string;
   currentLevel: number;
   maxCapacity: number;

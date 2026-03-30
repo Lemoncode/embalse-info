@@ -29,6 +29,8 @@ export const Embalse: React.FC<Props> = (props) => {
         <ReservoirCardGauge
           name={reservoirData.nombre}
           reservoirData={reservoirData}
+          dataOneYearAgo={dataOneYearAgo}
+          dataTenYearsAgo={dataTenYearsAgo}
         />
       </div>
       <div className="card bg-base-100 mx-auto hidden w-full max-w-100 items-center gap-6 rounded-2xl shadow-lg md:order-2 md:block md:w-[calc(50%-16px)]">

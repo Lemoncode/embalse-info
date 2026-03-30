@@ -12,10 +12,12 @@ export const HistoryChart: React.FC<ChartModel> = ({
   dataOneYearAgo,
   dataTenYearsAgo,
 }) => {
-  const percentageActual = (currentLevel * 100) / maxCapacity;
+  let percentageActual = (currentLevel * 100) / maxCapacity;
+  if (percentageActual > 100) {
+    percentageActual = 100;
+  }
   const isOutside = percentageActual < 10;
-
-  // Cálculo de escalas — sin manipulación del DOM
+  // Cálculo de escalas
   const x = d3
     .scaleBand()
     .domain([reservoirName])
@@ -54,7 +56,7 @@ export const HistoryChart: React.FC<ChartModel> = ({
           x={barX}
           y={y(100)}
           width={barWidth}
-          height={barHeight / 2}
+          height={y(barHeight / 2)}
           rx={s.radius}
           fill="var(--color-total-water)"
         />
@@ -67,20 +69,6 @@ export const HistoryChart: React.FC<ChartModel> = ({
           height={barHeight}
           fill="var(--color-primary)"
         />
-
-        {/* Etiqueta con el nivel actual en Hm³ */}
-        <text
-          x={barX + barWidth / 2}
-          y={labelY}
-          textAnchor="middle"
-          fontSize="16px"
-          fill={
-            isOutside ? "var(--color-base-content)" : "var(--color-brand-100)"
-          }
-          fontWeight="900"
-        >
-          {currentLevel} Hm³
-        </text>
 
         {/* Línea de referencia: mismo mes del año anterior */}
         {dataOneYearAgo && (
@@ -103,6 +91,19 @@ export const HistoryChart: React.FC<ChartModel> = ({
             dashArray="4"
           />
         )}
+        {/* Etiqueta con el nivel actual en Hm³ */}
+        <text
+          x={barX + barWidth / 2}
+          y={labelY}
+          textAnchor="middle"
+          fontSize="16px"
+          fill={
+            isOutside ? "var(--color-base-content)" : "var(--color-brand-100)"
+          }
+          fontWeight="900"
+        >
+          {currentLevel} Hm³
+        </text>
 
         {/* Eje X */}
         <line

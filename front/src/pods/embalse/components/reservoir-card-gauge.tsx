@@ -1,15 +1,21 @@
 "use client";
 import React from "react";
-import { ReservoirData } from "../embalse.vm";
+import {
+  DataLastYearModel,
+  HistoricalAverageReservoir,
+  ReservoirData,
+} from "../embalse.vm";
 import { GaugeChart } from "./reservoir-gauge";
 import { GaugeLegend } from "./reservoir-gauge/gauge-chart/components/gauge-legend.component";
 import { HistoryChart } from "./chart";
 interface Props {
   name: string;
   reservoirData: ReservoirData;
+  dataOneYearAgo?: DataLastYearModel;
+  dataTenYearsAgo?: HistoricalAverageReservoir;
 }
 export const ReservoirCardGauge: React.FC<Props> = (props) => {
-  const { name, reservoirData } = props;
+  const { name, reservoirData, dataOneYearAgo, dataTenYearsAgo } = props;
   const { currentVolume, totalCapacity, measurementDate } = reservoirData;
   const percentage = totalCapacity > 0 ? currentVolume / totalCapacity : 0;
   const [cardGaugeSelected, setCardGaugeSelected] =
@@ -78,16 +84,19 @@ export const ReservoirCardGauge: React.FC<Props> = (props) => {
         </>
       ) : (
         <HistoryChart
-          titleChart=""
           currentLevel={currentVolume}
           maxCapacity={totalCapacity}
           reservoirName={name}
-          dataOneYearAgo={{ average: 20, month: 3, year: 2025 }}
+          dataOneYearAgo={{
+            average: dataOneYearAgo.average,
+            month: dataOneYearAgo.month,
+            year: dataOneYearAgo.year,
+          }}
           dataTenYearsAgo={{
-            average: 30,
-            month: 3,
+            average: dataTenYearsAgo.average,
+            month: dataTenYearsAgo.month,
             nameReservoir: name,
-            year: 2016,
+            year: dataTenYearsAgo.year,
           }}
         />
       )}
