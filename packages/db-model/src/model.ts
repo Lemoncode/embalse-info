@@ -45,3 +45,30 @@ export interface MetaDatos {
   ultimoStatus: string;
   ultimasImportacionesSAIH: UltimasImportacionesSAIH[];
 }
+
+export interface MonthyTenYearAgo {
+  año: number;
+  mes: number;
+  promedio_agua_actual: number
+}
+
+interface MonthyLastYear {
+  mes: number;
+  promedio_agua_actual: number
+}
+
+interface MetaData {
+  generatedAt: string;
+  periodoInicio: string;
+  periodoFin: string;
+}
+
+export interface HistoryTenYearAgo {
+  metaData: MetaData;
+  data: Record<string, MonthyTenYearAgo[]>;
+}
+
+export interface HistoryLastYear {
+  data: Record<string, MonthyLastYear[]>;
+  metaData: MetaData;
+}
