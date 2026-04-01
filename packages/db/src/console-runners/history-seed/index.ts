@@ -17,7 +17,6 @@ export const run = async () => {
       await historyTenYearAgoRepository.actualizarTenYearAgo(historyTenYearAgo);
     }
     dbServer.disconnect();
-    console.log('Terminado');
   } catch (error) {
     console.error(error);
   }
