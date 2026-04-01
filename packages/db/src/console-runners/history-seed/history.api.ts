@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { formatTimestamp, sleep } from './history.helpers.js';
 import { HistoryResultApi, ArcGISStatResponse } from './history.model.js';
-import { MonthyTenYearAgo, HistoryTenYearAgo } from 'db-model';
+import { MonthyTenYearAgo, HistoryTenYearAgoOutput } from 'db-model';
 
 const BASE_URL =
   "https://services-eu1.arcgis.com/RvnYk1PBUJ9rrAuT/arcgis/rest/services/Embalses_Total/FeatureServer/0/query";
@@ -65,7 +65,7 @@ async function fetchMonthlyAvg(year: number,
   return fetchStatQuery(where);
 }
 
-export const generateMonthlyAverages = async (): Promise<HistoryTenYearAgo> => {
+export const generateMonthlyAverages = async (): Promise<HistoryTenYearAgoOutput> => {
   let year = START_YEAR;
   let month = START_MONTH;
   let count = 0;

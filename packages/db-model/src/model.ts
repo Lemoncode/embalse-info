@@ -63,12 +63,18 @@ interface MetaData {
   periodoFin: string;
 }
 
-export interface HistoryTenYearAgo {
+export interface HistoryTenYearAgoOutput {
   metaData: MetaData;
   data: Record<string, MonthyTenYearAgo[]>;
 }
 
-export interface HistoryLastYear {
+export interface HistoryTenYearAgo {
+  embalse: string;
+  meses: MonthyTenYearAgo[];
+  metaData: MetaData;
+}
+
+export interface HistoryLastYearOutput {
   data: Record<string, MonthyLastYear[]>;
   metaData: MetaData;
 }
