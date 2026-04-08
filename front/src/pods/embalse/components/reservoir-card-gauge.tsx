@@ -8,6 +8,7 @@ import {
 import { GaugeChart } from "./reservoir-gauge";
 import { GaugeLegend } from "./reservoir-gauge/gauge-chart/components/gauge-legend.component";
 import { HistoryChart } from "./chart";
+import { useIsMobile } from "./useIsMobile";
 interface Props {
   name: string;
   reservoirData: ReservoirData;
@@ -21,20 +22,6 @@ export const ReservoirCardGauge: React.FC<Props> = (props) => {
   const [cardGaugeSelected, setCardGaugeSelected] =
     React.useState<boolean>(true);
 
-  const useIsMobile = () => {
-    const [isMobile, setIsMobile] = React.useState<boolean>(false);
-    React.useEffect(() => {
-      const mediaQuery = window.matchMedia("(max-width: 768px)");
-      setIsMobile(mediaQuery.matches);
-
-      const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-      mediaQuery.addEventListener("change", handler);
-
-      return () => mediaQuery.removeEventListener("change", handler);
-    }, []);
-
-    return isMobile;
-  };
   const isMobile = useIsMobile();
 
   const handleGraphicDisplay = (e: React.MouseEvent<HTMLButtonElement>) => {

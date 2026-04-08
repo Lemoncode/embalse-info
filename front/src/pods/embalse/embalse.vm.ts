@@ -59,6 +59,11 @@ export interface DataLastYearModel {
   month: number;
   average: number;
 }
+export const createEmptyDataLastYearModel = (): DataLastYearModel => ({
+  year: new Date().getFullYear() - 1,
+  month: new Date().getMonth(),
+  average: 0,
+});
 
 export interface HistoricalAverageReservoir {
   nameReservoir: string;
@@ -66,3 +71,10 @@ export interface HistoricalAverageReservoir {
   year: number;
   average: number;
 }
+export const createEmptyHistoricalAverageReservoir =
+  (): HistoricalAverageReservoir => ({
+    nameReservoir: "",
+    month: new Date().getMonth(),
+    year: new Date().getFullYear() - 10,
+    average: 0,
+  });

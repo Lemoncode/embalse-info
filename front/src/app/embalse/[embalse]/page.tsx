@@ -49,9 +49,6 @@ export default async function EmbalseDetallePage({ params }: Props) {
     actualMonth + 1,
   ).then(mapReservoirLastYearToViewModel);
 
-  // Add last year to dataOneYearAgo object
-  const dataOneYearAgo = { ...dataMappedOneYearAgo, year: actualYear - 1 };
-
   const averageHistoricalData = await getAverageHistoricalByMonthCached(
     embalseDoc.nombre,
     actualMonth + 1,
@@ -62,7 +59,7 @@ export default async function EmbalseDetallePage({ params }: Props) {
     <>
       <EmbalsePod
         reservoirData={reservoirData}
-        dataOneYearAgo={dataOneYearAgo}
+        dataOneYearAgo={dataMappedOneYearAgo}
         dataTenYearsAgo={averageHistoricalData}
       />
     </>

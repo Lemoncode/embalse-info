@@ -12,27 +12,11 @@ export interface ReservoirInfo {
   mapUrl?: string;
 }
 
-interface MonthLastYearData {
-  mes: number;
-  promedio_agua_actual: number;
-}
-
 export interface ReservoirLastYearModel {
   mes: number;
   promedio_agua_actual: number;
 }
 
-// Historical reservoir data
-interface MonthHistorical {
-  año: number;
-  mes: number;
-  promedio_agua_actual: number;
-}
-interface ReservoirHistoricalMetadata {
-  generatedAt: string;
-  periodoInicio: string;
-  periodoFin: string;
-}
 export interface HistoricalAverageReservoir {
   embalse: string;
   mes: number;
