@@ -6,13 +6,12 @@ import { BarRoundedTop, ReferenceLine } from "./chart.helpers";
 
 export const HistoryChart: React.FC<ChartModel> = ({
   titleChart,
-  reservoirName,
-  currentLevel,
-  maxCapacity,
+  reservoirData,
   dataOneYearAgo,
   dataTenYearsAgo,
 }) => {
-  let percentageActual = (currentLevel * 100) / maxCapacity;
+  let percentageActual =
+    (reservoirData.currentVolume * 100) / reservoirData.totalCapacity;
   if (percentageActual > 100) {
     percentageActual = 100;
   }
@@ -20,7 +19,7 @@ export const HistoryChart: React.FC<ChartModel> = ({
   // Cálculo de escalas
   const x = d3
     .scaleBand()
-    .domain([reservoirName])
+    .domain([reservoirData.nombre])
     .range([s.margin.left, s.width - s.margin.right])
     .padding(0.2);
 
@@ -29,7 +28,7 @@ export const HistoryChart: React.FC<ChartModel> = ({
     .domain([0, 105])
     .range([s.height - s.margin.bottom, s.margin.top]);
 
-  const barX = x(reservoirName);
+  const barX = x(reservoirData.nombre);
   const barWidth = x.bandwidth();
   const barY = y(percentageActual);
   const barHeight = y(0) - barY;
@@ -73,7 +72,9 @@ export const HistoryChart: React.FC<ChartModel> = ({
         {/* Línea de referencia: mismo mes del año anterior */}
         {dataOneYearAgo && (
           <ReferenceLine
-            yPos={y((dataOneYearAgo.average * 100) / maxCapacity)}
+            yPos={y(
+              (dataOneYearAgo.average * 100) / reservoirData.totalCapacity,
+            )}
             x1={refX1}
             x2={refX2}
             stroke={"var(--line-average-last-year)"}
@@ -84,7 +85,9 @@ export const HistoryChart: React.FC<ChartModel> = ({
         {/* Línea de referencia: mismo mes hace 10 años */}
         {dataTenYearsAgo && (
           <ReferenceLine
-            yPos={y((dataTenYearsAgo.average * 100) / maxCapacity)}
+            yPos={y(
+              (dataTenYearsAgo.average * 100) / reservoirData.totalCapacity,
+            )}
             x1={refX1}
             x2={refX2}
             stroke={"var(--line-average-last-ten-years)"}
@@ -102,7 +105,7 @@ export const HistoryChart: React.FC<ChartModel> = ({
           }
           fontWeight="900"
         >
-          {currentLevel} Hm³
+          {reservoirData.currentVolume} Hm³
         </text>
 
         {/* Eje X */}
@@ -116,13 +119,9 @@ export const HistoryChart: React.FC<ChartModel> = ({
       </svg>
 
       <ChartLegend
-        currentLevel={currentLevel}
-        monthOneYearAgo={dataOneYearAgo.month}
-        yearOneYearAgo={dataOneYearAgo.year}
-        averageOneYearAgo={dataOneYearAgo.average}
-        monthTenYearsAgo={dataTenYearsAgo.month}
-        yearTenYearsAgo={dataTenYearsAgo.year}
-        averageTenYearsAgo={dataTenYearsAgo.average}
+        currentLevel={reservoirData.currentVolume}
+        dataOneYearAgo={dataOneYearAgo}
+        dataTenYearsAgo={dataTenYearsAgo}
       />
     </section>
   );

@@ -35,12 +35,10 @@ export const Embalse: React.FC<Props> = (props) => {
       </div>
       <div className="card bg-base-100 mx-auto hidden w-full max-w-100 items-center gap-6 rounded-2xl shadow-lg md:order-2 md:block md:w-[calc(50%-16px)]">
         <HistoryChart
-          reservoirName={reservoirData.nombre}
-          currentLevel={reservoirData.currentVolume}
-          maxCapacity={reservoirData.totalCapacity}
+          titleChart="Histórico"
+          reservoirData={reservoirData}
           dataOneYearAgo={dataOneYearAgo}
           dataTenYearsAgo={dataTenYearsAgo}
-          titleChart="Histórico"
         />
       </div>
       {reservoirData.reservoirInfo && (

@@ -71,20 +71,9 @@ export const ReservoirCardGauge: React.FC<Props> = (props) => {
         </>
       ) : (
         <HistoryChart
-          currentLevel={currentVolume}
-          maxCapacity={totalCapacity}
-          reservoirName={name}
-          dataOneYearAgo={{
-            average: dataOneYearAgo.average,
-            month: dataOneYearAgo.month,
-            year: dataOneYearAgo.year,
-          }}
-          dataTenYearsAgo={{
-            average: dataTenYearsAgo.average,
-            month: dataTenYearsAgo.month,
-            nameReservoir: name,
-            year: dataTenYearsAgo.year,
-          }}
+          reservoirData={reservoirData}
+          dataOneYearAgo={dataOneYearAgo}
+          dataTenYearsAgo={dataTenYearsAgo}
         />
       )}
     </section>

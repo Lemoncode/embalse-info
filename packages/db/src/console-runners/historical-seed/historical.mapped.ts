@@ -17,16 +17,8 @@ export const mapHistoricalAverageToDB = (
       ([reservoirName, monthly]) => {
         return {
           embalse: reservoirName,
-          meses: monthly.map((month) => ({
-            mes: month.mes,
-            año: month.año,
-            promedio_agua_actual: month.promedio_agua_actual,
-          })),
-          metadata: {
-            generatedAt: metadata.generatedAt,
-            periodoInicio: metadata.periodoInicio,
-            periodoFin: metadata.periodoFin,
-          },
+          meses: monthly.map((month) => month),
+          metadata: metadata,
         };
       },
     );
@@ -47,15 +39,8 @@ export const mapLastYearAverageToDB = (
       ([reservoirName, monthly]) => {
         return {
           embalse: reservoirName,
-          meses: monthly.map((month) => ({
-            mes: month.mes,
-            promedio_agua_actual: month.promedio_agua_actual,
-          })),
-          metadata: {
-            generatedAt: metadata.generatedAt,
-            periodoInicio: metadata.periodoInicio,
-            periodoFin: metadata.periodoFin,
-          },
+          meses: monthly.map((month) => month),
+          metadata: metadata,
         };
       },
     );

@@ -1,13 +1,12 @@
 import {
   DataLastYearModel,
   HistoricalAverageReservoir,
+  ReservoirData,
 } from "@/pods/embalse/embalse.vm";
 
 export interface ChartModel {
   titleChart?: string;
-  reservoirName: string;
-  currentLevel: number;
-  maxCapacity: number;
+  reservoirData: ReservoirData;
   dataOneYearAgo?: DataLastYearModel;
   dataTenYearsAgo?: HistoricalAverageReservoir;
 }
