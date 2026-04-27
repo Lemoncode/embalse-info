@@ -231,7 +231,6 @@ describe("mapReservoirLastYearToViewModel", () => {
 describe("mapHistoricalReservoirToViewModel", () => {
   it("should accurately map the fields for the last ten years", () => {
     const mockHistoricalData: historicalApi.HistoricalAverageReservoir = {
-      año: 2026,
       embalse: "Viñuela, La",
       mes: 3,
       promedio_agua_actual: 149.21,
@@ -241,7 +240,6 @@ describe("mapHistoricalReservoirToViewModel", () => {
       mapHistoricalReservoirToViewModel(mockHistoricalData);
 
     const expectResult = {
-      year: 2026,
       nameReservoir: "Viñuela, La",
       month: 3,
       average: 149.21,

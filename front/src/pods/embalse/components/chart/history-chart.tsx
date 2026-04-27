@@ -15,6 +15,7 @@ export const HistoryChart: React.FC<ChartModel> = ({
   if (percentageActual > 100) {
     percentageActual = 100;
   }
+  const isOutside = percentageActual < 10;
   // Cálculo de escalas
   const x = d3
     .scaleBand()
@@ -36,21 +37,8 @@ export const HistoryChart: React.FC<ChartModel> = ({
   const refX1 = barX - s.margin.left / 2;
   const refX2 = barX * 2 + s.margin.left + s.margin.right;
 
-  // Posiciones Y de las líneas de referencia (SVG: valor menor = más arriba)
-  const refYOneYear = dataOneYearAgo
-    ? y((dataOneYearAgo.average * 100) / reservoirData.totalCapacity)
-    : Infinity;
-  const refYTenYears = dataTenYearsAgo
-    ? y((dataTenYearsAgo.average * 100) / reservoirData.totalCapacity)
-    : Infinity;
-
-  // La línea más alta dentro del SVG (la de menor y)
-  const topRefLineY = Math.min(refYOneYear, refYTenYears);
-
-  // Etiqueta: encima de la línea de referencia más alta, dentro de la barra
-  const labelInsideBar = barY + 20;
-  const labelAboveRefs = topRefLineY - 16;
-  const labelY = Math.min(labelInsideBar, labelAboveRefs);
+  // Etiqueta: encima de la barra si el nivel es muy bajo (<10%), dentro si no
+  const labelY = isOutside ? barY - 8 : barY + 20;
 
   return (
     <section
