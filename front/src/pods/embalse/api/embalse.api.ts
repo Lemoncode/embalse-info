@@ -88,13 +88,11 @@ export const getAverageHistoricalByMonthCached = unstable_cache(
   async (
     reservoirName: string,
     month: number,
-    year: number,
   ): Promise<HistoricalAverageReservoir> => {
     try {
       const historicalStatistics = await getAverageHistoricalByMonth(
         reservoirName,
         month,
-        year,
       );
 
       if (!historicalStatistics) {

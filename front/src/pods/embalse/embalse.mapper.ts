@@ -87,7 +87,6 @@ export const mapHistoricalReservoirToViewModel = (
   return Boolean(apiData)
     ? {
         nameReservoir: apiData.embalse,
-        year: apiData.año,
         month: apiData.mes,
         average: apiData.promedio_agua_actual,
       }

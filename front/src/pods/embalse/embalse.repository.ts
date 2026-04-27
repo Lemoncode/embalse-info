@@ -58,17 +58,15 @@ export const getAverageLastYearByMonth = async (
 };
 
 /**
- * Obtain the average monthly and annual values ​​received per parameter
+ * Obtain the average for a given month across the last 10 years.
  *
  * @param name:string Reservoir name
  * @param month:number Month number (1-12)
- * @param year:number Year number (yyyy)
  * @returns HistoricalAverageReservoir:
  */
 export const getAverageHistoricalByMonth = async (
   reservoirName: string,
   month: number,
-  year: number,
 ): Promise<ApiModel.HistoricalAverageReservoir> => {
   try {
     const db = await getDb();
@@ -79,14 +77,26 @@ export const getAverageHistoricalByMonth = async (
       .aggregate<ApiModel.HistoricalAverageReservoir>([
         { $match: { embalse: reservoirName } },
         { $unwind: "$meses" },
-        { $match: { "meses.año": year, "meses.mes": month } },
+        {
+          $match: {
+            "meses.mes": month,
+            "meses.año": { $lt: new Date().getFullYear() },
+          },
+        },
+        {
+          $group: {
+            _id: null,
+            embalse: { $first: "$embalse" },
+            mes: { $first: "$meses.mes" },
+            promedio_agua_actual: { $avg: "$meses.promedio_agua_actual" },
+          },
+        },
         {
           $project: {
             _id: 0,
             embalse: 1,
-            año: "$meses.año",
-            mes: "$meses.mes",
-            promedio_agua_actual: "$meses.promedio_agua_actual",
+            mes: 1,
+            promedio_agua_actual: { $round: ["$promedio_agua_actual", 2] },
           },
         },
       ])

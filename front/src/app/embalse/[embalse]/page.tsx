@@ -36,7 +36,6 @@ export default async function EmbalseDetallePage({ params }: Props) {
   const { embalse } = await params;
   const embalseDoc = await getEmbalseBySlugCached(embalse);
   const embalseInfo = await getReservoirInfoBySlugCached(embalse);
-  const actualYear = new Date().getFullYear();
   const actualMonth = new Date().getMonth(); // return month 0-11
 
   if (!embalseDoc) {
@@ -52,7 +51,6 @@ export default async function EmbalseDetallePage({ params }: Props) {
   const averageHistoricalData = await getAverageHistoricalByMonthCached(
     embalseDoc.nombre,
     actualMonth + 1,
-    actualYear - 10, // 10 years ago
   ).then(mapHistoricalReservoirToViewModel);
 
   return (

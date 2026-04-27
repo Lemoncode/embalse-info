@@ -40,8 +40,7 @@ export const ChartLegend: React.FC<Props> = ({
           <div className="mx-auto h-0.5 w-10 border-t-4 border-dotted border-(--line-average-last-ten-years)" />
           <div>
             <span>
-              {monthsNames[dataTenYearsAgo.month - 1]} de {dataTenYearsAgo.year}
-              :
+              Media {monthsNames[dataTenYearsAgo.month - 1]} (10 años):
             </span>
             <span className="pl-1">{dataTenYearsAgo.average} Hm³</span>
           </div>
