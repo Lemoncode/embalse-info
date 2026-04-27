@@ -31,7 +31,7 @@ export const ChartLegend: React.FC<Props> = ({
             <span>
               {monthsNames[dataOneYearAgo.month - 1]} de {dataOneYearAgo.year}:
             </span>
-            <span className="pl-1">{dataOneYearAgo.year} Hm³</span>
+            <span className="pl-1">{dataOneYearAgo.average} Hm³</span>
           </div>
         </div>
       )}
@@ -43,7 +43,7 @@ export const ChartLegend: React.FC<Props> = ({
               {monthsNames[dataTenYearsAgo.month - 1]} de {dataTenYearsAgo.year}
               :
             </span>
-            <span className="pl-1">{dataTenYearsAgo.year} Hm³</span>
+            <span className="pl-1">{dataTenYearsAgo.average} Hm³</span>
           </div>
         </div>
       )}
