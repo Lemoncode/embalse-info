@@ -1,3 +1,5 @@
+"use client";
+import { useState, useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { ChartModel } from "./chart.vm";
 import { sizeChart as s } from "./chart.constants";
@@ -10,6 +12,48 @@ export const HistoryChart: React.FC<ChartModel> = ({
   dataOneYearAgo,
   dataTenYearsAgo,
 }) => {
+  const [animationKey, setAnimationKey] = useState(0);
+  const [animProgress, setAnimProgress] = useState(0);
+  const [labelVisible, setLabelVisible] = useState(false);
+  const rafRef = useRef<number | null>(null);
+
+  const startAnimation = () => {
+    if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    setAnimProgress(0);
+    setLabelVisible(false);
+    setAnimationKey((k) => k + 1);
+  };
+
+  useEffect(() => {
+    startAnimation();
+    const mq = window.matchMedia("(min-width: 768px)");
+    const handler = (e: MediaQueryListEvent) => {
+      if (e.matches) startAnimation();
+    };
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  useEffect(() => {
+    if (animationKey === 0) return;
+    const duration = 1200;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setAnimProgress(eased);
+      if (t < 1) {
+        rafRef.current = requestAnimationFrame(tick);
+      } else {
+        setLabelVisible(true);
+      }
+    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => {
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    };
+  }, [animationKey]);
+
   let percentageActual =
     (reservoirData.currentVolume * 100) / reservoirData.totalCapacity;
   if (percentageActual > 100) {
@@ -40,32 +84,44 @@ export const HistoryChart: React.FC<ChartModel> = ({
   // Etiqueta: encima de la barra si el nivel es muy bajo (<10%), dentro si no
   const labelY = isOutside ? barY - 8 : barY + 20;
 
+  // Animación de la barra oscura (nivel actual) que crece de abajo hacia arriba.
+  // Si la animación no ha arrancado aún (móvil antes de tocar), mostrar estado final estático.
+  const progress = animationKey === 0 ? 1 : animProgress;
+  const animBarHeight = progress * barHeight;
+  const animBarY = y(0) - animBarHeight;
+  const showLabel = animationKey === 0 ? true : labelVisible;
+
   return (
     <section
       className="card bg-base-100 mx-auto w-full items-center rounded-2xl md:gap-4 md:p-4 md:shadow-lg"
       aria-labelledby="gauge-title"
+      onClick={() => {
+        if (!window.matchMedia("(min-width: 768px)").matches) {
+          startAnimation();
+        }
+      }}
     >
       <h2 id="gauge-title" className="text-center">
         {titleChart}
       </h2>
 
       <svg width={s.width} height={s.height}>
-        {/* Indicador de capacidad total (100%) */}
+        {/* Indicador de capacidad total (100%) - fijo, ocupa todo el alto */}
         <rect
           x={barX}
           y={y(100)}
           width={barWidth}
-          height={y(barHeight / 2)}
+          height={y(0) - y(100)}
           rx={s.radius}
           fill="var(--color-total-water)"
         />
 
-        {/* Nivel actual */}
+        {/* Nivel actual - animado creciendo de abajo hacia arriba */}
         <BarRoundedTop
           x={barX}
-          y={barY}
+          y={animBarY}
           width={barWidth}
-          height={barHeight}
+          height={animBarHeight}
           fill="var(--color-primary)"
         />
 
@@ -95,16 +151,18 @@ export const HistoryChart: React.FC<ChartModel> = ({
           />
         )}
         {/* Etiqueta con el nivel actual en Hm³ */}
-        <text
-          x={barX + barWidth / 2}
-          y={labelY}
-          textAnchor="middle"
-          fontSize="16px"
-          fill="var(--color-brand-100)"
-          fontWeight="900"
-        >
-          {reservoirData.currentVolume} Hm³
-        </text>
+        {showLabel && (
+          <text
+            x={barX + barWidth / 2}
+            y={labelY}
+            textAnchor="middle"
+            fontSize="16px"
+            fill="var(--color-brand-100)"
+            fontWeight="900"
+          >
+            {reservoirData.currentVolume} Hm³
+          </text>
+        )}
 
         {/* Eje X */}
         <line
