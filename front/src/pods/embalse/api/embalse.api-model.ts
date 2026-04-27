@@ -11,3 +11,15 @@ export interface ReservoirInfo {
   description: string;
   mapUrl?: string;
 }
+
+export interface ReservoirLastYearModel {
+  mes: number;
+  promedio_agua_actual: number;
+}
+
+export interface HistoricalAverageReservoir {
+  embalse: string;
+  mes: number;
+  año: number;
+  promedio_agua_actual: number;
+}

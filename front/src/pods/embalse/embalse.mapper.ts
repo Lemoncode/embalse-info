@@ -12,7 +12,14 @@
  */
 
 import type { Embalse } from "db-model";
-import type { ReservoirData, ReservoirInfo } from "./embalse.vm";
+import {
+  ReservoirData,
+  DataLastYearModel,
+  ReservoirInfo,
+  HistoricalAverageReservoir,
+  createEmptyDataLastYearModel,
+  createEmptyHistoricalAverageReservoir,
+} from "./embalse.vm";
 import * as apiModel from "./api";
 
 function formatDate(date: Date | string | null | undefined): string {
@@ -61,3 +68,28 @@ const mapReservoirInfoFromContentIslandToViewModel = (
   authorUrl: embalseInfo.authorUrl ?? "",
   description: embalseInfo.description ?? "",
 });
+
+export const mapReservoirLastYearToViewModel = (
+  apiData: apiModel.ReservoirLastYearModel,
+): DataLastYearModel => {
+  return Boolean(apiData)
+    ? {
+        month: apiData.mes,
+        average: apiData.promedio_agua_actual,
+        year: new Date().getFullYear() - 1,
+      }
+    : createEmptyDataLastYearModel();
+};
+
+export const mapHistoricalReservoirToViewModel = (
+  apiData: apiModel.HistoricalAverageReservoir,
+): HistoricalAverageReservoir => {
+  return Boolean(apiData)
+    ? {
+        nameReservoir: apiData.embalse,
+        year: apiData.año,
+        month: apiData.mes,
+        average: apiData.promedio_agua_actual,
+      }
+    : createEmptyHistoricalAverageReservoir();
+};

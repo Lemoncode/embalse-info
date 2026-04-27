@@ -1,6 +1,17 @@
 import { describe, it, expect } from "vitest";
-import { mapEmbalseToReservoirData } from "./embalse.mapper";
+import {
+  mapEmbalseToReservoirData,
+  mapHistoricalReservoirToViewModel,
+  mapReservoirLastYearToViewModel,
+} from "./embalse.mapper";
 import type { Embalse } from "db-model";
+import * as historicalApi from "./api/embalse.api-model";
+import {
+  createEmptyDataLastYearModel,
+  createEmptyHistoricalAverageReservoir,
+  DataLastYearModel,
+  HistoricalAverageReservoir,
+} from "./embalse.vm";
 
 describe("mapEmbalseToReservoirData", () => {
   const mockEmbalseBase: Partial<Embalse> = {
@@ -182,5 +193,73 @@ describe("mapEmbalseToReservoirData", () => {
     const result = mapEmbalseToReservoirData(mockEmbalse, null);
 
     expect(result.datosEmbalse.provincia).toBe("");
+  });
+});
+
+describe("mapReservoirLastYearToViewModel", () => {
+  it("should correctly map the fields from the last year", () => {
+    const mockLastYearData: historicalApi.ReservoirLastYearModel = {
+      mes: 3,
+      promedio_agua_actual: 54,
+    };
+
+    const result: DataLastYearModel =
+      mapReservoirLastYearToViewModel(mockLastYearData);
+    const expectResult = {
+      month: 3,
+      average: 54,
+      year: new Date().getFullYear() - 1,
+    };
+
+    expect(result).toEqual(expectResult);
+  });
+
+  it("should return empty data when fill a null value", () => {
+    const result: DataLastYearModel = mapReservoirLastYearToViewModel(null);
+
+    expect(result).toEqual(createEmptyDataLastYearModel());
+  });
+
+  it("should return empty data when fill a undefined value", () => {
+    const result: DataLastYearModel =
+      mapReservoirLastYearToViewModel(undefined);
+
+    expect(result).toEqual(createEmptyDataLastYearModel());
+  });
+});
+
+describe("mapHistoricalReservoirToViewModel", () => {
+  it("should accurately map the fields for the last ten years", () => {
+    const mockHistoricalData: historicalApi.HistoricalAverageReservoir = {
+      año: 2026,
+      embalse: "Viñuela, La",
+      mes: 3,
+      promedio_agua_actual: 149.21,
+    };
+
+    const result: HistoricalAverageReservoir =
+      mapHistoricalReservoirToViewModel(mockHistoricalData);
+
+    const expectResult = {
+      year: 2026,
+      nameReservoir: "Viñuela, La",
+      month: 3,
+      average: 149.21,
+    };
+
+    expect(result).toEqual(expectResult);
+  });
+  it("should return empty data when fill a null value", () => {
+    const result: HistoricalAverageReservoir =
+      mapHistoricalReservoirToViewModel(null);
+
+    expect(result).toEqual(createEmptyHistoricalAverageReservoir());
+  });
+
+  it("should return empty data when fill a undefined value", () => {
+    const result: HistoricalAverageReservoir =
+      mapHistoricalReservoirToViewModel(undefined);
+
+    expect(result).toEqual(createEmptyHistoricalAverageReservoir());
   });
 });

@@ -4,8 +4,14 @@ import {
   EmbalsePod,
   getReservoirInfoBySlugCached,
   getEmbalseBySlugCached,
+  getAverageLastYearByMonthCached,
+  getAverageHistoricalByMonthCached,
 } from "@/pods/embalse";
-import { mapEmbalseToReservoirData } from "@/pods/embalse/embalse.mapper";
+import {
+  mapReservoirLastYearToViewModel,
+  mapEmbalseToReservoirData,
+  mapHistoricalReservoirToViewModel,
+} from "@/pods/embalse/embalse.mapper";
 
 export const revalidate = 300; // ISR: regenerar cada 5 minutos
 
@@ -30,10 +36,32 @@ export default async function EmbalseDetallePage({ params }: Props) {
   const { embalse } = await params;
   const embalseDoc = await getEmbalseBySlugCached(embalse);
   const embalseInfo = await getReservoirInfoBySlugCached(embalse);
+  const actualYear = new Date().getFullYear();
+  const actualMonth = new Date().getMonth(); // return month 0-11
 
   if (!embalseDoc) {
     notFound();
   }
   const reservoirData = mapEmbalseToReservoirData(embalseDoc, embalseInfo);
-  return <EmbalsePod reservoirData={reservoirData} />;
+
+  const dataMappedOneYearAgo = await getAverageLastYearByMonthCached(
+    embalseDoc.nombre,
+    actualMonth + 1,
+  ).then(mapReservoirLastYearToViewModel);
+
+  const averageHistoricalData = await getAverageHistoricalByMonthCached(
+    embalseDoc.nombre,
+    actualMonth + 1,
+    actualYear - 10, // 10 years ago
+  ).then(mapHistoricalReservoirToViewModel);
+
+  return (
+    <>
+      <EmbalsePod
+        reservoirData={reservoirData}
+        dataOneYearAgo={dataMappedOneYearAgo}
+        dataTenYearsAgo={averageHistoricalData}
+      />
+    </>
+  );
 }
