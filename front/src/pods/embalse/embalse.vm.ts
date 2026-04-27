@@ -68,7 +68,7 @@ export const createEmptyDataLastYearModel = (): DataLastYearModel => ({
 export interface HistoricalAverageReservoir {
   nameReservoir: string;
   month: number;
-  year: number;
+  year?: number;
   average: number;
 }
 export const createEmptyHistoricalAverageReservoir =

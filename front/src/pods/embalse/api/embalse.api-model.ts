@@ -20,6 +20,5 @@ export interface ReservoirLastYearModel {
 export interface HistoricalAverageReservoir {
   embalse: string;
   mes: number;
-  año: number;
   promedio_agua_actual: number;
 }

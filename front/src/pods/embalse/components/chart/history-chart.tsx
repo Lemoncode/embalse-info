@@ -100,9 +100,7 @@ export const HistoryChart: React.FC<ChartModel> = ({
           y={labelY}
           textAnchor="middle"
           fontSize="16px"
-          fill={
-            isOutside ? "var(--color-base-content)" : "var(--color-brand-100)"
-          }
+          fill="var(--color-brand-100)"
           fontWeight="900"
         >
           {reservoirData.currentVolume} Hm³
