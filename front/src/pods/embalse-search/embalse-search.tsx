@@ -65,9 +65,9 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
           aria-labelledby="search-title"
         >
           <div className="text-center">
-            <h2 id="search-title" className="font-bold">
-              Embalses
-            </h2>
+            <h1 id="search-title" className="font-bold">
+              Estado de los embalses de España
+            </h1>
           </div>
           <div>
             <p className="text-sm">
