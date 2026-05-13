@@ -12,6 +12,7 @@ import {
   mapEmbalseToReservoirData,
   mapHistoricalReservoirToViewModel,
 } from "@/pods/embalse/embalse.mapper";
+import { formatEmbalseDisplayName } from "@/pods/embalse/embalse-name.helper";
 
 export const revalidate = 300; // ISR: regenerar cada 5 minutos
 
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const embalseSlug = await getEmbalseBySlugCached(embalse);
 
   return {
-    title: embalseSlug.nombre,
+    title: `Embalse de ${formatEmbalseDisplayName(embalseSlug.nombre)}`,
     alternates: { canonical: `/embalse/${embalse}` },
   };
 }
