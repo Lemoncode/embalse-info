@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `Embalses de ${nombreProvincia}`,
+    alternates: { canonical: `/embalse-provincia/${provincia}` },
   };
 }
 

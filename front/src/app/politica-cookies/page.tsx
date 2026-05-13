@@ -1,3 +1,13 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Política de Cookies",
+  description:
+    "Política de cookies de InfoEmbalse. Información sobre las cookies analíticas utilizadas y cómo gestionarlas.",
+  alternates: { canonical: "/politica-cookies" },
+  robots: { index: true, follow: true },
+};
+
 const CookiesPolicyPage = () => {
   return (
     <div className="container mx-auto max-w-3xl px-4 py-8">

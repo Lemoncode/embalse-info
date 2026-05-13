@@ -2,7 +2,10 @@ import { Metadata } from "next";
 import { EquipoPod } from "@/pods/equipo";
 
 export const metadata: Metadata = {
-  title: "Equipo - InfoEmbalses",
+  title: "Equipo",
+  description:
+    "Equipo de desarrollo de InfoEmbalse. Conoce a las personas detrás del proyecto.",
+  alternates: { canonical: "/equipo" },
 };
 
 const EquipoPage = () => {
