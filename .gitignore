@@ -10,3 +10,6 @@ mongo-data
 .env
 deploy
 front/.env.local
+front/public/.DS_Store
+.gitignore
+.DS_Store

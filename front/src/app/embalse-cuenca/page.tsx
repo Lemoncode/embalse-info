@@ -7,6 +7,9 @@ export const revalidate = 300; // ISR: regenerar cada 5 minutos
 
 export const metadata: Metadata = {
   title: "Embalses por cuencas",
+  description:
+    "Listado completo de embalses de España agrupados por cuenca hidrográfica. Consulta los embalses de cada cuenca y su nivel actual.",
+  alternates: { canonical: "/embalse-cuenca" },
 };
 
 export default async function EmbalsesCuencasPage() {

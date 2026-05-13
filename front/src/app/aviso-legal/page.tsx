@@ -1,3 +1,13 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Aviso Legal",
+  description:
+    "Aviso legal de InfoEmbalse: proyecto educativo open source de Lemoncode con información orientativa sobre los embalses de España.",
+  alternates: { canonical: "/aviso-legal" },
+  robots: { index: true, follow: true },
+};
+
 const LegalNoticePage = () => {
   return (
     <div className="container mx-auto max-w-3xl px-4 py-8">

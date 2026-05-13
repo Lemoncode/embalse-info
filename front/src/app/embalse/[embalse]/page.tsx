@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: embalseSlug.nombre,
+    alternates: { canonical: `/embalse/${embalse}` },
   };
 }
 
