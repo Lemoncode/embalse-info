@@ -1,7 +1,7 @@
 import { EmbalseSearch } from "@/pods/embalse-search";
 import { getEmbalsesCollection } from "@/pods/embalse-search/api";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 const RootPage = async () => {
   const embalses = await getEmbalsesCollection();
