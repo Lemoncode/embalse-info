@@ -9,6 +9,7 @@ import { GaugeChart } from "./reservoir-gauge";
 import { GaugeLegend } from "./reservoir-gauge/gauge-chart/components/gauge-legend.component";
 import { HistoryChart } from "./chart";
 import { useIsMobile } from "./useIsMobile";
+import { formatEmbalseDisplayName } from "../embalse-name.helper";
 interface Props {
   name: string;
   reservoirData: ReservoirData;
@@ -38,7 +39,7 @@ export const ReservoirCardGauge: React.FC<Props> = (props) => {
       aria-labelledby="gauge-title"
     >
       <h2 id="gauge-title" className="text-center">
-        {name}
+        {formatEmbalseDisplayName(name)}
       </h2>
       {isMobile && (
         <div className="join">
