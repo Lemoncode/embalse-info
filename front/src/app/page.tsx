@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import { EmbalseSearch } from "@/pods/embalse-search";
 import { getEmbalsesCollection } from "@/pods/embalse-search/api";
 
 export const revalidate = 300;
+
+export const metadata: Metadata = {
+  title: { absolute: "Estado de los embalses de España — InfoEmbalse" },
+};
 
 const RootPage = async () => {
   const embalses = await getEmbalsesCollection();
