@@ -1,6 +1,6 @@
 import { ReservoirInfo } from "../embalse.vm";
 import React from "react";
-import Image from "next/image";
+import { formatEmbalseDisplayName } from "@/pods/embalse/embalse-name.helper";
 
 interface Props {
   reservoirInfo: ReservoirInfo;
@@ -14,7 +14,9 @@ export const ReservoirCardInfo: React.FC<Props> = (props) => {
       className="flex w-full flex-col items-start gap-4"
       aria-labelledby="discover-title"
     >
-      <h2 id="discover-title">Descubre el embalse {reservoirInfo?.name}</h2>
+      <h2 id="discover-title">
+        Descubre el embalse {formatEmbalseDisplayName(reservoirInfo?.name)}
+      </h2>
       <p>{reservoirInfo?.description}</p>
       {reservoirInfo?.mainPicture?.url && (
         <>

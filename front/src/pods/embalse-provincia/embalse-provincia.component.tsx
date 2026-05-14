@@ -2,6 +2,7 @@ import { Card } from "@/common/components/card.component";
 import { Lookup } from "@/common/models";
 import Link from "next/link";
 import React from "react";
+import { formatEmbalseDisplayName } from "@/pods/embalse/embalse-name.helper";
 
 interface Props {
   nombreProvincia: string;
@@ -21,7 +22,7 @@ export const EmbalseProvincia: React.FC<Props> = (props) => {
         <div className="grid grid-cols-1 gap-4 p-6 sm:grid-cols-2 md:grid-cols-3">
           {embalses.map(({ id, name }) => (
             <Link key={id} href={`/embalse/${id}`} className="link-accessible">
-              {name}
+              {formatEmbalseDisplayName(name)}
             </Link>
           ))}
         </div>
