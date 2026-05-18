@@ -9,7 +9,7 @@ import { GaugeChart } from "./reservoir-gauge";
 import { GaugeLegend } from "./reservoir-gauge/gauge-chart/components/gauge-legend.component";
 import { HistoryChart } from "./chart";
 import { useIsMobile } from "./useIsMobile";
-import { formatEmbalseDisplayName } from "../embalse-name.helper";
+import { formatEmbalseDisplayName } from "@/common/helpers/embalse-name.helper";
 interface Props {
   name: string;
   reservoirData: ReservoirData;

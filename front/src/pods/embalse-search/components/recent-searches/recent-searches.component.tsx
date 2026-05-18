@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { EmbalseSearchModel } from "../../embalse-search.vm";
+import { formatEmbalseDisplayName } from "@/common/helpers/embalse-name.helper";
 
 interface Props {
   searches: EmbalseSearchModel[];
@@ -14,7 +15,9 @@ export const RecentSearches: React.FC<Props> = (props) => {
       <ul>
         {searches.map((item) => (
           <li key={item.slug} className="mt-3">
-            <Link className="link-accessible" href={`/embalse/${item.slug}`}>{item.name} </Link>
+            <Link className="link-accessible" href={`/embalse/${item.slug}`}>
+              {formatEmbalseDisplayName(item.name)}
+            </Link>
           </li>
         ))}
       </ul>

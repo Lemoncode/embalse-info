@@ -2,7 +2,7 @@ import { Card } from "@/common/components/card.component";
 import { Lookup } from "@/common/models";
 import { generateSlug } from "db-model";
 import Link from "next/link";
-import { formatEmbalseDisplayName } from "@/pods/embalse/embalse-name.helper";
+import { formatEmbalseDisplayName } from "@/common/helpers/embalse-name.helper";
 
 export interface Props {
   nombreCuenca: string;

@@ -2,7 +2,7 @@ import { Card } from "@/common/components/card.component";
 import { Lookup } from "@/common/models";
 import Link from "next/link";
 import React from "react";
-import { formatEmbalseDisplayName } from "@/pods/embalse/embalse-name.helper";
+import { formatEmbalseDisplayName } from "@/common/helpers/embalse-name.helper";
 
 interface Props {
   nombreProvincia: string;

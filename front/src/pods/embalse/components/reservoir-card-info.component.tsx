@@ -1,6 +1,6 @@
 import { ReservoirInfo } from "../embalse.vm";
 import React from "react";
-import { formatEmbalseDisplayName } from "@/pods/embalse/embalse-name.helper";
+import { formatEmbalseDisplayName } from "@/common/helpers/embalse-name.helper";
 
 interface Props {
   reservoirInfo: ReservoirInfo;
