@@ -6,6 +6,9 @@ describe("formatEmbalseDisplayName", () => {
     expect(formatEmbalseDisplayName("Atazar, El")).toBe("El Atazar");
     expect(formatEmbalseDisplayName("Pardo, El")).toBe("El Pardo");
     expect(formatEmbalseDisplayName("Villar, El")).toBe("El Villar");
+    expect(formatEmbalseDisplayName("Forcadas, As")).toBe("As Forcadas");
+    expect(formatEmbalseDisplayName("Peares, Os")).toBe("Os Peares");
+    expect(formatEmbalseDisplayName("Ribeira, A")).toBe("A Ribeira");
   });
 
   it("flips comma-inverted La", () => {
@@ -29,5 +32,8 @@ describe("formatEmbalseDisplayName", () => {
 
   it("returns empty string for empty input", () => {
     expect(formatEmbalseDisplayName("")).toBe("");
+  });
+  it("inverts article in parenthesized format", () => {
+    expect(formatEmbalseDisplayName("Loteta (La)")).toBe("La Loteta");
   });
 });

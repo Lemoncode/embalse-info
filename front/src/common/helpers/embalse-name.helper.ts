@@ -1,4 +1,5 @@
-const INVERTED_ARTICLE_PATTERN = /^(.+?),\s*(El|La|Los|Las)\b\s*(.*)$/;
+const INVERTED_ARTICLE_PATTERN =
+  /^(.+?)(?:,\s*|\s*\()(El|La|Los|Las|Os|A|As)(?:\)|\b\s*)\s*(.*)$/;
 
 export const formatEmbalseDisplayName = (rawName: string): string => {
   if (!rawName) return "";
