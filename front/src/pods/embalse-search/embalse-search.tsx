@@ -10,6 +10,7 @@ import { getFilteredEmbalses as getFilteredEmbalsesBusiness } from "./embalse-se
 import { FilteredList } from "./components/filtered-list";
 import { Input } from "./components/input";
 import { RecentSearches, useRecentSearches } from "./components";
+import { formatEmbalseDisplayName } from "@/common/helpers/embalse-name.helper";
 
 interface Props {
   embalses: Embalse[];
@@ -23,7 +24,8 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
   >([]);
   const [isNavigating, setIsNavigating] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
-  const { addNewEmbalseToLatestSearchCollection, recentSearches } = useRecentSearches();
+  const { addNewEmbalseToLatestSearchCollection, recentSearches } =
+    useRecentSearches();
 
   const getFilteredEmbalses = (inputValue: string): EmbalseSearchModel[] => {
     return getFilteredEmbalsesBusiness(inputValue, embalses);
@@ -36,7 +38,7 @@ export const EmbalseSearch: React.FC<Props> = (props) => {
     highlightedIndex,
   } = useCombobox<EmbalseSearchModel>({
     items: filteredEmbalses,
-    itemToString: (item) => (item ? item.name : ""),
+    itemToString: (item) => (item ? formatEmbalseDisplayName(item.name) : ""),
     onInputValueChange: ({ inputValue: newValue }) => {
       setInputValue(newValue || "");
       setFilteredEmbalses(newValue ? getFilteredEmbalses(newValue) : []);
