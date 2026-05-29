@@ -12,7 +12,7 @@ import {
   mapEmbalseToReservoirData,
   mapHistoricalReservoirToViewModel,
 } from "@/pods/embalse/embalse.mapper";
-import { formatEmbalseDisplayName } from "@/pods/embalse/embalse-name.helper";
+import { formatEmbalseDisplayName } from "@/common/helpers/embalse-name.helper";
 
 export const revalidate = 300; // ISR: regenerar cada 5 minutos
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { useCombobox } from "downshift";
 import { EmbalseSearchModel } from "../embalse-search.vm";
+import { formatEmbalseDisplayName } from "@/common/helpers/embalse-name.helper";
 
 interface Props {
   isOpen: boolean;
@@ -35,7 +36,7 @@ export const FilteredList: React.FC<Props> = (props) => {
               highlightedIndex === index ? "bg-primary text-white" : ""
             }`}
           >
-            {item.name}
+            {formatEmbalseDisplayName(item.name)}
           </li>
         ))}
     </ul>
