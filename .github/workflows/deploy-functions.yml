@@ -15,13 +15,13 @@ jobs:
     steps:
       # Checkout repository source code
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       # Setup Node.js runtime
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: "22"
+          node-version: "24"
           cache: "npm"
 
       # Install all monorepo dependencies (npm workspaces)
@@ -171,7 +171,7 @@ jobs:
 
       # Deploy the prepared folder to Azure Functions
       - name: Deploy to Azure Functions
-        uses: Azure/functions-action@v1.5.3
+        uses: Azure/functions-action@v1.5.7
         with:
           app-name: fn-info-embalse-prod
           package: deploy
